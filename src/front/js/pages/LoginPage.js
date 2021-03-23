@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const Login = () => {
+export const LoginPage = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -25,6 +25,7 @@ export const Login = () => {
 							type="email"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
+							required
 						/>
 					</div>
 					<div className="form-group" size="md" controlId="password">
@@ -34,6 +35,7 @@ export const Login = () => {
 							type="password"
 							value={password}
 							onChange={e => setPassword(e.target.value)}
+							required
 						/>
 					</div>
 					<div className="text-center">

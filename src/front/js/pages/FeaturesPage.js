@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Pricing = () => {
+export const FeaturesPage = () => {
 	return (
 		<div className="container">
-			<h1>Prueba Pricing</h1>
+			<h1>Prueba Features</h1>
 		</div>
 	);
 };

@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Community = () => {
+export const DashboardPage = () => {
 	return (
 		<div className="container">
-			<h1>Community</h1>
+			<h1>DashboardPage</h1>
 		</div>
 	);
 };

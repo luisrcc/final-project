@@ -2,18 +2,22 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./pages/home";
-import { Single } from "./pages/single";
+import { Home } from "./pages/Home";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { Login } from "./component/Login";
-import { Register } from "./component/Register";
-import { Community } from "./component/Community";
-import { Features } from "./component/Features";
-import { Pricing } from "./component/Pricing";
-import { Support } from "./component/Support";
+import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { CommunityPage } from "./pages/CommunityPage";
+import { FeaturesPage } from "./pages/FeaturesPage";
+import { PricingPage } from "./pages/PricingPage";
+import { SupportPage } from "./pages/SupportPage";
+import { Error } from "./pages/Error";
+import { PorfilePage } from "./pages/PorfilePage";
+import { PrivateRoute } from "../Routers/PrivateRoute";
+import { DashboardPage } from "./pages/DashboardPage";
 
 //create your first component
 const Layout = () => {
@@ -27,33 +31,16 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
-						<Route exact path="/Login">
-							<Login />
-						</Route>
-						<Route extac path="/Register">
-							<Register />
-						</Route>
-						<Route exact path="/Community">
-							<Community />
-						</Route>
-						<Route extac path="/Features">
-							<Features />
-						</Route>
-						<Route extac path="/Pricing">
-							<Pricing />
-						</Route>
-						<Route extac path="/Support">
-							<Support />
-						</Route>
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
+						<Route exact path="/" component={Home} />
+						<Route exact path="/Login" component={LoginPage} />
+						<Route exact path="/Register" component={RegisterPage} />
+						<Route exact path="/Community" component={CommunityPage} />
+						<Route exact path="/Features" component={FeaturesPage} />
+						<Route exact path="/Pricing" component={PricingPage} />
+						<Route exact path="/Support" component={SupportPage} />
+						<PrivateRoute exact path="/Dashboard" component={DashboardPage} />
+						<Route exact path="/Porfile/:username" component={PorfilePage} />
+						<Route path="*" component={Error} />
 					</Switch>
 					<Footer />
 				</ScrollToTop>

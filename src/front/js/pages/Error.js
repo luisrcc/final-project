@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Features = () => {
+export const Error = () => {
 	return (
 		<div className="container">
-			<h1>Prueba Features</h1>
+			<h1>Not Found</h1>
 		</div>
 	);
 };

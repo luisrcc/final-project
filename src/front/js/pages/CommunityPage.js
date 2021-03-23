@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Support = () => {
+export const CommunityPage = () => {
 	return (
 		<div className="container">
-			<h1>Prueba Support</h1>
+			<h1>Community</h1>
 		</div>
 	);
 };
