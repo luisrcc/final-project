@@ -11,9 +11,6 @@ export const Navbar = () => {
 				<Link to="/demo">
 					<button className="btn btn-outline-info">Registrarse</button>
 				</Link>
-				<Link to="/login">
-					<button className="btn btn-info">Ingresar</button>
-				</Link>
 			</div>
 		</nav>
 	);
