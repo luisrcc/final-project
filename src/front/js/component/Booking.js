@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { DateTimePicker } from "./DateTimePicker";
 
 export const Booking = () => {
 	const [pet, setPet] = useState("");
@@ -92,7 +93,9 @@ export const Booking = () => {
 								</div>
 							</div>
 						)}
-						<div className="form-row justify-content-center">
+
+						<DateTimePicker />
+						<div className="form-row justify-content-center pt-4">
 							<input disabled={isSubmitting} type="submit" />
 						</div>
 					</form>

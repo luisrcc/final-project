@@ -8,20 +8,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-<<<<<<< HEAD
-import { LoginPage } from "./pages/LoginPage";
-import { RegisterPage } from "./pages/RegisterPage";
-import { CommunityPage } from "./pages/CommunityPage";
-import { FeaturesPage } from "./pages/FeaturesPage";
-import { PricingPage } from "./pages/PricingPage";
-import { SupportPage } from "./pages/SupportPage";
-import { Error } from "./pages/Error";
-import { PorfilePage } from "./pages/PorfilePage";
-import { PrivateRoute } from "../Routers/PrivateRoute";
-import { DashboardPage } from "./pages/DashboardPage";
-=======
 import { Booking } from "./component/Booking";
->>>>>>> booking
 
 //create your first component
 const Layout = () => {
@@ -35,27 +22,10 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-<<<<<<< HEAD
-						<Route exact path="/" component={Home} />
-						<Route exact path="/Login" component={LoginPage} />
-						<Route exact path="/Register" component={RegisterPage} />
-						<Route exact path="/Community" component={CommunityPage} />
-						<Route exact path="/Features" component={FeaturesPage} />
-						<Route exact path="/Pricing" component={PricingPage} />
-						<Route exact path="/Support" component={SupportPage} />
-						<PrivateRoute exact path="/Dashboard" component={DashboardPage} />
-						<Route exact path="/Porfile/:username" component={PorfilePage} />
-						<Route path="*" component={Error} />
-=======
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
+
 						<Route exact path="/booking">
 							<Booking />
 						</Route>
@@ -63,7 +33,6 @@ const Layout = () => {
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
->>>>>>> booking
 					</Switch>
 					<Footer />
 				</ScrollToTop>
