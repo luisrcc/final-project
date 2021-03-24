@@ -32,6 +32,7 @@ export const Navbar = () => {
 				</ul>
 			</div>
 			<div className="ml-auto">
+<<<<<<< HEAD
 				<Link to="/Login">
 					<button type="button" className="btn btn-outline-info btn-sm" style={{ marginRight: "10px" }}>
 						Log in
@@ -41,6 +42,10 @@ export const Navbar = () => {
 					<button type="button" className="btn btn-info btn-sm center-button">
 						Register
 					</button>
+=======
+				<Link to="/demo">
+					<button className="btn btn-outline-info">Registrarse</button>
+>>>>>>> booking
 				</Link>
 			</div>
 		</nav>
