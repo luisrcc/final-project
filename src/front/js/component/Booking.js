@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { DateTimePicker } from "./DateTimePicker";
 
 export const Booking = () => {
 	const [pet, setPet] = useState("");
@@ -11,6 +12,7 @@ export const Booking = () => {
 		formState: { isSubmitting }
 	} = useForm();
 	const inputPet = watch("inputPet");
+	const inputSpecialist = watch("inputSpecialist");
 
 	const onSubmit = data => {
 		alert(JSON.stringify(data));
@@ -69,20 +71,22 @@ export const Booking = () => {
 						{inputPet && (
 							<div className="form-row">
 								<div className="form-group col-md-6">
-									<label htmlFor="inputSpecialist">Elija Especialidad</label>
+									<label htmlFor="inputSpeciality">Elija Especialidad</label>
 									<select
-										id="inputSpecialist"
+										id="inputSpeciality"
+										name="inputSpeciality"
 										className="form-control"
 										ref={register({ required: true })}>
 										<option value="">None...</option>
-										<option value="alergias">Alergias</option>
-										<option value="general">General</option>
+										<option value="alergias">Veterinaria</option>
+										<option value="general">Peluquería</option>
 									</select>
 								</div>
 								<div className="form-group col-md-6">
-									<label htmlFor="inputSpeciality">Especialista</label>
+									<label htmlFor="inputSpecialist">Especialista</label>
 									<select
-										id="inputSpeciality"
+										id="inputSpecialist"
+										name="inputSpecialist"
 										className="form-control"
 										ref={register({ required: true })}>
 										<option value="">None...</option>
@@ -92,7 +96,9 @@ export const Booking = () => {
 								</div>
 							</div>
 						)}
-						<div className="form-row justify-content-center">
+
+						{inputSpecialist && <DateTimePicker />}
+						<div className="form-row justify-content-center pt-4">
 							<input disabled={isSubmitting} type="submit" />
 						</div>
 					</form>
