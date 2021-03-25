@@ -23,44 +23,45 @@ export const Booking = () => {
 			<div className="row justify-content-center">
 				<div className="col-md-6 border p-4">
 					<form onSubmit={handleSubmit(onSubmit)}>
-						<div className="form-row">
-							<div className="form-group col-md-6">
+						<div className="form-row justify-content-center">
+							<div className="form-group col-md-5 border-bottom border-info mr-4">
 								<label htmlFor="inputFirstName">Nombres</label>
 								<input
 									type="text"
-									className="form-control"
+									className="form-control border-0 input-outline"
 									id="inputFirstName"
-									placeholder="Nombres"
+									placeholder="Ingrese su nombre"
 									ref={register({ required: true })}
 								/>
 							</div>
-							<div className="form-group col-md-6">
+							<div className="form-group col-md-5 border-bottom border-info mr-4">
 								<label htmlFor="inputSurname">Apellidos</label>
 								<input
 									type="text"
-									className="form-control"
+									className="form-control border-0 erase-outline"
 									id="inputSurname"
-									placeholder="Apellidos"
+									placeholder="Ingrese su apellido"
 									ref={register({ required: true })}
 								/>
 							</div>
 						</div>
-						<div className="form-row">
-							<div className="form-group col-md-6">
+						<div className="form-row justify-content-center">
+							<div className="form-group col-md-5 border-bottom border-info mr-4">
 								<label htmlFor="inputPetName">Nombre de la mascota</label>
 								<input
 									type="text"
-									className="form-control"
+									className="form-control border-0 erase-outline"
 									id="inputPetName"
+									placeholder="Ingrese nombre de la mascota"
 									ref={register({ required: true })}
 								/>
 							</div>
-							<div className="form-group col-md-6">
+							<div className="form-group col-md-5 border-bottom border-info mr-4">
 								<label htmlFor="inputPet">Mascota</label>
 								<select
 									id="inputPet"
 									name="inputPet"
-									className="form-control"
+									className="form-control border-0 erase-outline"
 									ref={register({ required: true })}>
 									<option value="">Seleccione...</option>
 									<option value="perro">Perro</option>
@@ -69,27 +70,27 @@ export const Booking = () => {
 							</div>
 						</div>
 						{inputPet && (
-							<div className="form-row">
-								<div className="form-group col-md-6">
+							<div className="form-row justify-content-center">
+								<div className="form-group col-md-5 border-bottom border-info mr-4">
 									<label htmlFor="inputSpeciality">Elija Especialidad</label>
 									<select
 										id="inputSpeciality"
 										name="inputSpeciality"
-										className="form-control"
+										className="form-control border-0 erase-outline"
 										ref={register({ required: true })}>
-										<option value="">None...</option>
+										<option value="">Seleccione...</option>
 										<option value="alergias">Veterinaria</option>
 										<option value="general">Peluquería</option>
 									</select>
 								</div>
-								<div className="form-group col-md-6">
+								<div className="form-group col-md-5 border-bottom border-info mr-4">
 									<label htmlFor="inputSpecialist">Especialista</label>
 									<select
 										id="inputSpecialist"
 										name="inputSpecialist"
-										className="form-control"
+										className="form-control border-0 erase-outline"
 										ref={register({ required: true })}>
-										<option value="">None...</option>
+										<option value="">Seleccione...</option>
 										<option value="doctor-1">Pedro Perez</option>
 										<option value="doctor-2">German Gatica</option>
 									</select>
