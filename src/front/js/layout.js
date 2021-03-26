@@ -8,7 +8,16 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { Booking } from "./component/Booking";
+import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
+import { CommunityPage } from "./pages/CommunityPage";
+import { FeaturesPage } from "./pages/FeaturesPage";
+import { PricingPage } from "./pages/PricingPage";
+import { SupportPage } from "./pages/SupportPage";
+import { Error } from "./pages/Error";
+import { ProfilePage } from "./pages/ProfilePage";
+import { PrivateRoutes } from "../Routers/PrivateRoute";
+import { DashboardPage } from "./pages/DashboardPage";
 
 //create your first component
 const Layout = () => {
@@ -22,17 +31,13 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-
-						<Route exact path="/booking">
-							<Booking />
-						</Route>
-
-						<Route>
-							<h1>Not found!</h1>
-						</Route>
+						<Route exact path="/" component={Home} />
+						<Route exact path="/Login" component={LoginPage} />
+						<Route exact path="/Register" component={RegisterPage} />
+						<Route exact path="/Support" component={SupportPage} />
+						<PrivateRoutes component={DashboardPage} path="/dashboard" exact />
+						<Route exact path="/Profile/:username" component={ProfilePage} />
+						<Route path="*" component={Error} />
 					</Switch>
 					<Footer />
 				</ScrollToTop>
