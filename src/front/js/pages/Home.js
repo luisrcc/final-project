@@ -3,8 +3,8 @@ import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
-import { Carousel} from '../component/Carousel';
-
+import { Carousel } from "../component/Carousel";
+import Cards from "../component/Cards";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -12,7 +12,7 @@ export const Home = () => {
 	return (
 		<div className="text-center mt-5">
 			<h1>Hello Rigo!</h1>
-            <Carousel />
+			<Carousel />
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
@@ -26,6 +26,10 @@ export const Home = () => {
 						</button>
 					</Link>
 				</div>
+			</div>
+
+			<div className="">
+				<Cards />
 			</div>
 
 			<p>
