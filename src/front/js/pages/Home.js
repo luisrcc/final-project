@@ -5,6 +5,7 @@ import "../../styles/home.scss";
 import { Link } from "react-router-dom";
 import { Carousel } from "../component/Carousel";
 import Cards from "../component/Cards";
+import Reviews from "../component/Reviews";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -25,6 +26,10 @@ export const Home = () => {
 
 			<div className="">
 				<Cards />
+			</div>
+
+			<div className="m-5">
+				<Reviews />
 			</div>
 		</div>
 	);
