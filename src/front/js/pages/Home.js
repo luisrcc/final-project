@@ -37,7 +37,7 @@ export const Home = () => {
 				<ProductCards />
 			</div>
 
-			<div className="container-fluid">
+			<div className="">
 				<JoinUsBanner />
 			</div>
 		</div>
