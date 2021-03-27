@@ -1,10 +1,9 @@
-import React from 'reac';
+import React from "react";
 
-export const ButtonRegiter = () => {
-    retunr(
-        <button type="button" className="btn btn-info btn-sm center-button">
-				Register
+export const ButtonRegister = () => {
+	return (
+		<button type="button" className="btn btn-info btn-sm center-button">
+			Register
 		</button>
-    )
-
-}
+	);
+};
