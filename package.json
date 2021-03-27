@@ -82,6 +82,7 @@
 		"popper.js": "^1.16.1",
 		"prop-types": "^15.7.2",
 		"react": "^16.8.4",
+		"react-copyright": "^0.0.1",
 		"react-datepicker": "^3.6.0",
 		"react-dom": "^16.8.4",
 		"react-hook-form": "^6.15.5",

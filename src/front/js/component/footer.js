@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { SupportPage } from "../pages/SupportPage";
+import { CopyRight } from "../component/CopyRight";
 
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center bg-light">
@@ -20,9 +21,17 @@ export const Footer = () => (
 		</div>
 		<div className="footerInfo">
 			<Link to="/Support">
-				<span className="footerContact">Contacto</span>
+				<span className="footerContact">Contacto </span> |
 			</Link>
+
+			<Link to="/FeaturesPage">
+				<span className="footerFeatures"> Legal </span>|
+			</Link>
+			<Link to="#">
+				<span className="#"> Politicas de Privacidad</span>
+			</Link>
+
+			<CopyRight />
 		</div>
-		<div className="academyFooter" />
 	</footer>
 );
