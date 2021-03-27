@@ -78,6 +78,8 @@
 	"dependencies": {
 		"bootstrap": "^4.3.1",
 		"date-fns": "^2.19.0",
+		"jquery": "^3.6.0",
+		"popper.js": "^1.16.1",
 		"prop-types": "^15.7.2",
 		"react": "^16.8.4",
 		"react-datepicker": "^3.6.0",

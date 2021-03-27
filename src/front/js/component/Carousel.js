@@ -5,16 +5,16 @@ import dogImg4 from "../../img/dog5.jpeg";
 
 export const Carousel = () => {
 	return (
-		<div className="carousel slide" data-ride="carousel" id="myCarousel">
+		<div className="carousel slide top-content" data-ride="carousel" id="myCarousel">
 			<div className="carousel-inner">
-				<div className="carousel-item active">
-					<img className="img-fluid" src={dogImg4} alt="dog3" style={{ width: 900, height: 400 }} />
+				<div className="carousel-item carousel-item-1 active">
+					{/* <img className="img-fluid" src={dogImg4} alt="dog3" style={{ width: 900, height: 400 }} /> */}
 				</div>
-				<div className="carousel-item">
-					<img className="img-fluid" src={dogImg2} alt="dog1" style={{ width: 900, height: 400 }} />
+				<div className="carousel-item carousel-item-2">
+					{/* <img className="img-fluid" src={dogImg2} alt="dog1" style={{ width: 900, height: 400 }} /> */}
 				</div>
-				<div className="carousel-item">
-					<img className="img-fluid" src={dogImg1} alt="dog2" style={{ width: 900, height: 400 }} />
+				<div className="carousel-item carousel-item-3">
+					{/* <img className="img-fluid" src={dogImg1} alt="dog2" style={{ width: 900, height: 400 }} /> */}
 				</div>
 			</div>
 			<a className="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
