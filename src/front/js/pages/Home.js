@@ -8,25 +8,24 @@ import Cards from "../component/Cards";
 import Reviews from "../component/Reviews";
 import ProductCards from "../component/ProductCards";
 import JoinUsBanner from "../component/JoinUsBanner";
+import BookingJumbotron from "../component/BookingJumbotron";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="text-center mt-5">
+		<div className="text-center my-5">
 			<Carousel />
 
-			<div className="justify-content-center">
+			<div className="justify-content-center my-5">
 				<div className="ml-auto">
 					<Link to="/booking">
-						<button type="submit" className="btn btn-info">
-							Agendar una cita
-						</button>
+						<BookingJumbotron />
 					</Link>
 				</div>
 			</div>
 
-			<div className="">
+			<div className="my-5">
 				<Cards />
 			</div>
 
