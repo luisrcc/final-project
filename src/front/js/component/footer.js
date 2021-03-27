@@ -17,11 +17,6 @@ export const Footer = () => (
 			</a>
 		</div>
 		<div className="footerInfo" />
-		<div className="academyFooter">
-			<p>
-				Made with <i className="fa fa-heart text-danger" /> by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-			</p>
-		</div>
+		<div className="academyFooter" />
 	</footer>
 );
