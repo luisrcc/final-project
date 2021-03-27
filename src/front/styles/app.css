@@ -30,6 +30,17 @@
     min-height: 600px;
     color: white;
     text-decoration: none;
+    /* background-color: #17A2B8;
+    opacity: 0.7; */
+}
+
+.join-us-text{
+    padding-top: 276px;
+}
+
+.content{
+    height: 50%;
+    /* padding-top: 276px; */
 }
 
 .top-content .carousel-item {

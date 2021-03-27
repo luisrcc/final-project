@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DateTimePicker } from "./DateTimePicker";
+import { Link } from "react-router-dom";
 
 export const Booking = () => {
 	const [pet, setPet] = useState("");
@@ -101,6 +102,14 @@ export const Booking = () => {
 						{inputSpecialist && <DateTimePicker />}
 						<div className="form-row justify-content-center pt-4">
 							<input disabled={isSubmitting} type="submit" />
+						</div>
+
+						<div className="form-row justify-content-center pt-4">
+							<Link to="/">
+								<span className="btn btn-outline-info" href="#" role="button">
+									Regresa
+								</span>
+							</Link>
 						</div>
 					</form>
 				</div>
