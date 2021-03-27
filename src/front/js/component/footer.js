@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { SupportPage } from "../pages/SupportPage";
 
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center bg-light">
@@ -16,7 +18,11 @@ export const Footer = () => (
 				<i className="fab fa-2x fa-twitter" style={{ margin: "5px" }} />
 			</a>
 		</div>
-		<div className="footerInfo" />
+		<div className="footerInfo">
+			<Link to="/Support">
+				<span className="footerContact">Contacto</span>
+			</Link>
+		</div>
 		<div className="academyFooter" />
 	</footer>
 );
