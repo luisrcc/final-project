@@ -30,7 +30,7 @@ export const Home = () => {
 				<Cards />
 			</div>
 
-			<div className="m-5">
+			<div className="container-fluid">
 				<Reviews />
 			</div>
 
@@ -38,7 +38,7 @@ export const Home = () => {
 				<ProductCards />
 			</div>
 
-			<div className="m-5">
+			<div className="container-fluid">
 				<JoinUsBanner />
 			</div>
 		</div>
