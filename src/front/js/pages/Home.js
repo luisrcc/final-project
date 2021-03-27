@@ -7,6 +7,7 @@ import { Carousel } from "../component/Carousel";
 import Cards from "../component/Cards";
 import Reviews from "../component/Reviews";
 import ProductCards from "../component/ProductCards";
+import JoinUsBanner from "../component/JoinUsBanner";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -35,6 +36,10 @@ export const Home = () => {
 
 			<div className="m-5">
 				<ProductCards />
+			</div>
+
+			<div className="m-5">
+				<JoinUsBanner />
 			</div>
 		</div>
 	);

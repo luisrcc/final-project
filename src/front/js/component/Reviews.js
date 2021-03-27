@@ -1,12 +1,12 @@
-import React from "react";
-import banner from "../../img/dog-banner.jpg";
+import React, { useState } from "react";
+import dogBanner from "../../img/dog-banner.jpg";
 
 const Reviews = () => {
 	return (
-		<div className="card mb-3 border-0">
+		<div className="card mb-3 border-0 w-100">
 			<div className="">
 				<div className="">
-					<img width={1400} height={500} src={banner} />
+					<img width={1400} height={500} src={dogBanner} />
 				</div>
 				<div className="card-img-overlay">
 					<div className="card-body text-left">
