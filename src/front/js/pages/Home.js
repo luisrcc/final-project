@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
@@ -12,10 +12,12 @@ import BookingJumbotron from "../component/BookingJumbotron";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 	return (
-		<div className="text-center my-5">
-			<Carousel />
+		<>
+			<div className="text-center">
+				<Carousel />
+			</div>
 
-			<div className="justify-content-center my-5">
+			<div className="justify-content-center">
 				<div className="ml-auto">
 					<BookingJumbotron />
 				</div>
@@ -36,6 +38,6 @@ export const Home = () => {
 			<div className="">
 				<JoinUsBanner />
 			</div>
-		</div>
+		</>
 	);
 };

@@ -27,7 +27,7 @@
 .jumbotron-join-us{
     background-image: url(../img/cat-banner.jpg);
     background-size: cover;
-    min-height: 600px;
+    min-height: 400px;
     color: white;
     text-decoration: none;
     /* background-color: #17A2B8;
@@ -38,10 +38,6 @@
     padding-top: 276px;
 }
 
-.content{
-    height: 50%;
-    /* padding-top: 276px; */
-}
 
 .top-content .carousel-item {
     width: 100%;
