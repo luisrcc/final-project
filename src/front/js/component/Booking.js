@@ -20,84 +20,109 @@ export const Booking = () => {
 	};
 
 	return (
-		<div className="container pt-4">
-			<div className="row justify-content-center">
-				<div className="col-md-6 border p-4">
+		<div className="container">
+			<div className="row py-5 mt-4 align-items-center">
+				<div className="col-md-7 col-lg-6 ml-auto border p-4">
 					<form onSubmit={handleSubmit(onSubmit)}>
-						<div className="form-row justify-content-center">
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputFirstName">Nombres</label>
+						<div className="row">
+							<div className="input-group col-lg-6 mb-4">
+								<div className="input-group-prepend">
+									<span className="input-group-text bg-white px-4 border-md border-right-0">
+										<i className="fa fa-user text-muted" />
+									</span>
+								</div>
 								<input
 									type="text"
-									className="form-control border-0 input-outline"
+									name="inputFirstName"
+									className="form-control bg-white border-left-0 border-md"
 									id="inputFirstName"
 									placeholder="Ingrese su nombre"
 									ref={register({ required: true })}
 								/>
 							</div>
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputSurname">Apellidos</label>
+							<div className="input-group col-lg-6 mb-4">
+								<div className="input-group-prepend">
+									<span className="input-group-text bg-white px-4 border-md border-right-0">
+										<i className="fa fa-user text-muted" />
+									</span>
+								</div>
 								<input
 									type="text"
-									className="form-control border-0 erase-outline"
+									name="inputSurname"
+									className="form-control erase-outline"
 									id="inputSurname"
 									placeholder="Ingrese su apellido"
 									ref={register({ required: true })}
 								/>
 							</div>
 						</div>
-						<div className="form-row justify-content-center">
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputPetName">Nombre de la mascota</label>
-								<input
-									type="text"
-									className="form-control border-0 erase-outline"
-									id="inputPetName"
-									placeholder="Ingrese nombre de la mascota"
-									ref={register({ required: true })}
-								/>
+						<div className="input-group col-lg-12 mb-4">
+							<div className="input-group-prepend">
+								<span className="input-group-text bg-white px-4 border-md border-right-0">
+									<i className="fa fa-user text-muted" />
+								</span>
 							</div>
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputPet">Mascota</label>
-								<select
-									id="inputPet"
-									name="inputPet"
-									className="form-control border-0 erase-outline"
-									ref={register({ required: true })}>
-									<option value="">Seleccione...</option>
-									<option value="perro">Perro</option>
-									<option value="gato">Gato</option>
-								</select>
-							</div>
+							<input
+								type="text"
+								name="inputPetName"
+								className="form-control erase-outline"
+								id="inputPetName"
+								placeholder="Ingrese nombre de la mascota"
+								ref={register({ required: true })}
+							/>
 						</div>
-						{inputPet && (
-							<div className="form-row justify-content-center">
-								<div className="form-group col-md-5 border-bottom border-info mr-4">
-									<label htmlFor="inputSpeciality">Elija Especialidad</label>
-									<select
-										id="inputSpeciality"
-										name="inputSpeciality"
-										className="form-control border-0 erase-outline"
-										ref={register({ required: true })}>
-										<option value="">Seleccione...</option>
-										<option value="alergias">Veterinaria</option>
-										<option value="general">Peluquería</option>
-									</select>
-								</div>
-								<div className="form-group col-md-5 border-bottom border-info mr-4">
-									<label htmlFor="inputSpecialist">Especialista</label>
-									<select
-										id="inputSpecialist"
-										name="inputSpecialist"
-										className="form-control border-0 erase-outline"
-										ref={register({ required: true })}>
-										<option value="">Seleccione...</option>
-										<option value="doctor-1">Pedro Perez</option>
-										<option value="doctor-2">German Gatica</option>
-									</select>
-								</div>
+						<div className="input-group col-lg-12 mb-4">
+							<div className="input-group-prepend">
+								<span className="input-group-text bg-white px-4 border-md border-right-0">
+									<i className="fa fa-phone-square text-muted" />
+								</span>
 							</div>
-						)}
+							<select
+								id="inputPet"
+								name="inputPet"
+								className="form-control erase-outline"
+								ref={register({ required: true })}>
+								<option value="">Seleccione...</option>
+								<option value="perro">Perro</option>
+								<option value="gato">Gato</option>
+							</select>
+						</div>
+
+						{/* {inputPet && (
+                                    <div className="input-group col-lg-12 mb-4">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                <i className="fa fa-black-tie text-muted" />
+                                            </span>
+                                        </div>                                
+                                        <select
+                                            id="inputSpeciality"
+                                            name="inputSpeciality"
+                                            className="form-control erase-outline"
+                                            ref={register({ required: true })}>
+                                            <option value="">Seleccione...</option>
+                                            <option value="alergias">Veterinaria</option>
+                                            <option value="general">Peluquería</option>
+                                        </select>
+                                    </div>
+                                    <div className="input-group col-lg-12 mb-4">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text bg-white px-4 border-md border-right-0">
+                                                <i className="fa fa-black-tie text-muted" />
+                                            </span>
+                                        </div>
+                                        <select
+                                            id="inputSpecialist"
+                                            name="inputSpecialist"
+                                            className="form-control erase-outline"
+                                            ref={register({ required: true })}>
+                                            <option value="">Seleccione...</option>
+                                            <option value="doctor-1">Pedro Perez</option>
+                                            <option value="doctor-2">German Gatica</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            )} */}
 
 						{inputSpecialist && <DateTimePicker />}
 						<div className="form-row justify-content-center pt-4">
@@ -106,7 +131,7 @@ export const Booking = () => {
 
 						<div className="form-row justify-content-center pt-4">
 							<Link to="/">
-								<span className="btn btn-outline-info" href="#" role="button">
+								<span className="btn btn-info" href="#" role="button">
 									Regresa
 								</span>
 							</Link>
