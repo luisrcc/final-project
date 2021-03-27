@@ -29,7 +29,7 @@ export const Home = () => {
 				<Cards />
 			</div>
 
-			<div className="container-fluid">
+			<div className="">
 				<Reviews />
 			</div>
 
