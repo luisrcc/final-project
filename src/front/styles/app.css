@@ -51,18 +51,6 @@
     background-size: cover;
 }
 
-.top-content .carousel-item-1 {
-    background-image: url(../../front/img/blog-title-pic.jpeg);
-}
- 
-.top-content .carousel-item-2 {
-    background-image: url(../../front/img/portada-perro-t.jpeg);
-}
- 
-.top-content .carousel-item-3 {
-    background-image: url(../../front/img/dog5.jpeg);
-}
- 
 /* .top-content .carousel-item-4 {
     background-image: url(../img/slides/slide-img-4.jpg);
 } */
