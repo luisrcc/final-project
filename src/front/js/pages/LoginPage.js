@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import computerCat from "../../img/computer-cat.jpg";
 
 export const LoginPage = () => {
 	const [email, setEmail] = useState("");
@@ -14,43 +15,62 @@ export const LoginPage = () => {
 	}
 
 	return (
-		<div className="container">
-			<div className="Login">
-				<form onSubmit={handleSubmit}>
-					<div className="form-group" size="md" controlId="email">
-						<label>Correo Electronico</label>
-						<input
-							className="form-control"
-							autoFocus
-							type="email"
-							value={email}
-							onChange={e => setEmail(e.target.value)}
-							required
-						/>
+		<div className="container text-center">
+			<div className="row py-5 mt-4 align-items-center Login">
+				<div className="col-md-7 col-lg-6 mr-auto border p-4 col-centered">
+					<form onSubmit={handleSubmit}>
+						<div className="row">
+							<div className="input-group col-lg-10 mb-4">
+								<div className="input-group-prepend">
+									<span className="input-group-text bg-white px-4 border-md border-right-0">
+										<i className="fa fa-envelope text-muted" />
+									</span>
+								</div>
+								<input
+									className="form-control bg-white border-left-0 border-md"
+									autoFocus
+									type="email"
+									name="email"
+									placeholder="Ingrese su email"
+									value={email}
+									onChange={e => setEmail(e.target.value)}
+									required
+								/>
+							</div>
+							<div className="input-group col-lg-10 mb-4">
+								<div className="input-group-prepend">
+									<span className="input-group-text bg-white px-4 border-md border-right-0">
+										<i className="fa fa-lock text-muted" />
+									</span>
+								</div>
+								<input
+									className="form-control bg-white border-left-0 border-md"
+									type="password"
+									value={password}
+									onChange={e => setPassword(e.target.value)}
+									required
+								/>
+							</div>
+						</div>
+					</form>
+					<div className="text-center mt-4">
+						<div className="my-4">
+							<button className="btn btn-info center-button" type="submit">
+								Iniciar Sesión
+							</button>
+						</div>
+						<Link to="/">
+							<span className="btn btn-outline-info" href="#" role="button">
+								Regresa
+							</span>
+						</Link>
 					</div>
-					<div className="form-group" size="md" controlId="password">
-						<label>Contraseña</label>
-						<input
-							className="form-control"
-							type="password"
-							value={password}
-							onChange={e => setPassword(e.target.value)}
-							required
-						/>
-					</div>
-					<div className="text-center">
-						<button className="btn btn-info center-button" type="submit">
-							{/*  disabled={!validateForm()} */}
-							Iniciar Sesión
-						</button>
-					</div>
-				</form>
-				<div className="text-center mt-4">
-					<Link to="/">
-						<span className="btn btn-outline-info" href="#" role="button">
-							Regresa
-						</span>
-					</Link>
+				</div>
+
+				<div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
+					<img src={computerCat} alt="" className="img-fluid mb-6 d-none d-md-block" />
+					<h1> Ingresa a tu cuenta</h1>
+					<p className="font-italic text-muted mb-0" />
 				</div>
 			</div>
 		</div>
