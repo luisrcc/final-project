@@ -12,7 +12,6 @@ import BookingJumbotron from "../component/BookingJumbotron";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-
 	return (
 		<div className="text-center my-5">
 			<Carousel />
