@@ -117,3 +117,66 @@ def register():
 
 
     return jsonify(response_body), 200
+
+
+@app.route('/reservar',methods=['GET','POST'])
+@login_required
+def book():
+    form=BookAppointmentForm()
+    if form.validate_on_submit():
+        
+        # revisar colision de horas 
+        appointmentcollisions=Appointment.query.filter_by(date=datetime.combine(form.date.data,datetime.min.time())).filter_by(startTime=form.rooms.data).all()
+        print(len(appointmentcollisions))
+        for appointmentcollision in appointmentcollisions:
+            # [a, b] overlaps with [x, y] iff b > x and a < y
+            if (form.startTime.data<appointmentcollision.endTime and (form.startTime.data+form.duration.data)>appointmentcollision.startTime):
+                flash(f'{appointmentcollision.startTime} to {appointmentcollision.endTime} hora ya reservada )
+                return redirect(url_for('reservar'))
+
+        # make booking
+        booker=current_user
+    
+        
+        cost=appointment.cost
+        endTime=form.startTime.data+form.duration.data
+
+        appointment=Appointment(description=form.description.data,bookerId=booker.id,date=form.date.data,startTime=form.startTime.data,endTime=endTime,duration=form.duration.data)
+        db.session.add(appointment)
+
+        # Add booking log
+        log=CostLog(title=form.description.data,date=form.date.data,cost=cost*form.duration.data)
+        db.session.add(log)
+
+
+        db.session.commit()
+        print('Reserva exitosa!')
+        return jsonify(response), 200
+
+    # template book.html ???
+
+@app.route('/cancelbooking',methods=['GET','POST'])
+@login_required
+def cancelbooking():
+    if not current_user.is_authenticated:
+        flash('Por favor igresar para cancelar reserva')
+        return redirect(url_for('login')) 
+    
+    form=CancelbookingForm()
+    if form.validate_on_submit():
+        meeting=Meeting.query.filter_by(id=form.ids.data).first()
+
+        if meeting.date<=datetime.now():
+            flash(f'Reserva no puede ser cancelada')
+            return redirect(url_for('cancelbooking'))
+        
+        
+        costlog=CostLog.query.filter_by(title=appointment.title).first()
+        db.session.delete(costlog)
+        
+        db.session.delete(appointment)
+        db.session.commit()
+        flash(f'Reserva {appointment.title} cancelada! ')
+        return redirect(url_for('index'))
+    return render_template('cancelbooking.html',title='Cancelar reserva',form=form)
+    return jsonify(response), 200
