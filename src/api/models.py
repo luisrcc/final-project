@@ -33,7 +33,10 @@ class Appointment(db.Model):
 
 
     def __repr__(self):
-        return f'Appointment {self.id} for {self.id} last for {self.duration}'
+        return {
+            "id": self.id,
+            "description": self.description
+        }
 
 class CostLog(db.Model):
     id=db.Column(db.Integer, primary_key=True)
