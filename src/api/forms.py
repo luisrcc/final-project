@@ -4,7 +4,7 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from flask_login import current_user
 from appointment import Appointment
 from appointment import CostLog
-# from app.models import *
+# from app.models import * 
 import datetime
 
 class LoginForm(FlaskForm):
@@ -29,7 +29,7 @@ class RegistrationForm(FlaskForm):
           raise ValidationError('Usuario existe. Por favor, elige otro nombre de usuario')
 
 class BookAppointmentForm(FlaskForm):
-    username = StringField('Nombre de usuario', validators=[DataRequired()])
+    # username = StringField('Nombre de usuario', validators=[DataRequired()])
     petName = StringField('Nombre mascota', validators=[DataRequired()])
     pet = StringField('Mascota', validators=[DataRequired(), EqualTo('password')])
     speciality=StringField('Especialidad',validators=[DataRequired()])
@@ -46,5 +46,5 @@ class CancelbookingForm(FlaskForm):
     #def __init__(self,userId,**kw):
      #   super(CancelbookingForm, self).__init__(**kw)
       #  self.name.userId =userId
-    ids=SelectField('Elegir cita a cancelar',coerce=int,choices=MeetingChoiceIterable()) 
+    ids=SelectField('Elegir cita a cancelar',coerce=int,choices=AppointmentChoiceIterable()) 
     submit=SubmitField('Cancelar') 
