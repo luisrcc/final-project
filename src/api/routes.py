@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Appointment
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash       ## Nos permite manejar tokens por authentication (usuarios)    
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity   #from models import Person
@@ -19,7 +19,7 @@ api = Blueprint('api', __name__)
 #    }
 
 
-@api.route('/hello', methods=['POST', 'GET'])
+@api.route('/users', methods=['GET'])
 def handle_hello():
     users = User.query.all()
     users = list(map(lambda x: x.serialize(), users))
@@ -28,6 +28,20 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/user', methods=['POST'])
+def create_an_user():
+    email = request.json['email']
+    password = request.json['password']
+    username = request.json['username']
+
+    new_user = User(email=email, password=password, username=username)
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify("usuario creado"), 200
+
 
 @api.route('/hash', methods=['POST', 'GET'])
 def handle_hash():
@@ -119,42 +133,25 @@ def register():
     return jsonify(response_body), 200
 
 
-@api.route('/reservar',methods=['GET','POST'])
+@api.route('/reservar',methods=['POST'])
 # @login_required
 def book():
-    return "Hello World"
-    # form=BookAppointmentForm()
-    # if form.validate_on_submit():
-        
-    #     # revisar colision de horas 
-    #     appointmentcollisions=Appointment.query.filter_by(date=datetime.combine(form.date.data,datetime.min.time())).filter_by(startTime=form.rooms.data).all()
-    #     print(len(appointmentcollisions))
-    #     for appointmentcollision in appointmentcollisions:
-    #         # [a, b] overlaps with [x, y] iff b > x and a < y
-    #         if (form.startTime.data<appointmentcollision.endTime and (form.startTime.data+form.duration.data)>appointmentcollision.startTime):
-    #             print('hora ya reservada' )
-    #             return jsonify(response), 400
+    user_id = request.json['user_id']
+    exists = bool(User.query.filter_by(id = user_id).first())
+    if exists:
+        user_id = request.json['user_id']
+        date = request.json['date']
+        start_time = request.json['start_time']
+        end_time = request.json['end_time']
+        cost = request.json['cost']
+    else:
+        return jsonify("no existe el usuario"), 404
 
-    #     # make booking
-    #     booker=current_user
-    
-        
-    #     cost=appointment.cost
-    #     endTime=form.startTime.data+form.duration.data
+    new_appointment = Appointment(user_id=user_id, date=date, start_time=start_time, end_time=end_time, cost=cost)
 
-    #     appointment=Appointment(description=form.description.data,bookerId=booker.id,date=form.date.data,startTime=form.startTime.data,endTime=endTime,duration=form.duration.data)
-    #     db.session.add(appointment)
-
-    #     # Add booking log
-    #     log=CostLog(title=form.description.data,date=form.date.data,cost=cost*form.duration.data)
-    #     db.session.add(log)
-
-
-    #     db.session.commit()
-    #     print('Reserva exitosa!')
-    #     return jsonify(response), 200
-
-    # template book.html ???
+    db.session.add(new_appointment)
+    db.session.commit()
+    return jsonify("Hora agendada"), 200
 
 @api.route('/cancelbooking',methods=['GET','POST'])
 # @login_required
