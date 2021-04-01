@@ -8,6 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(250), unique=True, nullable=False)
     password = db.Column(db.String(250), unique=False, nullable=False)
     username = db.Column(db.String(250), unique=False, nullable=False)
+    appointment = db.relationship('Appointment', backref='user', lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -17,30 +18,27 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "username":self.username
+            #"appointment": list(map(lambda x: x.serialize(), self.appointment))
             # do not serialize the password, its a security breach
         }
 
-
-
 class Appointment(db.Model):
-    id=db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
-    description=db.Column(db.String(64),nullable=False,unique=True)
-    bookerId=db.Column(db.Integer, db.ForeignKey('user.id'))
-    date=db.Column(db.DateTime,nullable=False)
-    startTime=db.Column(db.Integer,nullable=False)
-    endTime=db.Column(db.Integer,nullable=False) 
-    cost=db.Column(db.Integer,nullable=False)
-
-
+    id = db.Column(db.Integer, primary_key=True, unique=True)    
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    date = db.Column(db.DateTime,nullable=False)
+    start_time = db.Column(db.Integer,nullable=False)
+    end_time = db.Column(db.Integer,nullable=False) 
+    cost = db.Column(db.Integer,nullable=False)
+     
     def __repr__(self):
+        return '<Appointment %r>' % self.date
+
+    def serialize(self):
         return {
             "id": self.id,
-            "description": self.description
+            "user_id": self.user_id,
+            "date": self.date,
+            "start_time": self.start_time,
+            "end_time": self.end_time,
+            "cost": self.cost
         }
-
-class CostLog(db.Model):
-    id=db.Column(db.Integer, primary_key=True)
-    userame=db.Column(db.String(64),nullable=False)
-    description=db.Column(db.String(64))
-    date=db.Column(db.DateTime) 
-    cost=db.Column(db.Integer, nullable=False)
