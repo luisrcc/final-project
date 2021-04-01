@@ -140,39 +140,36 @@ def book():
     exists = bool(User.query.filter_by(id = user_id).first())
     if exists:
         user_id = request.json['user_id']
+        pet_name = request.json['pet_name']
+        pet = request.json['pet']
+        speciality = request.json['speciality']
+        specialist = request.json['specialist']
         date = request.json['date']
-        start_time = request.json['start_time']
-        end_time = request.json['end_time']
-        cost = request.json['cost']
+        # cost = request.json['cost']
+        new_appointment = Appointment(user_id=user_id, pet_name=pet_name, pet=pet, speciality=speciality, specialist=specialist, date=date)
     else:
         return jsonify("no existe el usuario"), 404
-
-    new_appointment = Appointment(user_id=user_id, date=date, start_time=start_time, end_time=end_time, cost=cost)
 
     db.session.add(new_appointment)
     db.session.commit()
     return jsonify("Hora agendada"), 200
 
-@api.route('/cancelbooking',methods=['GET','POST'])
-# @login_required
-def cancelbooking():
-    if not current_user.is_authenticated:
-        flash('Por favor igresar para cancelar reserva')
-        return redirect(url_for('login')) 
+# @api.route('/cancelbooking',methods=['GET','POST'])
+# # @login_required
+# def cancelbooking():
+#     # if not current_user.is_authenticated:
+#     #     flash('Por favor igresar para cancelar reserva')
+#     #     return redirect(url_for('login')) 
     
-    form=CancelbookingForm()
-    if form.validate_on_submit():
-        appointment=Appointment.query.filter_by(id=form.ids.data).first()
+#     form=CancelbookingForm()
+#     if 
 
-        if appointment.date<=datetime.now():
-            flash(f'Reserva no puede ser cancelada')
-            return redirect(url_for('cancelbooking'))
+#         if appointment.date<=datetime.now():
+#             (f'Reserva no puede ser cancelada')
+#             return         
         
         
-        costlog=CostLog.query.filter_by(title=appointment.title).first()
-        db.session.delete(costlog)
-        
-        db.session.delete(appointment)
-        db.session.commit()
-        print('Reserva {appointment.title} cancelada! ')
-        return jsonify(response), 200
+#         db.session.delete(appointment)
+#         db.session.commit()
+#         print('Reserva cancelada! ')
+#         return jsonify(response), 200
