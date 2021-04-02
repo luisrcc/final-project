@@ -9,7 +9,7 @@
 }
 
 .jumbotron-booking{
-    background-image: url(../img/cat-banner1.jpg);
+    background-image: url(../img/white-bg-banner.jpg);
     background-size: cover;
     min-height: 600px;
     color: white;
@@ -27,13 +27,14 @@
 .jumbotron-join-us{
     background-image: url(../img/cat-banner.jpg);
     background-size: cover;
-    min-height: 400px;
-    color: white;
+    min-height: 400px;    
     text-decoration: none;
-    /* background-color: #17A2B8;
-    opacity: 0.7; */
 }
 
+.booking-jumbotron-text {
+    color: #17A2B8;
+    font-family: 'Amatic SC', cursive;
+}
 .join-us-text{
     padding-top: 276px;
 }

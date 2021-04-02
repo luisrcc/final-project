@@ -20,9 +20,6 @@ export const Footer = () => (
 			</a>
 		</div>
 		<div className="footerInfo">
-
-			
-
 			<Link to="/#">
 				<span className="footerFeatures"> Legal </span>|
 			</Link>
