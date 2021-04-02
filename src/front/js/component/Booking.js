@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 import { useForm } from "react-hook-form";
 import { DateTimePicker } from "./DateTimePicker";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export const Booking = () => {
+	const { store, actions } = useContext(Context);
 	const [pet, setPet] = useState("");
+	const [currentDate, setCurrentDate] = useState(new Date());
 
 	const {
 		register,
@@ -15,8 +19,23 @@ export const Booking = () => {
 	const inputPet = watch("inputPet");
 	const inputSpecialist = watch("inputSpecialist");
 
+	// const handleSubmit = event => {
+	// 	event.preventDefault();
+	// 	// const request = {
+	// 	//     petName: data.petName,
+	// 	//     pet: data.pet,
+	// 	//     speciality: data.speciality,
+	// 	//     specialist: data.specialist,
+	// 	//     date: data.date
+	// 	// }
+	// 	// actions.createNewAppointment(request);
+	// 	console.log("entró al submit");
+	// };
+
 	const onSubmit = data => {
-		alert(JSON.stringify(data));
+		console.log(data);
+		const exampleDate = moment(currentDate).format("YYYY-MM-DD HH:mm:ss");
+		console.log(exampleDate);
 	};
 
 	return (
@@ -26,29 +45,6 @@ export const Booking = () => {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className="form-row justify-content-center">
 							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputFirstName">Nombres</label>
-								<input
-									type="text"
-									className="form-control border-0 input-outline"
-									id="inputFirstName"
-									placeholder="Ingrese su nombre"
-									ref={register({ required: true })}
-								/>
-							</div>
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputSurname">Apellidos</label>
-								<input
-									type="text"
-									className="form-control border-0 erase-outline"
-									id="inputSurname"
-									placeholder="Ingrese su apellido"
-									ref={register({ required: true })}
-								/>
-							</div>
-						</div>
-						<div className="form-row justify-content-center">
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputPetName">Nombre de la mascota</label>
 								<input
 									type="text"
 									className="form-control border-0 erase-outline"
@@ -58,7 +54,6 @@ export const Booking = () => {
 								/>
 							</div>
 							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<label htmlFor="inputPet">Mascota</label>
 								<select
 									id="inputPet"
 									name="inputPet"
@@ -99,9 +94,14 @@ export const Booking = () => {
 							</div>
 						)}
 
-						{inputSpecialist && <DateTimePicker />}
+						{inputSpecialist && (
+							<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
+						)}
 						<div className="form-row justify-content-center pt-4">
-							<input disabled={isSubmitting} type="submit" />
+							<input type="submit" />
+							{/* <button disabled={isSubmitting} className="btn btn-primary" type="submit">
+								Enviar
+							</button> */}
 						</div>
 
 						<div className="form-row justify-content-center pt-4">

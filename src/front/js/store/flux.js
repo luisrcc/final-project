@@ -41,6 +41,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			createNewAppointment: async request => {
+				const settings = {
+					method: "POST"
+				};
+				const response = await fetch(
+					"https://3001-yellow-kite-xee0xamh.ws-us03.gitpod.io/api/reservar",
+					settings
+				);
+				const json = await response.json();
 			}
 		}
 	};
