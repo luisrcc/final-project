@@ -25,10 +25,14 @@ class User(db.Model):
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)    
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    pet_name = db.Column(db.String(250), unique=False, nullable=False)
+    pet = db.Column(db.String(250), unique=False, nullable=False)
+    speciality = db.Column(db.String(250), unique=False, nullable=False)
+    specialist = db.Column(db.String(250), unique=False, nullable=False)
     date = db.Column(db.DateTime,nullable=False)
-    start_time = db.Column(db.Integer,nullable=False)
-    end_time = db.Column(db.Integer,nullable=False) 
-    cost = db.Column(db.Integer,nullable=False)
+    # start_time = db.Column(db.Integer,nullable=False)
+    # end_time = db.Column(db.Integer,nullable=False) 
+    # cost = db.Column(db.Integer,nullable=False)
      
     def __repr__(self):
         return '<Appointment %r>' % self.date
@@ -37,8 +41,12 @@ class Appointment(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "date": self.date,
-            "start_time": self.start_time,
-            "end_time": self.end_time,
-            "cost": self.cost
+            "pet_name": self.pet_name,
+            "pet": self.pet,
+            "speciality": self.speciality,
+            "specialist": self.specialist,
+            "date": self.date
+            # "start_time": self.start_time,
+            # "end_time": self.end_time,
+            # "cost": self.cost
         }
