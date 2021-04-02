@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { SupportPage } from "../pages/SupportPage";
+// import { SupportPage } from "../pages/SupportPage";
 import { CopyRight } from "../component/CopyRight";
 
 export const Footer = () => (
@@ -20,9 +20,9 @@ export const Footer = () => (
 			</a>
 		</div>
 		<div className="footerInfo">
-			<Link to="/Support">
+			{/* <Link to="/Support">
 				<span className="footerContact">Contacto </span> |
-			</Link>
+			</Link> */}
 
 			<Link to="/FeaturesPage">
 				<span className="footerFeatures"> Legal </span>|

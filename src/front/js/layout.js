@@ -13,7 +13,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { CommunityPage } from "./pages/CommunityPage";
 import { FeaturesPage } from "./pages/FeaturesPage";
 import { PricingPage } from "./pages/PricingPage";
-import { SupportPage } from "./pages/SupportPage";
+// import { SupportPage } from "./pages/SupportPage";
 import { Error } from "./pages/Error";
 import { ProfilePage } from "./pages/ProfilePage";
 import { PrivateRoutes } from "../Routers/PrivateRoute";
@@ -35,7 +35,7 @@ const Layout = () => {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/Login" component={LoginPage} />
 						<Route exact path="/Register" component={RegisterPage} />
-						<Route exact path="/Support" component={SupportPage} />
+						{/* <Route exact path="/Support" component={SupportPage} /> */}
 						<PrivateRoutes component={DashboardPage} path="/dashboard" exact />
 						<Route exact path="/Profile/:username" component={ProfilePage} />
 						<Route exact path="/booking" component={Booking} />
