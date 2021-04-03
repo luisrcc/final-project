@@ -25,7 +25,7 @@
 }
 
 .jumbotron-join-us{
-    background-image: url(../img/cat-banner.jpg);
+    background-image: url(../img/dog-licking-mans-face.jpg);
     background-size: cover;
     min-height: 400px;    
     text-decoration: none;
@@ -35,10 +35,25 @@
     color: #17A2B8;
     font-family: 'Amatic SC', cursive;
 }
-.join-us-text{
-    padding-top: 276px;
+
+
+.join-us-text-1{
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 5px #000000;
+}
+.join-us-text-2{
+    color: white;
+    font-family: 'Amatic SC', cursive;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 5px #000000;
 }
 
+.register-button-padding{
+    padding-bottom: 350px;
+    padding-left: 150px;
+}
 
 .top-content .carousel-item {
     width: 100%;
