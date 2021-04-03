@@ -58,6 +58,14 @@ export const LoginPage = () => {
 								</div>
 							</div>
 						</form>
+						<div className="text-center w-100">
+							<p className="text-muted font-weight-bold">
+								¿Olvidó su contraseña?{" "}
+								<a href="#" className="text-info ml-2 mb-5">
+									Recuperar contraseña
+								</a>
+							</p>
+						</div>
 						<div className="text-center mt-4">
 							<div className="my-4">
 								<button className="btn btn-info center-button" type="submit">
