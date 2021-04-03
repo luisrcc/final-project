@@ -45,6 +45,6 @@ export const DateTimePicker = ({ currentDate, setCurrentDate }) => {
 };
 
 DateTimePicker.propTypes = {
-	currentDate: PropTypes.string,
+	currentDate: PropTypes.instanceOf(Date),
 	setCurrentDate: PropTypes.func
 };

@@ -4,20 +4,33 @@ import { useForm } from "react-hook-form";
 import { DateTimePicker } from "./DateTimePicker";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import DropDownList from "./DropDownList";
 
 export const Booking = () => {
 	const { store, actions } = useContext(Context);
-	const [pet, setPet] = useState("");
-	const [currentDate, setCurrentDate] = useState(new Date());
 
-	const {
-		register,
-		handleSubmit,
-		watch,
-		formState: { isSubmitting }
-	} = useForm();
+	const [currentDate, setCurrentDate] = useState(new Date());
+	const [dropDownListData, setDropDownListData] = useState({
+		especialidad: null,
+		especialistas: null
+	});
+
+	const { register, errors, handleSubmit, watch } = useForm({ mode: "onChange" });
+
 	const inputPet = watch("inputPet");
 	const inputSpecialist = watch("inputSpecialist");
+
+	// data hardcoded.
+	const defaultItemEspecialidad = { nombre: "Seleccione especialidad..." };
+	const dataCategories = {
+		dataEspecialidad: [{ nombre: "Veterinaria", especialidadId: 1 }, { nombre: "Peluquería", especialidadId: 2 }],
+		dataEspecialista: [
+			{ nombre: "Felipe Gutierrez", idEspecialista: 1, especialidadId: 1 },
+			{ nombre: "Chang", idEspecialista: 2, especialidadId: 1 },
+			{ nombre: "Aniseed Syrup", idEspecialista: 3, especialidadId: 2 },
+			{ nombre: "Genen Shouyu", idEspecialista: 4, especialidadId: 2 }
+		]
+	};
 
 	// const handleSubmit = event => {
 	// 	event.preventDefault();
@@ -36,6 +49,34 @@ export const Booking = () => {
 		console.log(data);
 		const exampleDate = moment(currentDate).format("YYYY-MM-DD HH:mm:ss");
 		console.log(exampleDate);
+		console.log("errors");
+		console.log(errors);
+	};
+
+	const isObjectExist = object => {
+		if (object === null && object === undefined) return false;
+		return true;
+	};
+
+	const especialidadChange = event => {
+		const especialidad = JSON.parse(event.target.value);
+		const datos = dataCategories.dataEspecialista;
+
+		if (parseInt(especialidad.especialidadId) > 0) {
+			const especialistas = datos.filter(
+				especialista => especialista.especialidadId === parseInt(especialidad.especialidadId)
+			);
+
+			setDropDownListData({
+				especialidad: especialidad,
+				especialistas: null
+			});
+		} else {
+			setDropDownListData({
+				especialidad: null,
+				especialistas: dataCategories.dataEspecialista
+			});
+		}
 	};
 
 	return (
@@ -49,8 +90,20 @@ export const Booking = () => {
 									type="text"
 									className="form-control border-0 erase-outline"
 									id="inputPetName"
+									name="inputPetName"
 									placeholder="Ingrese nombre de la mascota"
-									ref={register({ required: true })}
+									ref={register({
+										required: true,
+										maxLength: 20
+									})}
+								/>
+
+								<DropDownList
+									data={dataCategories.dataEspecialidad}
+									textField={"nombre"}
+									idTextField={"especialidadId"}
+									defaultItem={defaultItemEspecialidad}
+									onChange={especialidadChange}
 								/>
 							</div>
 							<div className="form-group col-md-5 border-bottom border-info mr-4">
@@ -59,7 +112,9 @@ export const Booking = () => {
 									name="inputPet"
 									className="form-control border-0 erase-outline"
 									ref={register({ required: true })}>
-									<option value="">Seleccione...</option>
+									<option value="" selected>
+										Seleccione...
+									</option>
 									<option value="perro">Perro</option>
 									<option value="gato">Gato</option>
 								</select>
@@ -74,7 +129,9 @@ export const Booking = () => {
 										name="inputSpeciality"
 										className="form-control border-0 erase-outline"
 										ref={register({ required: true })}>
-										<option value="">Seleccione...</option>
+										<option value="" selected>
+											Seleccione...
+										</option>
 										<option value="alergias">Veterinaria</option>
 										<option value="general">Peluquería</option>
 									</select>
@@ -86,7 +143,9 @@ export const Booking = () => {
 										name="inputSpecialist"
 										className="form-control border-0 erase-outline"
 										ref={register({ required: true })}>
-										<option value="">Seleccione...</option>
+										<option value="" selected>
+											Seleccione...
+										</option>
 										<option value="doctor-1">Pedro Perez</option>
 										<option value="doctor-2">German Gatica</option>
 									</select>
@@ -95,14 +154,21 @@ export const Booking = () => {
 						)}
 
 						{inputSpecialist && (
-							<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
+							<>
+								<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
+
+								<div className="form-row justify-content-center pt-4">
+									<button
+										disabled={
+											isObjectExist(errors) && Object.entries(errors).length === 0 ? false : true
+										}
+										className="btn btn-info"
+										type="submit">
+										Reservar
+									</button>
+								</div>
+							</>
 						)}
-						<div className="form-row justify-content-center pt-4">
-							<input type="submit" />
-							{/* <button disabled={isSubmitting} className="btn btn-primary" type="submit">
-								Enviar
-							</button> */}
-						</div>
 
 						<div className="form-row justify-content-center pt-4">
 							<Link to="/">
