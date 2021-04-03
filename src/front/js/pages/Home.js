@@ -23,19 +23,19 @@ export const Home = () => {
 				</div>
 			</div>
 
-			<div className="my-5">
+			<div className="mx-auto my-5">
 				<Cards />
 			</div>
 
-			<div className="">
+			<div className="reviews-component">
 				<Reviews />
 			</div>
 
-			<div className="m-5">
+			<div className="my-5">
 				<ProductCards />
 			</div>
 
-			<div className="">
+			<div className="register-join-us-banner">
 				<JoinUsBanner />
 			</div>
 		</>

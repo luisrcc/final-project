@@ -3,16 +3,15 @@
     width: 800px;
 }
 
-.carousel-item .img-fluid{
-    width: 100%;
+/* .carousel-item .img-fluid{
+    width: 100%; 
     height: 100%;
-}
+} */
 
 .jumbotron-booking{
     background-image: url(../img/white-bg-banner.jpg);
     background-size: cover;
     min-height: 600px;
-    color: white;
     text-decoration: none;
 }
 
@@ -24,6 +23,20 @@
     text-decoration: none;
 }
 
+.reviews-title{
+    padding-top: 130px;
+    font-family: 'Amatic SC', cursive;
+    text-shadow: 3px 3px 5px #000000;
+}
+
+.reviews-text{
+    text-shadow: 3px 3px 5px #000000;
+}
+
+.reviews-name{
+    text-shadow: 3px 3px 5px #000000;
+}
+
 .jumbotron-join-us{
     background-image: url(../img/dog-licking-mans-face.jpg);
     background-size: cover;
@@ -32,8 +45,9 @@
 }
 
 .booking-jumbotron-text {
-    color: #17A2B8;
-    font-family: 'Amatic SC', cursive;
+    color: rgb(39, 39, 39);
+    /* font-family: 'Amatic SC', cursive; */
+    text-shadow: 3px 3px 5px #000000;
 }
 
 
@@ -56,7 +70,7 @@
 }
 
 .top-content .carousel-item {
-    width: 100%;
+    /* width: 100%; */
     height: 100vh;
     min-height: 400px;
     background-repeat: no-repeat;
@@ -71,4 +85,39 @@ input[type="text"], textarea {
 outline: none;
 box-shadow:none !important;
 border:1px solid #ccc !important;
+}
+
+
+/* speech bubble */
+
+.box {
+  width: 500px;
+  /* margin: 50px auto; */
+  border-radius: 15px;
+  background: #17A2B8;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-weight: 900;
+  font-family: arial;
+  position: relative;
+}
+
+
+
+.sb1:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid #17A2B8;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #17A2B8;
+  border-bottom: 15px solid transparent;
+  right: -16px;
+  top: 0px;
+}
+
+.book-appointment-button {
+    background: white;
 }

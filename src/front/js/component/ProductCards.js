@@ -28,7 +28,7 @@ const ProductCards = ({ title, content, url, buttonName }) => {
 	]);
 
 	return (
-		<div className="row justify-content-center mt-4">
+		<div className="card-group">
 			{cards.map((card, index) => (
 				<Card
 					key={index}

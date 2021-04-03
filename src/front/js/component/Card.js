@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Card = ({ title, content, url, buttonName }) => {
 	return (
-		<div className="col-sm-3">
+		<div className="">
 			<div className="card" style={{}}>
 				<img className="card-img-top" src={url} alt="Card cap" />
 				<div className="card-body">
