@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment
+from api.models import db, User, Appointment, Speciality, Specialist
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash       ## Nos permite manejar tokens por authentication (usuarios)    
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity   #from models import Person
@@ -30,7 +30,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 @api.route('/user', methods=['POST'])
-def create_an_user():
+def create_a_user():
     email = request.json['email']
     password = request.json['password']
     username = request.json['username']
@@ -137,8 +137,8 @@ def register():
 # @login_required
 def book():
     user_id = request.json['user_id']
-    exists = bool(User.query.filter_by(id = user_id).first())
-    if exists:
+    user_exists = bool(User.query.filter_by(id = user_id).first())
+    if user_exists:
         user_id = request.json['user_id']
         pet_name = request.json['pet_name']
         pet = request.json['pet']
@@ -154,22 +154,88 @@ def book():
     db.session.commit()
     return jsonify("Hora agendada"), 200
 
-# @api.route('/cancelbooking',methods=['GET','POST'])
-# # @login_required
-# def cancelbooking():
-#     # if not current_user.is_authenticated:
-#     #     flash('Por favor igresar para cancelar reserva')
-#     #     return redirect(url_for('login')) 
-    
-#     form=CancelbookingForm()
-#     if 
 
-#         if appointment.date<=datetime.now():
-#             (f'Reserva no puede ser cancelada')
-#             return         
-        
-        
-#         db.session.delete(appointment)
-#         db.session.commit()
-#         print('Reserva cancelada! ')
-#         return jsonify(response), 200
+@api.route('/reservas',methods=['GET'])
+def get_appointments():
+    appointments = Appointment.query.all()
+    appointments = list(map(lambda x: x.serialize(), appointments))
+
+    response_body = {
+        "appointments": appointments,
+    }
+
+    return jsonify(response_body), 200
+
+@api.route('/cancelar/<int:id>',methods=['DELETE'])
+def cancel_booking(id):
+    appointment_exists = Appointment.query.get_or_404(id)
+    if appointment_exists:
+            
+        db.session.delete(appointment_exists)
+        db.session.commit()
+        return jsonify('Reserva cancelada!'), 200
+    else:
+        return jsonify("no existe la reserva"), 404
+
+@api.route('/editar/<int:id>',methods=['PUT'])
+def edit_booking(id):
+    appointment_exists = Appointment.query.filter_by(id=id).first_or_404()
+    if appointment_exists:
+        updated_appointment = request.json['date'] 
+            
+        appointment_exists.date = updated_appointment
+        db.session.commit()
+        return jsonify('Reserva actualizada!'), 200
+    else:
+        return jsonify("no existe la reserva"), 404
+
+
+
+@api.route('/especialidad',methods=['POST'])
+def create_speciality():
+    name = request.json['name']
+
+    new_speciality = Speciality(name=name)
+
+    db.session.add(new_speciality)
+    db.session.commit()
+
+    return jsonify("especialidad creada"), 200
+
+
+@api.route('/especialista',methods=['POST'])
+def create_specialist():
+    name = request.json['name']
+    speciality_id = request.json['speciality_id']
+
+    new_specialist = Specialist(name=name, speciality_id=speciality_id)
+
+    db.session.add(new_specialist)
+    db.session.commit()
+
+    return jsonify("especialista creado"), 200
+
+
+@api.route('/speciality',methods=['GET'])
+def get_speciality():
+    specialities = Speciality.query.all()
+    specialities = list(map(lambda x: x.serialize(), specialities))
+
+    specialists = Specialist.query.all()
+    specialists = list(map(lambda x: x.serialize(), specialists))
+
+    response_body = {
+        "specialities": specialities,
+        "specialists": specialists
+    }
+
+    return jsonify(response_body), 200
+
+
+
+# @api.route('/actualizar-reserva',methods=['PUT'])
+# def update_appointment():
+#     name = request.json['name']
+#     speciality_id = request.json['speciality_id']
+
+#     return jsonify("especialista"), 200

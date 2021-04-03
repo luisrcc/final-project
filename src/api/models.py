@@ -50,3 +50,33 @@ class Appointment(db.Model):
             # "end_time": self.end_time,
             # "cost": self.cost
         }
+
+class Speciality(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    name = db.Column(db.String(250), unique=False, nullable=False)
+    specialist = db.relationship('Specialist', backref='speciality', lazy=True)
+
+
+    def __repr__(self):
+        return '<Speciality %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name":self.name
+        }
+
+class Specialist(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True)    
+    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
+    name = db.Column(db.String(250), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Specialist %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "speciality_id": self.speciality_id
+        }
