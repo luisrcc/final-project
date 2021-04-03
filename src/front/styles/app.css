@@ -8,6 +8,26 @@
     height: 100%;
 } */
 
+.register-form {
+    margin-bottom: 50px;
+}
+
+.register-background {    
+    background-image: url(../img/Corgi-banner.jpg);
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+.login-background {    
+    background-image: url(../img/cat-background.jpg);
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+.login-content{
+    vertical-align: center;
+}
+
 .jumbotron-booking{
     background-image: url(../img/white-bg-banner.jpg);
     background-size: cover;
