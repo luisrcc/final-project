@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const LoginPage = () => {
+	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -9,7 +11,7 @@ export const LoginPage = () => {
 		return email.length > 0 && password.length > 0;
 	}
 
-	function handleSubmit(event) {
+	function handlerClick(event) {
 		event.preventDefault();
 	}
 
@@ -18,7 +20,7 @@ export const LoginPage = () => {
 			<div className="container">
 				<div className="row py-4 mt-4 Login">
 					<div className="col-md-7 col-lg-6 mr-auto border p-4 col-centered">
-						<form onSubmit={handleSubmit}>
+						<form>
 							<div className="row justify-content-center login-content">
 								<div className="py-4 login-title">
 									<h1> Ingrese a su cuenta</h1>
@@ -67,7 +69,10 @@ export const LoginPage = () => {
 						</div>
 						<div className="text-center mt-4">
 							<div className="my-4">
-								<button className="btn btn-info center-button" type="submit">
+								<button
+									className="btn btn-info center-button"
+									type="submit"
+									onClick={e => handlerClick(e)}>
 									Iniciar Sesión
 								</button>
 							</div>
@@ -77,12 +82,6 @@ export const LoginPage = () => {
 								</span>
 							</Link>
 						</div>
-					</div>
-
-					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
-						{/* <img src={computerCat} alt="" className="img-fluid mb-6 d-none d-md-block" />
-                        <h1> Ingresa a tu cuenta</h1>
-                        <p className="font-italic text-muted mb-0" /> */}
 					</div>
 				</div>
 			</div>
