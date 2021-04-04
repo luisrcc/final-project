@@ -25,7 +25,7 @@ const DropDownList = ({ data, textField, idTextField, onChange, defaultItem }) =
 			<select
 				id={textField}
 				name={textField}
-				className="form-control border-0 erase-outline"
+				className="form-control erase-outline"
 				// ref={reference}
 				onChange={onChange}>
 				{addDefaultItem(defaultItem)}

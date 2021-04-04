@@ -24,9 +24,12 @@
     width: 100%;
     height: auto;
 }
-/* .login-content{
-    vertical-align: center;
-} */
+.booking-background {    
+    background-image: url(../img/dog-cat.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+} 
 
 .jumbotron-booking{
     background-image: url(../img/white-bg-banner.jpg);

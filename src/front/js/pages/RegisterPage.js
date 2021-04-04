@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-import computerDog from "../../img/dog_on_computer.jpg";
 
 export const RegisterPage = () => {
 	return (
 		<div className="register-background">
 			<div className="container">
 				<div className="row py-4 mt-4 align-items-center">
-					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
-						{/* <img src={computerDog} alt="" className="img-fluid mb-6 d-none d-md-block" />
-                        <h1> Crear una cuenta</h1>
-                        <p className="font-italic text-muted mb-0" />*/}
-					</div>
+					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0" />
 
 					<div className="col-md-7 col-lg-6 ml-auto border p-4">
 						<form>
