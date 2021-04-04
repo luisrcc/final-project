@@ -1,6 +1,28 @@
-import React, { Component } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { Context } from "../store/appContext";
 
 export const RegisterPage = () => {
+	const { store, actions } = useContext(Context);
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [password, setPassword] = useState("");
+	const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+	const handlerClick = e => {
+		e.preventDefault();
+
+		actions.setRegister({
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+			phone: phone,
+			password: password,
+			passwordConfirmation: passwordConfirmation
+		});
+	};
+
 	return (
 		<div className="register-background">
 			<div className="container">
@@ -20,7 +42,9 @@ export const RegisterPage = () => {
 										id="firstName"
 										type="text"
 										name="firstname"
-										placeholder="Ingrese su nombre"
+										value={firstName}
+										onChange={e => setFirstName(e.target.value)}
+										placeholder="Ingrese Nombre"
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
@@ -34,7 +58,9 @@ export const RegisterPage = () => {
 										id="lastName"
 										type="text"
 										name="lastname"
-										placeholder="Ingrese su apellido"
+										value={lastName}
+										onChange={e => setLastName(e.target.value)}
+										placeholder="Ingrese Apellido"
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
@@ -48,6 +74,8 @@ export const RegisterPage = () => {
 										id="email"
 										type="email"
 										name="email"
+										value={email}
+										onChange={e => setEmail(e.target.value)}
 										placeholder="Ingrese su email"
 										className="form-control bg-white border-left-0 border-md"
 									/>
@@ -61,7 +89,6 @@ export const RegisterPage = () => {
 									<select
 										id="countryCode"
 										name="countryCode"
-										// style={{"max-width: 80px"}}
 										className="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
 										<option value="">+56</option>
 										<option value="">+10</option>
@@ -72,28 +99,13 @@ export const RegisterPage = () => {
 										id="phoneNumber"
 										type="tel"
 										name="phone"
+										value={phone}
+										onChange={e => setPhone(e.target.value)}
 										placeholder="Ingrese numero telefonico"
 										className="form-control bg-white border-md border-left-0 pl-3"
 									/>
 								</div>
-								.
-								{/* <div className="input-group col-lg-12 mb-4">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <i className="fa fa-black-tie text-muted" />
-                                        </span>
-                                    </div>
-                                    <select
-                                        id="job"
-                                        name="jobtitle"
-                                        className="form-control custom-select bg-white border-left-0 border-md">
-                                        <option value="">Choose your job</option>
-                                        <option value="">Designer</option>
-                                        <option value="">Developer</option>
-                                        <option value="">Manager</option>
-                                        <option value="">Accountant</option>
-                                    </select>
-                                </div> */}
+
 								<div className="input-group col-lg-6 mb-4 mx-auto">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
@@ -104,7 +116,9 @@ export const RegisterPage = () => {
 										id="password"
 										type="password"
 										name="password"
-										placeholder="Ingrese su contraseña"
+										value={password}
+										onChange={e => setPassword(e.target.value)}
+										placeholder="Ingrese Contraseña"
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
@@ -118,14 +132,19 @@ export const RegisterPage = () => {
 										id="passwordConfirmation"
 										type="text"
 										name="passwordConfirmation"
-										placeholder="Confirme contraseña"
+										value={passwordConfirmation}
+										onChange={e => setPasswordConfirmation(e.target.value)}
+										placeholder="Confirme Contraseña"
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
 								<div className="form-group col-lg-12 mx-auto mb-0">
-									<a href="#" className="btn btn-info btn-block py-2">
+									<button
+										href="#"
+										className="btn btn-info btn-block py-2"
+										onClick={e => handlerClick(e)}>
 										<span className="font-weight-bold">Crea tu cuenta</span>
-									</a>
+									</button>
 								</div>
 								<div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
 									<div className="border-bottom w-100 ml-5" />
