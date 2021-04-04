@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import computerCat from "../../img/computer-cat.jpg";
 
 export const LoginPage = () => {
 	const [email, setEmail] = useState("");

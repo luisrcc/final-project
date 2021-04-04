@@ -80,37 +80,51 @@ export const Booking = () => {
 	};
 
 	return (
-		<div className="container pt-4">
-			<div className="row justify-content-center">
-				<div className="col-md-6 border p-4">
-					<form onSubmit={handleSubmit(onSubmit)}>
-						<div className="form-row justify-content-center">
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<input
-									type="text"
-									className="form-control border-0 erase-outline"
-									id="inputPetName"
-									name="inputPetName"
-									placeholder="Ingrese nombre de la mascota"
-									ref={register({
-										required: true,
-										maxLength: 20
-									})}
-								/>
-
-								<DropDownList
-									data={dataCategories.dataEspecialidad}
-									textField={"nombre"}
-									idTextField={"especialidadId"}
-									defaultItem={defaultItemEspecialidad}
-									onChange={especialidadChange}
-								/>
+		<div className="booking-background">
+			<div className="container pt-4">
+				<div className="row justify-content-center">
+					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0" />
+					<div className="col-md-6 border p-4">
+						<form onSubmit={handleSubmit(onSubmit)}>
+							<div className="row justify-content-center">
+								<div className="input-group col-md-6 mb-4">
+									<div className="input-group-prepend">
+										<span className="input-group-text bg-white px-4 border-md border-right-0">
+											<i className="fa fa-paw text-muted" />
+										</span>
+									</div>
+									<input
+										type="text"
+										className="form-control erase-outline"
+										id="inputPetName"
+										name="inputPetName"
+										placeholder="Ingrese nombre de la mascota"
+										ref={register({
+											required: true,
+											maxLength: 20
+										})}
+									/>
+								</div>
+								<div className="input-group col-md-6 mb-4">
+									<div className="input-group-prepend">
+										<span className="input-group-text bg-white px-4 border-md border-right-0">
+											<i className="fa fa-paw text-muted" />
+										</span>
+									</div>
+									<DropDownList
+										data={dataCategories.dataEspecialidad}
+										textField={"nombre"}
+										idTextField={"especialidadId"}
+										defaultItem={defaultItemEspecialidad}
+										onChange={especialidadChange}
+									/>
+								</div>
 							</div>
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
+							<div className="input-group col-md-6 mb-4">
 								<select
 									id="inputPet"
 									name="inputPet"
-									className="form-control border-0 erase-outline"
+									className="form-control erase-outline"
 									ref={register({ required: true })}>
 									<option value="" selected>
 										Seleccione...
@@ -119,65 +133,77 @@ export const Booking = () => {
 									<option value="gato">Gato</option>
 								</select>
 							</div>
-						</div>
-						{inputPet && (
-							<div className="form-row justify-content-center">
-								<div className="form-group col-md-5 border-bottom border-info mr-4">
-									<label htmlFor="inputSpeciality">Elija Especialidad</label>
-									<select
-										id="inputSpeciality"
-										name="inputSpeciality"
-										className="form-control border-0 erase-outline"
-										ref={register({ required: true })}>
-										<option value="" selected>
-											Seleccione...
-										</option>
-										<option value="alergias">Veterinaria</option>
-										<option value="general">Peluquería</option>
-									</select>
+							{inputPet && (
+								<div className="row justify-content-center">
+									<div className="input-group col-md-5 mb-4">
+										<div className="input-group-prepend">
+											<span className="input-group-text bg-white px-4 border-md border-right-0">
+												<i className="fa fa-user-md text-muted" />
+											</span>
+										</div>
+
+										<select
+											id="inputSpeciality"
+											name="inputSpeciality"
+											className="form-control erase-outline"
+											ref={register({ required: true })}>
+											<option value="" selected>
+												Seleccione...
+											</option>
+											<option value="alergias">Veterinaria</option>
+											<option value="general">Peluquería</option>
+										</select>
+									</div>
+									<div className="input-group col-md-5 mb-4">
+										<div className="input-group-prepend">
+											<span className="input-group-text bg-white px-4 border-md border-right-0">
+												<i className="fa fa-user-md text-muted" />
+											</span>
+										</div>
+
+										<select
+											id="inputSpecialist"
+											name="inputSpecialist"
+											className="form-control erase-outline"
+											ref={register({ required: true })}>
+											<option value="" selected>
+												Seleccione...
+											</option>
+											<option value="doctor-1">Pedro Perez</option>
+											<option value="doctor-2">German Gatica</option>
+										</select>
+									</div>
 								</div>
-								<div className="form-group col-md-5 border-bottom border-info mr-4">
-									<label htmlFor="inputSpecialist">Especialista</label>
-									<select
-										id="inputSpecialist"
-										name="inputSpecialist"
-										className="form-control border-0 erase-outline"
-										ref={register({ required: true })}>
-										<option value="" selected>
-											Seleccione...
-										</option>
-										<option value="doctor-1">Pedro Perez</option>
-										<option value="doctor-2">German Gatica</option>
-									</select>
-								</div>
+							)}
+
+							{inputSpecialist && (
+								<>
+									<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
+
+									<div className="row justify-content-center pt-4">
+										<button
+											disabled={
+												isObjectExist(errors) && Object.entries(errors).length === 0
+													? false
+													: true
+											}
+											className="btn btn-info"
+											type="submit">
+											Reservar
+										</button>
+									</div>
+								</>
+							)}
+
+							<div className="form-row justify-content-center pt-4">
+								<Link to="/">
+									<span className="btn btn-outline-info" href="#" role="button">
+										Regresa
+									</span>
+								</Link>
 							</div>
-						)}
-
-						{inputSpecialist && (
-							<>
-								<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
-
-								<div className="form-row justify-content-center pt-4">
-									<button
-										disabled={
-											isObjectExist(errors) && Object.entries(errors).length === 0 ? false : true
-										}
-										className="btn btn-info"
-										type="submit">
-										Reservar
-									</button>
-								</div>
-							</>
-						)}
-
-						<div className="form-row justify-content-center pt-4">
-							<Link to="/">
-								<span className="btn btn-outline-info" href="#" role="button">
-									Regresa
-								</span>
-							</Link>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
