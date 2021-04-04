@@ -133,8 +133,9 @@ def register():
     return jsonify(response_body), 200
 
 
+## Endpoints de agendamiento
+
 @api.route('/reservar',methods=['POST'])
-# @login_required
 def book():
     user_id = request.json['user_id']
     user_exists = bool(User.query.filter_by(id = user_id).first())
@@ -166,6 +167,7 @@ def get_appointments():
 
     return jsonify(response_body), 200
 
+
 @api.route('/cancelar/<int:id>',methods=['DELETE'])
 def cancel_booking(id):
     appointment_exists = Appointment.query.get_or_404(id)
@@ -176,6 +178,7 @@ def cancel_booking(id):
         return jsonify('Reserva cancelada!'), 200
     else:
         return jsonify("no existe la reserva"), 404
+
 
 @api.route('/editar/<int:id>',methods=['PUT'])
 def edit_booking(id):
@@ -233,9 +236,3 @@ def get_speciality():
 
 
 
-# @api.route('/actualizar-reserva',methods=['PUT'])
-# def update_appointment():
-#     name = request.json['name']
-#     speciality_id = request.json['speciality_id']
-
-#     return jsonify("especialista"), 200
