@@ -94,8 +94,8 @@ export const Booking = () => {
 										</span>
 									</div>
 									<input
-										type="text"
-										className="form-control erase-outline"
+										type="email"
+										className="form-control border-md border-left-0 erase-outline"
 										id="inputPetName"
 										name="inputPetName"
 										placeholder="Ingrese nombre de la mascota"
@@ -124,7 +124,7 @@ export const Booking = () => {
 								<select
 									id="inputPet"
 									name="inputPet"
-									className="form-control erase-outline"
+									className="form-control border-md erase-outline"
 									ref={register({ required: true })}>
 									<option value="" selected>
 										Seleccione...
@@ -145,7 +145,8 @@ export const Booking = () => {
 										<select
 											id="inputSpeciality"
 											name="inputSpeciality"
-											className="form-control erase-outline"
+											className="form-control border-md border-left-0 erase-outline"
+											type="email"
 											ref={register({ required: true })}>
 											<option value="" selected>
 												Seleccione...
@@ -164,7 +165,8 @@ export const Booking = () => {
 										<select
 											id="inputSpecialist"
 											name="inputSpecialist"
-											className="form-control erase-outline"
+											className="form-control border-md border-left-0 erase-outline"
+											type="email"
 											ref={register({ required: true })}>
 											<option value="" selected>
 												Seleccione...

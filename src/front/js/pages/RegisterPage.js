@@ -10,7 +10,7 @@ export const RegisterPage = () => {
 					<div className="col-md-7 col-lg-6 ml-auto border p-4">
 						<form>
 							<div className="row">
-								<div className="input-group col-lg-6 mb-4">
+								<div className="input-group col-lg-6 mb-4 mx-auto">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
 											<i className="fa fa-user text-muted" />
@@ -18,12 +18,13 @@ export const RegisterPage = () => {
 									</div>
 									<input
 										id="firstName"
-										type="text"
-										name="firstname"
+										type="email"
+										name="firstName"
 										placeholder="Ingrese su nombre"
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
+
 								<div className="input-group col-lg-6 mb-4">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
@@ -32,7 +33,7 @@ export const RegisterPage = () => {
 									</div>
 									<input
 										id="lastName"
-										type="text"
+										type="email"
 										name="lastname"
 										placeholder="Ingrese su apellido"
 										className="form-control bg-white border-left-0 border-md"
@@ -61,12 +62,11 @@ export const RegisterPage = () => {
 									<select
 										id="countryCode"
 										name="countryCode"
-										// style={{"max-width: 80px"}}
 										className="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
 										<option value="">+56</option>
 										<option value="">+10</option>
 										<option value="">+15</option>
-										<option value="">+18</option>
+										<option value="">+58</option>
 									</select>
 									<input
 										id="phoneNumber"
@@ -76,24 +76,7 @@ export const RegisterPage = () => {
 										className="form-control bg-white border-md border-left-0 pl-3"
 									/>
 								</div>
-								.
-								{/* <div className="input-group col-lg-12 mb-4">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                            <i className="fa fa-black-tie text-muted" />
-                                        </span>
-                                    </div>
-                                    <select
-                                        id="job"
-                                        name="jobtitle"
-                                        className="form-control custom-select bg-white border-left-0 border-md">
-                                        <option value="">Choose your job</option>
-                                        <option value="">Designer</option>
-                                        <option value="">Developer</option>
-                                        <option value="">Manager</option>
-                                        <option value="">Accountant</option>
-                                    </select>
-                                </div> */}
+
 								<div className="input-group col-lg-6 mb-4 mx-auto">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
@@ -108,6 +91,7 @@ export const RegisterPage = () => {
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
+
 								<div className="input-group col-lg-6 mb-4 mx-auto">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
@@ -116,12 +100,13 @@ export const RegisterPage = () => {
 									</div>
 									<input
 										id="passwordConfirmation"
-										type="text"
+										type="password"
 										name="passwordConfirmation"
 										placeholder="Confirme contraseña"
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
+
 								<div className="form-group col-lg-12 mx-auto mb-0">
 									<a href="#" className="btn btn-info btn-block py-2">
 										<span className="font-weight-bold">Crea tu cuenta</span>
