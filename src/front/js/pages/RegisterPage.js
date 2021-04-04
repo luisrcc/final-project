@@ -32,7 +32,7 @@ export const RegisterPage = () => {
 					<div className="col-md-7 col-lg-6 ml-auto border p-4">
 						<form>
 							<div className="row">
-								<div className="input-group col-lg-6 mb-4">
+								<div className="input-group col-lg-6 mb-4 mx-auto">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
 											<i className="fa fa-user text-muted" />
@@ -40,14 +40,15 @@ export const RegisterPage = () => {
 									</div>
 									<input
 										id="firstName"
-										type="text"
-										name="firstname"
+										type="email"
+										name="firstName"
 										value={firstName}
 										onChange={e => setFirstName(e.target.value)}
 										placeholder="Ingrese Nombre"
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
+
 								<div className="input-group col-lg-6 mb-4">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
@@ -56,7 +57,7 @@ export const RegisterPage = () => {
 									</div>
 									<input
 										id="lastName"
-										type="text"
+										type="email"
 										name="lastname"
 										value={lastName}
 										onChange={e => setLastName(e.target.value)}
@@ -93,7 +94,7 @@ export const RegisterPage = () => {
 										<option value="">+56</option>
 										<option value="">+10</option>
 										<option value="">+15</option>
-										<option value="">+18</option>
+										<option value="">+58</option>
 									</select>
 									<input
 										id="phoneNumber"
@@ -122,6 +123,7 @@ export const RegisterPage = () => {
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
+
 								<div className="input-group col-lg-6 mb-4 mx-auto">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
@@ -130,7 +132,7 @@ export const RegisterPage = () => {
 									</div>
 									<input
 										id="passwordConfirmation"
-										type="text"
+										type="password"
 										name="passwordConfirmation"
 										value={passwordConfirmation}
 										onChange={e => setPasswordConfirmation(e.target.value)}
@@ -138,6 +140,7 @@ export const RegisterPage = () => {
 										className="form-control bg-white border-left-0 border-md"
 									/>
 								</div>
+
 								<div className="form-group col-lg-12 mx-auto mb-0">
 									<button
 										href="#"
