@@ -31,7 +31,7 @@ export const Home = () => {
 				<Reviews />
 			</div>
 
-			<div className="my-5">
+			<div className="mx-auto my-5">
 				<ProductCards />
 			</div>
 

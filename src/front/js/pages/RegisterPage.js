@@ -29,7 +29,10 @@ export const RegisterPage = () => {
 				<div className="row py-4 mt-4 align-items-center">
 					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0" />
 
-					<div className="col-md-7 col-lg-6 ml-auto border p-4">
+					<div className="col-md-7 col-lg-6 ml-auto border text-center p-4">
+						<div className="py-4 register-title">
+							<h1>Crea una cuenta</h1>
+						</div>
 						<form>
 							<div className="row">
 								<div className="input-group col-lg-6 mb-4 mx-auto">

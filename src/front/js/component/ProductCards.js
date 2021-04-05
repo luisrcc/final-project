@@ -28,7 +28,7 @@ const ProductCards = ({ title, content, url, buttonName }) => {
 	]);
 
 	return (
-		<div className="card-group">
+		<div className="card-deck">
 			{cards.map((card, index) => (
 				<Card
 					key={index}
