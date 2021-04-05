@@ -20,6 +20,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { PrivateRoutes } from "../Routers/PrivateRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { Booking } from "./component/Booking";
+import PersonalProfile from "./pages/PersonalProfile";
 
 //create your first component
 const Layout = () => {
@@ -38,7 +39,7 @@ const Layout = () => {
 						<Route exact path="/Register" component={RegisterPage} />
 
 						<PrivateRoutes component={DashboardPage} path="/dashboard" exact />
-						<Route exact path="/Profile/:username" component={ProfilePage} />
+						<Route exact path="/Profile/:id" component={ProfilePage} />
 						<Route exact path="/booking" component={Booking} />
 						<Route path="*" component={Error} />
 					</Switch>
