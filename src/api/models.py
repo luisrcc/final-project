@@ -5,9 +5,15 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(250), unique=False, nullable=False)
+    last_name = db.Column(db.String(250), unique=False, nullable=False)
     email = db.Column(db.String(250), unique=True, nullable=False)
+    phone = db.Column(db.Integer, unique=False, nullable=False)
     password = db.Column(db.String(250), unique=False, nullable=False)
-    username = db.Column(db.String(250), unique=False, nullable=False)
+    #por defecto los unique estan en false
+    #por defecto nullable siempre esta en obligatorio(agregar cuando sea TRUE)
+    #username = db.Column(db.String(250), unique=True, nullable=False) 
+    #username esta de mas
     appointment = db.relationship('Appointment', backref='user', lazy=True)
 
     def __repr__(self):
@@ -17,7 +23,10 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "username":self.username
+            #"username":self.username,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "phone": self.phone
             #"appointment": list(map(lambda x: x.serialize(), self.appointment))
             # do not serialize the password, its a security breach
         }

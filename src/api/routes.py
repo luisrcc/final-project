@@ -11,12 +11,6 @@ import datetime
 api = Blueprint('api', __name__)
 
 
-#@api.route('/hello', methods=['POST', 'GET'])
-#def handle_hello():
-
-#    response_body = {
-#        "message": "Hello! I'm a message that came from the backend"
-#    }
 
 
 @api.route('/users', methods=['GET'])
@@ -34,8 +28,11 @@ def create_a_user():
     email = request.json['email']
     password = request.json['password']
     username = request.json['username']
+    first_name = request.json['first_name']
+    last_name = request.json['last_name']
+    phone = request.json['phone']
 
-    new_user = User(email=email, password=password, username=username)
+    new_user = User(email=email, password=password, username=username, first_name=first_name, last_name=last_name, phone=phone)
 
     db.session.add(new_user)
     db.session.commit()
@@ -49,16 +46,18 @@ def handle_hash():
     expiration = datetime.timedelta(days=1)
     access_token = create_access_token(identity="{email}", expires_delta=expiration)
     response_token = {
-        "users": "{username}",
+        "users": "{users}",
         "token": access_token
     }
     return jsonify(response_token), 200
 
-@api.route('/login', methods=['POST'])
+
+@api.route('/login', methods=['POST', 'GET'])
 def login():
-    
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
+    if request.method == 'POST':
+        
+        email = request.json.get("email", None)
+        password = request.json.get("password", None)
 
     if not email:
         return jsonify({"msg":"Email required"}), 400
@@ -87,45 +86,53 @@ def login():
         "token": access_token,
         "expires": expiracion.total_seconds()*1000,
         "userId": user.id,
-        "username": user.username
+        #"username": user.username
     }
 
 
-    return jsonify(data), 200
+    return jsonify(response_body), 200
 
 @api.route('/register', methods=['POST'])
 def register():
  if request.method == 'POST':
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    username = request.json.get("username", None)
+    email = request.json.get("email")
+    password = request.json.get("password")
+    #username = request.json.get("username")
+    first_name = request.json.get("first_name")
+    last_name = request.json.get("last_name")
+    phone = request.json.get('phone')
     
     if not email:
-        return "Email required", 401
-    username = request.json.get("username", None)
-    if not username:
-        return "Username required", 401
-    password = request.json.get("password", None)
+        return jsonify({"msg": "Email is required"}), 400
+    #if not username:
+        #return jsonify({"msg": "Username is required"}), 400
     if not password:
-        return "Password required", 401
+        return jsonify({"msg": "Password is required"}), 400
+    if not first_name:
+        return jsonify({"msg": "First Name is required"}), 400
+    if not last_name:
+        return jsonify({"msg": "Last Name is required"}), 400
+    if not phone:
+        return jsonify({"msg": "Phone Number is required"}), 400
 
     email_query = User.query.filter_by(email=email).first()
     if email_query:
-        return "This email has been already taken", 401
+        return jsonify({"msg": "This email has been already taken"}), 400
+        
     
-    user = User()
+    #user = User()
     user.email = email
     user.is_active= True
-    user.username = username
+    #user.username = username
     hashed_password = generate_password_hash(password)
     user.password = hashed_password
-    print(user)
+    print(email)
     db.session.add(user)
     db.session.commit()
 
     response = {
         "msg": "Added successfully",
-        "username": username
+        #"username": username
     }
     return jsonify(response), 200
 

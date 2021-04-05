@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const LoginPage = () => {
@@ -7,12 +7,22 @@ export const LoginPage = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const history = useHistory();
+
 	function validateForm() {
 		return email.length > 0 && password.length > 0;
 	}
 
 	function handlerClick(event) {
 		event.preventDefault();
+
+		actions.setLogin(
+			{
+				email: email,
+				password: password
+			},
+			history
+		);
 	}
 
 	return (
