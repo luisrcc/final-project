@@ -20,7 +20,6 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { PrivateRoutes } from "../Routers/PrivateRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { Booking } from "./component/Booking";
-import PersonalProfile from "./pages/PersonalProfile";
 
 //create your first component
 const Layout = () => {
