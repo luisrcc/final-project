@@ -73,10 +73,10 @@ def login():
         "status": 401
         
         }), 401
-    # if not check_password_hash(user.password, password):
-    #      return jsonify({"msg": "The password is not correct",
-    #     "status": 401
-    #     }), 400
+    if not check_password_hash(user.password, password):
+         return jsonify({"msg": "The password is not correct",
+         "status": 401
+         }), 400
 
     expiracion = datetime.timedelta(days=3)
     access_token = create_access_token(identity=user.email, expires_delta=expiracion)
@@ -89,8 +89,8 @@ def login():
         #"username": user.username
     }
 
+    return jsonify("logged"), 200
 
-    return jsonify(response_body), 200
 
 @api.route('/register', methods=['POST'])
 def register():
@@ -140,7 +140,6 @@ def register():
     return jsonify(response), 200
 
 
-    #return jsonify(response_body), 200
 
 
 @api.route('/reservar',methods=['POST'])
