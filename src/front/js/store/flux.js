@@ -61,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: request
 				};
 				const response = await fetch(
-					"https://3001-peach-marten-7nw4z8wi.ws-us03.gitpod.io/api/register",
+					"https://3001-salmon-beaver-m5lfvinx.ws-us03.gitpod.io/api/user/",
 					settings
 				);
 				const json = await response.json();

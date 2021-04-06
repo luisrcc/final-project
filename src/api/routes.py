@@ -27,12 +27,12 @@ def handle_hello():
 def create_a_user():
     email = request.json['email']
     password = request.json['password']
-    username = request.json['username']
+    #username = request.json['username']
     first_name = request.json['first_name']
     last_name = request.json['last_name']
     phone = request.json['phone']
 
-    new_user = User(email=email, password=password, username=username, first_name=first_name, last_name=last_name, phone=phone)
+    new_user = User(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone)
 
     db.session.add(new_user)
     db.session.commit()
@@ -44,9 +44,9 @@ def create_a_user():
 def handle_hash():
 
     expiration = datetime.timedelta(days=1)
-    access_token = create_access_token(identity="{email}", expires_delta=expiration)
+    access_token = create_access_token(identity=user.email, expires_delta=expiration)
     response_token = {
-        "users": "{users}",
+        "users": user.email,
         "token": access_token
     }
     return jsonify(response_token), 200
@@ -94,13 +94,13 @@ def login():
 
 @api.route('/register', methods=['POST'])
 def register():
- if request.method == 'POST':
-    email = request.json.get("email")
-    password = request.json.get("password")
+ #if request.method == 'POST':
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
     #username = request.json.get("username")
-    first_name = request.json.get("first_name")
-    last_name = request.json.get("last_name")
-    phone = request.json.get('phone')
+    first_name = request.json.get("first_name", None)
+    last_name = request.json.get("last_name", None)
+    phone = request.json.get('phone', None)
     
     if not email:
         return jsonify({"msg": "Email is required"}), 400
@@ -120,9 +120,12 @@ def register():
         return jsonify({"msg": "This email has been already taken"}), 400
         
     
-    #user = User()
+    user = User()
     user.email = email
     user.is_active= True
+    user.first_name= first_name
+    user.last_name= last_name
+    user.phone = phone
     #user.username = username
     hashed_password = generate_password_hash(password)
     user.password = hashed_password
@@ -137,7 +140,7 @@ def register():
     return jsonify(response), 200
 
 
-    return jsonify(response_body), 200
+    #return jsonify(response_body), 200
 
 
 @api.route('/reservar',methods=['POST'])
