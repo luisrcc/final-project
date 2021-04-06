@@ -2,14 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			user: {
-				expires: "",
-				token: "",
-				username: "",
-				email: "",
-				userId: "",
-				userName: ""
-			}
+			user: null
 		},
 		actions: {
 			getToken: () => {
@@ -24,14 +17,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", tokenLocal);
 				console.log("-->", JSON.stringify(userLocal));
 			},
+
 			setLogin: user => {
-				const additionalSettings = {
-					method: "POST",
-					header: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(user)
-				};
+				//cambiar nombre especifico a su uso
+				// const additionalSettings = {
+				// 	method: "POST",
+				// 	headers: {
+				// 		"Content-Type": "application/json"
+				// 	},
+				// 	body: JSON.stringify(user)
+				// };
 
 				fetch(process.env.BACKEND_URL + "/api/login", {
 					method: "POST",
@@ -40,17 +35,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => {
-						console.log("--data--", data);
-						setStore({ user: data });
+						if (!data.msg) {
+							console.log("--data--", data);
+							setStore({ user: data });
 
-						if (typeof Storage !== "undefined") {
-							localStorage.setItem("token", data.token);
-							localStorage.setItem("user", JSON.stringify(data.user));
-						} else {
-							// LocalStorage no soportado en este navegador
+							if (typeof Storage !== "undefined") {
+								// cambiar a sessionStorage
+								localStorage.setItem("token", data.token);
+								localStorage.setItem("user", JSON.stringify(data.user));
+							} else {
+								// LocalStorage no soportado en este navegador
+							}
+							history.push("/dasboard");
 						}
 					})
 					.catch(error => console.log("Error loading message from backend", error));
+			},
+
+			setRegister: async (request, history) => {
+				const settings = {
+					method: "POST",
+					header: {
+						"Content-Type": "application/json"
+					},
+					body: request
+				};
+				const response = await fetch(
+					"https://3001-salmon-beaver-m5lfvinx.ws-us03.gitpod.io/api/user/",
+					settings
+				);
+				const json = await response.json();
+				history.push("/dasboard");
 			},
 			createNewAppointment: async request => {
 				const settings = {

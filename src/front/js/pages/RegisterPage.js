@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
 export const RegisterPage = () => {
 	const { store, actions } = useContext(Context);
@@ -10,17 +11,22 @@ export const RegisterPage = () => {
 	const [password, setPassword] = useState("");
 	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
+	const history = useHistory();
+
 	const handlerClick = e => {
 		e.preventDefault();
 
-		actions.setRegister({
-			firstName: firstName,
-			lastName: lastName,
-			email: email,
-			phone: phone,
-			password: password,
-			passwordConfirmation: passwordConfirmation
-		});
+		actions.setRegister(
+			{
+				first_name: firstName,
+				last_name: lastName,
+				email: email,
+				phone: phone,
+				password: password,
+				password: passwordConfirmation
+			},
+			history
+		);
 	};
 
 	return (
