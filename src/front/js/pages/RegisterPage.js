@@ -14,12 +14,12 @@ export const RegisterPage = () => {
 		e.preventDefault();
 
 		actions.setRegister({
-			firstName: firstName,
-			lastName: lastName,
+			first_name: firstName,
+			last_name: lastName,
 			email: email,
 			phone: phone,
 			password: password,
-			passwordConfirmation: passwordConfirmation
+			password: passwordConfirmation
 		});
 	};
 

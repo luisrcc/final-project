@@ -52,6 +52,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
+			setRegister: async (request, history) => {
+				const settings = {
+					method: "POST",
+					header: {
+						"Content-Type": "application/json"
+					},
+					body: request
+				};
+				const response = await fetch(
+					"https://3001-violet-chicken-6wsmowuv.ws-us03.gitpod.io/api/register",
+					settings
+				);
+				const json = await response.json();
+				history.push("/dasboard");
+			},
 			createNewAppointment: async request => {
 				const settings = {
 					method: "POST"

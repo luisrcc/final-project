@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import UserProfile from "../component/UserProfile";
 
 const PersonalProfile = () => {
 	return (

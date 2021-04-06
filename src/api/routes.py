@@ -2,6 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
+from flask_cors import CORS, cross_origin
 from api.models import db, User, Appointment, Speciality, Specialist
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash       ## Nos permite manejar tokens por authentication (usuarios)    
@@ -94,6 +95,7 @@ def login():
     return jsonify(data), 200
 
 @api.route('/register', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def register():
  if request.method == 'POST':
     email = request.json.get("email", None)
