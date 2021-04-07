@@ -60,7 +60,7 @@ export const Booking = () => {
 			specialist: dropDownListData.especialista.nombre,
 			date: exampleDate
 		};
-		console.log(request);
+		// console.log(request);
 		actions.createNewAppointment(request);
 		history.push("/");
 	};
@@ -93,33 +93,32 @@ export const Booking = () => {
 		});
 	};
 
-	console.log("especialista");
-	console.log(dropDownListData.especialista);
+	// console.log("especialista");
+	// console.log(dropDownListData.especialista);
 
 	return (
-
-    // <div className="container pt-4">
-			//<div className="row justify-content-center">
-				//<div className="col-md-6 border p-4">
-					//<form onSubmit={handleSubmit(onSubmit)}>
-						//<div className="form-row justify-content-center">
-							//<div className="form-group col-md-5 border-bottom border-info mr-4">
-								//<input
-									//type="text"
-									//className="form-control border-0 erase-outline"
-									//id="inputPetName"
-									//name="inputPetName"
-								//	placeholder="Ingrese nombre de la mascota"
-								//	ref={register({
-									//	required: true,
-										//maxLength: 20
-									//})}
-								///> 
+		// <div className="container pt-4">
+		//<div className="row justify-content-center">
+		//<div className="col-md-6 border p-4">
+		//<form onSubmit={handleSubmit(onSubmit)}>
+		//<div className="form-row justify-content-center">
+		//<div className="form-group col-md-5 border-bottom border-info mr-4">
+		//<input
+		//type="text"
+		//className="form-control border-0 erase-outline"
+		//id="inputPetName"
+		//name="inputPetName"
+		//	placeholder="Ingrese nombre de la mascota"
+		//	ref={register({
+		//	required: true,
+		//maxLength: 20
+		//})}
+		///>
 
 		<div className="booking-background">
 			<div className="container pt-4">
 				<div className="row justify-content-center">
-					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0" />
+					{/* <div className="col-md-5 pr-lg-5 mb-5 mb-md-0" > */}
 					<div className="col-md-6 border p-4">
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className="row justify-content-center">
@@ -130,7 +129,6 @@ export const Booking = () => {
 										</span>
 									</div>
 									<input
-										type="email"
 										className="form-control border-md border-left-0 erase-outline"
 										id="inputPetName"
 										name="inputPetName"
@@ -147,103 +145,96 @@ export const Booking = () => {
 											<i className="fa fa-paw text-muted" />
 										</span>
 									</div>
-									<DropDownList
-										data={dataCategories.dataEspecialidad}
-										textField={"nombre"}
-										idTextField={"especialidadId"}
-										defaultItem={defaultItemEspecialidad}
-										onChange={especialidadChange}
-									/>
+									<select
+										id="inputPet"
+										name="inputPet"
+										className="form-control border-md border-left-0 erase-outline"
+										ref={register({ required: true })}>
+										<option value="" selected>
+											Seleccione...
+										</option>
+										<option value="perro">Perro</option>
+										<option value="gato">Gato</option>
+									</select>
 								</div>
-
-							</div>
-							<div className="input-group col-md-6 mb-4">
-								<select
-									id="inputPet"
-									name="inputPet"
-									className="form-control border-md erase-outline"
-									ref={register({ required: true })}>
-									<option value="" selected>
-										Seleccione...
-									</option>
-									<option value="perro">Perro</option>
-									<option value="gato">Gato</option>
-								</select>
 							</div>
 
-						</div>
-						{inputPet && (
-							<div className="row justify-content-center">
-								<div className="input-group col-md-5 mb-4">
-                   <div className="input-group-prepend">
-											<span className="input-group-text bg-white px-4 border-md border-right-0">
+							{/* </div> */}
+							{inputPet && (
+								<div className="row justify-content-center">
+									<div className="input-group col-md-6 mb-4">
+										<div className="input-group-prepend">
+											<span className="input-group-text bg-white border-md border-right-0">
 												<i className="fa fa-user-md text-muted" />
 											</span>
 										</div>
-									<DropDownList
-										data={dataCategories.dataEspecialidad}
-										nameDropDown={"inputSpeciality"}
-										textField={"nombre"}
-										idTextField={"especialidadId"}
-										defaultItem={defaultItemEspecialidad}
-										onChange={especialidadChange}
-										value={dropDownListData.especialidad}
-										ref={register({ required: true })}
-										titulo={"Especialidad"}
-									/>
-								</div>
-								<div className="form-group col-md-5 border-bottom border-info mr-4">
-									<DropDownList
-										data={dropDownListData.especialistas}
-										textField={"nombre"}
-										nameDropDown={"inputSpecialist"}
-										idTextField={"especialidadId"}
-										defaultItem={defaultItemEspecialista}
-										onChange={especialistaChange}
-										value={dropDownListData.especialista}
-										ref={register({ required: true })}
-										titulo={"Especialista"}
-									/>
-
+										<DropDownList
+											data={dataCategories.dataEspecialidad}
+											nameDropDown={"inputSpeciality"}
+											textField={"nombre"}
+											idTextField={"especialidadId"}
+											defaultItem={defaultItemEspecialidad}
+											onChange={especialidadChange}
+											value={dropDownListData.especialidad}
+											ref={register({ required: true })}
+											titulo={"Especialidad"}
+										/>
+									</div>
+									<div className="input-group col-md-6 mb-4">
+										<div className="input-group-prepend">
+											<span className="input-group-text bg-white border-md border-right-0">
+												<i className="fa fa-user-md text-muted" />
+											</span>
+										</div>
+										<DropDownList
+											data={dropDownListData.especialistas}
+											textField={"nombre"}
+											nameDropDown={"inputSpecialist"}
+											idTextField={"especialidadId"}
+											defaultItem={defaultItemEspecialista}
+											onChange={especialistaChange}
+											value={dropDownListData.especialista}
+											ref={register({ required: true })}
+											titulo={"Especialista"}
+										/>
+									</div>
 								</div>
 							)}
+							{/* <div className="form-row justify-content-center pt-4">
+								<Link to="/">
+									<span className="btn btn-outline-info" href="#" role="button">
+										Regresa
+									</span>
+								</Link>
+							</div> */}
 
-							<div className="form-row justify-content-center pt-4">
+							{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
+								<>
+									<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
+
+									<div className="row justify-content-center pt-4">
+										<button
+											disabled={
+												isObjectExist(errors) && Object.entries(errors).length === 0
+													? false
+													: true
+											}
+											className="btn btn-info"
+											type="submit">
+											Reservar
+										</button>
+									</div>
+								</>
+							) : null}
+							<div className="row justify-content-center pt-4">
 								<Link to="/">
 									<span className="btn btn-outline-info" href="#" role="button">
 										Regresa
 									</span>
 								</Link>
 							</div>
-
-						)}
-
-						{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
-							<>
-								<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
-
-								<div className="row justify-content-center pt-4">
-									<button
-										disabled={
-											isObjectExist(errors) && Object.entries(errors).length === 0 ? false : true
-										}
-										className="btn btn-info"
-										type="submit">
-										Reservar
-									</button>
-								</div>
-							</>
-						) : null}
-
-						<div className="row justify-content-center pt-4">
-							<Link to="/">
-								<span className="btn btn-outline-info" href="#" role="button">
-									Regresa
-								</span>
-							</Link>
-						</div>
-					</form>
-
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

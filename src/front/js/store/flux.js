@@ -95,7 +95,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// history.push("/dasboard");
 			// },
 			createNewAppointment: async request => {
-
 				const settings = {
 					method: "POST",
 					headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -108,12 +107,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//	body: JSON.stringify(request),
 				//	headers: { "Content-type": "application/json; charset=UTF-8" }
 				//})
-					//.then(resp => resp.json())
-					//.then(data => {
-						//console.log("--data--", data);
-						// const json = await response.json();
-					//})
-					//.catch(error => console.log("Error loading message from backend", error));
+				//.then(resp => resp.json())
+				//.then(data => {
+				//console.log("--data--", data);
+				// const json = await response.json();
+				//})
+				//.catch(error => console.log("Error loading message from backend", error));
 
 				// const settings = {
 				// 	method: "POST"
@@ -121,8 +120,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// const response = await fetch(URL + "/api/reservar", settings);
 
 				//const json = await response.json();
-
-
 			}
 
 			// getMessage: () => {
