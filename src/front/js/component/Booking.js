@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import DropDownList from "./DropDownList";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const Booking = () => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
+	const params = useParams();
 
 	const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -96,29 +98,41 @@ export const Booking = () => {
 	// console.log("especialista");
 	// console.log(dropDownListData.especialista);
 
-	return (
-		// <div className="container pt-4">
-		//<div className="row justify-content-center">
-		//<div className="col-md-6 border p-4">
-		//<form onSubmit={handleSubmit(onSubmit)}>
-		//<div className="form-row justify-content-center">
-		//<div className="form-group col-md-5 border-bottom border-info mr-4">
-		//<input
-		//type="text"
-		//className="form-control border-0 erase-outline"
-		//id="inputPetName"
-		//name="inputPetName"
-		//	placeholder="Ingrese nombre de la mascota"
-		//	ref={register({
-		//	required: true,
-		//maxLength: 20
-		//})}
-		///>
+	// const [data, setData] = useState({
+	// 	pet_name: "",
+	// 	pet: "",
+	// 	speciality: "",
+	// 	specialist: "",
+	// 	date: ""
+	// });
 
+	const handleClickSubmit = () => {
+		if (params.id) {
+			const isUpdated = actions.editAppointment(params.id, data);
+			if (isUpdated) history.push("/profile");
+		} else {
+			actions.createNewAppointment(data);
+		}
+	};
+
+	const handleChangeText = e => {
+		const newData = { ...data };
+		console.log(newData);
+		newData[e.target.id] = e.target.value;
+		setData(newData);
+		console.log(newData);
+	};
+
+	useEffect(() => {
+		if (params.id) {
+			actions.getAppointment(params.id);
+		}
+	}, []);
+
+	return (
 		<div className="booking-background">
 			<div className="container pt-4">
 				<div className="row justify-content-center">
-					{/* <div className="col-md-5 pr-lg-5 mb-5 mb-md-0" > */}
 					<div className="col-md-6 border p-4">
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className="row justify-content-center">
@@ -137,6 +151,8 @@ export const Booking = () => {
 											required: true,
 											maxLength: 20
 										})}
+										onChange={e => handleChangeText(e)}
+										value={inputPetName}
 									/>
 								</div>
 								<div className="input-group col-md-6 mb-4">
@@ -149,7 +165,9 @@ export const Booking = () => {
 										id="inputPet"
 										name="inputPet"
 										className="form-control border-md border-left-0 erase-outline"
-										ref={register({ required: true })}>
+										ref={register({ required: true })}
+										onChange={e => handleChangeText(e)}
+										value={inputPet}>
 										<option value="" selected>
 											Seleccione...
 										</option>
@@ -159,7 +177,6 @@ export const Booking = () => {
 								</div>
 							</div>
 
-							{/* </div> */}
 							{inputPet && (
 								<div className="row justify-content-center">
 									<div className="input-group col-md-6 mb-4">
@@ -200,13 +217,6 @@ export const Booking = () => {
 									</div>
 								</div>
 							)}
-							{/* <div className="form-row justify-content-center pt-4">
-								<Link to="/">
-									<span className="btn btn-outline-info" href="#" role="button">
-										Regresa
-									</span>
-								</Link>
-							</div> */}
 
 							{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
 								<>
@@ -221,7 +231,7 @@ export const Booking = () => {
 											}
 											className="btn btn-info"
 											type="submit">
-											Reservar
+											Reservar {console.log(process.env.BACKEND_URL)}
 										</button>
 									</div>
 								</>
