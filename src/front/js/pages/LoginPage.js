@@ -9,8 +9,15 @@ export const LoginPage = () => {
 
 	const history = useHistory();
 
-	function validateForm() {
-		return email.length > 0 && password.length > 0;
+	function validateForm(values) {
+		const errors = {};
+		if (!values.email) {
+			errors.email = "El email es requerido";
+		}
+		if (!values.password) {
+			errors.password = "La contraseña es requerida";
+		}
+		return errors;
 	}
 
 	function handlerClick(event) {
