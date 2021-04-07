@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 export const ProfilePage = () => {
-	const { username } = useParams();
+	const { name } = useParams();
 	return (
 		<div className="">
 			<div className="container">
@@ -18,7 +18,7 @@ export const ProfilePage = () => {
 									<button className="btn btn-md btn-info m-2">Cambiar foto</button>
 									<input className="mb-2" type="file" name="file" />
 								</div>
-								<h1>Prueba Perfil: {username}</h1>
+								{/* <h1>Prueba Perfil: {name}</h1> */}
 							</div>
 
 							<div className="mb-2">

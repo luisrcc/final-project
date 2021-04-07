@@ -17,9 +17,11 @@ import { PricingPage } from "./pages/PricingPage";
 
 import { Error } from "./pages/Error";
 import { ProfilePage } from "./pages/ProfilePage";
+// import { ProfilePage } from "./pages/ProfilePage";
 import { PrivateRoute } from "../Routers/PrivateRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { Booking } from "./component/Booking";
+import { ForgotPassword } from "./component/ForgotPassword";
 
 //create your first component
 const Layout = () => {
@@ -38,8 +40,9 @@ const Layout = () => {
 						<Route exact path="/Register" component={RegisterPage} />
 
 						<PrivateRoute component={DashboardPage} exact path="/dashboard" />
-						<PrivateRoute exact path="/profile" component={ProfilePage} />
+						<Route exact path="/profile" component={ProfilePage} />
 						<Route exact path="/booking" component={Booking} />
+						<Route exact path="/recuperar" component={ForgotPassword} />
 						<Route path="*" component={Error} />
 					</Switch>
 					<Footer />

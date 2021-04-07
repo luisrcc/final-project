@@ -3,7 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			user: null
+			user: null,
+			appointment: null,
+			appointments: []
 		},
 		actions: {
 			getToken: () => {
@@ -39,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							} else {
 								// LocalStorage no soportado en este navegador
 							}
-							history.push("/Profile");
+							history.push("/profile");
 						}
 					})
 					.catch(error => console.log("Error loading message from backend", error));
@@ -69,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			setRegister: async (request, history) => {
-				fetch(process.env.BACKEND_URL + "/api/register", {
+				fetch("https://3001-green-reptile-n7zbsap7.ws-us03.gitpod.io/api/register", {
 					method: "POST",
 					body: JSON.stringify(request),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
@@ -81,45 +83,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
-			// const settings = {
-			// 	method: "POST",
-			// 	header: {
-			// 		"Content-Type": "application/json"
-			// 	},
-			// 	body: JSON.stringify(request)
-			// };
 
-			// console.log(process.env);
-			// const response = await fetch(URL + "/api/register", settings);
-			// const json = await response.json();
-			// history.push("/dasboard");
-			// },
 			createNewAppointment: async request => {
 				const settings = {
 					method: "POST",
 					headers: { "Content-type": "application/json; charset=UTF-8" },
 					body: JSON.stringify(request)
 				};
-				const response = await fetch(process.env.BACKEND_URL + "api/reservar", settings);
+				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
 
-				// fetch(process.env.BACKEND_URL + "/api/reservar", {
-				//	method: "POST",
-				//	body: JSON.stringify(request),
-				//	headers: { "Content-type": "application/json; charset=UTF-8" }
-				//})
-				//.then(resp => resp.json())
-				//.then(data => {
-				//console.log("--data--", data);
-				// const json = await response.json();
-				//})
-				//.catch(error => console.log("Error loading message from backend", error));
+				if (response) {
+					history.push("/profile");
+				}
+			},
 
-				// const settings = {
-				// 	method: "POST"
-				// };
-				// const response = await fetch(URL + "/api/reservar", settings);
+			deleteAppointment: async request => {
+				const settings = {
+					method: "DELETE",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
+			},
 
-				//const json = await response.json();
+			editAppointment: async request => {
+				const settings = {
+					method: "PUT",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
+			},
+
+			getAppointment: async id => {
+				const settings = {
+					method: "GET",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(id)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
+				const json = await response.json();
+				setStore({ appointment: json });
 			}
 
 			// getMessage: () => {
