@@ -10,9 +10,6 @@ import datetime
 
 api = Blueprint('api', __name__)
 
-
-
-
 @api.route('/users', methods=['GET'])
 def handle_hello():
     users = User.query.all()
@@ -72,11 +69,15 @@ def login():
         return jsonify({"msg": "The email is not correct",
         "status": 401
         
+
+       # }), 401 
+
         }), 401
     if not check_password_hash(user.password, password):
          return jsonify({"msg": "The password is not correct",
          "status": 401
          }), 400
+
 
     expiracion = datetime.timedelta(days=3)
     access_token = create_access_token(identity=user.email, expires_delta=expiracion)
@@ -142,8 +143,7 @@ def register():
 
 
 
-@api.route('/reservar',methods=['POST'])
-# @login_required
+@api.route('/reservar', methods=['POST'])
 def book():
     user_id = request.json['user_id']
     user_exists = bool(User.query.filter_by(id = user_id).first())
@@ -154,13 +154,15 @@ def book():
         speciality = request.json['speciality']
         specialist = request.json['specialist']
         date = request.json['date']
-        # cost = request.json['cost']
         new_appointment = Appointment(user_id=user_id, pet_name=pet_name, pet=pet, speciality=speciality, specialist=specialist, date=date)
     else:
         return jsonify("no existe el usuario"), 404
 
     db.session.add(new_appointment)
     db.session.commit()
+
+   #return jsonify("Hora agendada"), 200
+
     return jsonify("Hora agendada"), 200
 
 
@@ -248,3 +250,4 @@ def get_speciality():
 #     speciality_id = request.json['speciality_id']
 
 #     return jsonify("especialista"), 200
+
