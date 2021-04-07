@@ -39,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							} else {
 								// LocalStorage no soportado en este navegador
 							}
-							history.push("/dasboard");
+							history.push("/Profile");
 						}
 					})
 					.catch(error => console.log("Error loading message from backend", error));
@@ -76,8 +76,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => {
-						console.log("--data--", data);
-						history.push("/dasboard");
+						alert("Registro Exitoso");
+						history.push("/login");
 					})
 					.catch(error => console.log("Error loading message from backend", error));
 			},
@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// 	method: "POST"
 				// };
 				// const response = await fetch(URL + "/api/reservar", settings);
-				const json = await response.json();
+				//const json = await response.json();
 			}
 
 			// getMessage: () => {

@@ -17,7 +17,7 @@ import { PricingPage } from "./pages/PricingPage";
 
 import { Error } from "./pages/Error";
 import { ProfilePage } from "./pages/ProfilePage";
-import { PrivateRoutes } from "../Routers/PrivateRoute";
+import { PrivateRoute } from "../Routers/PrivateRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { Booking } from "./component/Booking";
 
@@ -37,8 +37,8 @@ const Layout = () => {
 						<Route exact path="/Login" component={LoginPage} />
 						<Route exact path="/Register" component={RegisterPage} />
 
-						<PrivateRoutes component={DashboardPage} path="/dashboard" exact />
-						<Route exact path="/Profile/:id" component={ProfilePage} />
+						<PrivateRoute component={DashboardPage} exact path="/dashboard" />
+						<PrivateRoute exact path="/profile" component={ProfilePage} />
 						<Route exact path="/booking" component={Booking} />
 						<Route path="*" component={Error} />
 					</Switch>
