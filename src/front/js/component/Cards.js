@@ -28,7 +28,7 @@ const Cards = ({ title, content, url, buttonName }) => {
 	]);
 
 	return (
-		<div className="row justify-content-center my-4">
+		<div className="card-deck">
 			{cards.map((card, index) => (
 				<Card
 					key={index}

@@ -1,8 +1,7 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import UserProfile from "../component/UserProfile";
 
-export const ProfilePage = () => {
-	const { username } = useParams();
+const PersonalProfile = () => {
 	return (
 		<div className="">
 			<div className="container">
@@ -18,7 +17,6 @@ export const ProfilePage = () => {
 									<button className="btn btn-md btn-info m-2">Cambiar foto</button>
 									<input className="mb-2" type="file" name="file" />
 								</div>
-								<h1>Prueba Perfil: {username}</h1>
 							</div>
 
 							<div className="mb-2">
@@ -114,3 +112,5 @@ export const ProfilePage = () => {
 		</div>
 	);
 };
+
+export default PersonalProfile;

@@ -97,29 +97,71 @@ export const Booking = () => {
 	console.log(dropDownListData.especialista);
 
 	return (
-		<div className="container pt-4">
-			<div className="row justify-content-center">
-				<div className="col-md-6 border p-4">
-					<form onSubmit={handleSubmit(onSubmit)}>
-						<div className="form-row justify-content-center">
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
-								<input
-									type="text"
-									className="form-control border-0 erase-outline"
-									id="inputPetName"
-									name="inputPetName"
-									placeholder="Ingrese nombre de la mascota"
-									ref={register({
-										required: true,
-										maxLength: 20
-									})}
-								/>
+
+    // <div className="container pt-4">
+			//<div className="row justify-content-center">
+				//<div className="col-md-6 border p-4">
+					//<form onSubmit={handleSubmit(onSubmit)}>
+						//<div className="form-row justify-content-center">
+							//<div className="form-group col-md-5 border-bottom border-info mr-4">
+								//<input
+									//type="text"
+									//className="form-control border-0 erase-outline"
+									//id="inputPetName"
+									//name="inputPetName"
+								//	placeholder="Ingrese nombre de la mascota"
+								//	ref={register({
+									//	required: true,
+										//maxLength: 20
+									//})}
+								///> 
+
+		<div className="booking-background">
+			<div className="container pt-4">
+				<div className="row justify-content-center">
+					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0" />
+					<div className="col-md-6 border p-4">
+						<form onSubmit={handleSubmit(onSubmit)}>
+							<div className="row justify-content-center">
+								<div className="input-group col-md-6 mb-4">
+									<div className="input-group-prepend">
+										<span className="input-group-text bg-white px-4 border-md border-right-0">
+											<i className="fa fa-paw text-muted" />
+										</span>
+									</div>
+									<input
+										type="email"
+										className="form-control border-md border-left-0 erase-outline"
+										id="inputPetName"
+										name="inputPetName"
+										placeholder="Ingrese nombre de la mascota"
+										ref={register({
+											required: true,
+											maxLength: 20
+										})}
+									/>
+								</div>
+								<div className="input-group col-md-6 mb-4">
+									<div className="input-group-prepend">
+										<span className="input-group-text bg-white px-4 border-md border-right-0">
+											<i className="fa fa-paw text-muted" />
+										</span>
+									</div>
+									<DropDownList
+										data={dataCategories.dataEspecialidad}
+										textField={"nombre"}
+										idTextField={"especialidadId"}
+										defaultItem={defaultItemEspecialidad}
+										onChange={especialidadChange}
+									/>
+								</div>
+
 							</div>
-							<div className="form-group col-md-5 border-bottom border-info mr-4">
+							<div className="input-group col-md-6 mb-4">
 								<select
 									id="inputPet"
 									name="inputPet"
-									className="form-control border-0 erase-outline"
+									className="form-control border-md erase-outline"
 									ref={register({ required: true })}>
 									<option value="" selected>
 										Seleccione...
@@ -128,10 +170,16 @@ export const Booking = () => {
 									<option value="gato">Gato</option>
 								</select>
 							</div>
+
 						</div>
 						{inputPet && (
-							<div className="form-row justify-content-center">
-								<div className="form-group col-md-5 border-bottom border-info mr-4">
+							<div className="row justify-content-center">
+								<div className="input-group col-md-5 mb-4">
+                   <div className="input-group-prepend">
+											<span className="input-group-text bg-white px-4 border-md border-right-0">
+												<i className="fa fa-user-md text-muted" />
+											</span>
+										</div>
 									<DropDownList
 										data={dataCategories.dataEspecialidad}
 										nameDropDown={"inputSpeciality"}
@@ -156,15 +204,25 @@ export const Booking = () => {
 										ref={register({ required: true })}
 										titulo={"Especialista"}
 									/>
+
 								</div>
+							)}
+
+							<div className="form-row justify-content-center pt-4">
+								<Link to="/">
+									<span className="btn btn-outline-info" href="#" role="button">
+										Regresa
+									</span>
+								</Link>
 							</div>
+
 						)}
 
 						{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
 							<>
 								<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
 
-								<div className="form-row justify-content-center pt-4">
+								<div className="row justify-content-center pt-4">
 									<button
 										disabled={
 											isObjectExist(errors) && Object.entries(errors).length === 0 ? false : true
@@ -177,7 +235,7 @@ export const Booking = () => {
 							</>
 						) : null}
 
-						<div className="form-row justify-content-center pt-4">
+						<div className="row justify-content-center pt-4">
 							<Link to="/">
 								<span className="btn btn-outline-info" href="#" role="button">
 									Regresa
@@ -185,6 +243,7 @@ export const Booking = () => {
 							</Link>
 						</div>
 					</form>
+
 				</div>
 			</div>
 		</div>

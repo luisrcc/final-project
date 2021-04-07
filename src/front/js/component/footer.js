@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { CopyRight } from "../component/CopyRight";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center bg-light">
+	<footer className="footer mt-auto text-center bg-light" style={{ margin: "auto auto 0 auto" }}>
 		<div className="footerRedes">
 			<a href="http://www.facebook.com">
 				<i className="fab fa-2x fa-facebook" style={{ margin: "5px" }} />
