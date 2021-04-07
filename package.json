@@ -86,6 +86,7 @@
 		"react-copyright": "^0.0.1",
 		"react-datepicker": "^3.6.0",
 		"react-dom": "^16.8.4",
+		"react-google-login": "^5.2.2",
 		"react-hook-form": "^6.15.5",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^5.2.0",

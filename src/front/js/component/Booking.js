@@ -6,12 +6,10 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import DropDownList from "./DropDownList";
 import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 export const Booking = () => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
-	const params = useParams();
 
 	const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -98,37 +96,6 @@ export const Booking = () => {
 	// console.log("especialista");
 	// console.log(dropDownListData.especialista);
 
-	// const [data, setData] = useState({
-	// 	pet_name: "",
-	// 	pet: "",
-	// 	speciality: "",
-	// 	specialist: "",
-	// 	date: ""
-	// });
-
-	const handleClickSubmit = () => {
-		if (params.id) {
-			const isUpdated = actions.editAppointment(params.id, data);
-			if (isUpdated) history.push("/profile");
-		} else {
-			actions.createNewAppointment(data);
-		}
-	};
-
-	const handleChangeText = e => {
-		const newData = { ...data };
-		console.log(newData);
-		newData[e.target.id] = e.target.value;
-		setData(newData);
-		console.log(newData);
-	};
-
-	useEffect(() => {
-		if (params.id) {
-			actions.getAppointment(params.id);
-		}
-	}, []);
-
 	return (
 		<div className="booking-background">
 			<div className="container pt-4">
@@ -151,8 +118,6 @@ export const Booking = () => {
 											required: true,
 											maxLength: 20
 										})}
-										onChange={e => handleChangeText(e)}
-										value={inputPetName}
 									/>
 								</div>
 								<div className="input-group col-md-6 mb-4">
@@ -165,9 +130,7 @@ export const Booking = () => {
 										id="inputPet"
 										name="inputPet"
 										className="form-control border-md border-left-0 erase-outline"
-										ref={register({ required: true })}
-										onChange={e => handleChangeText(e)}
-										value={inputPet}>
+										ref={register({ required: true })}>
 										<option value="" selected>
 											Seleccione...
 										</option>
