@@ -5,9 +5,11 @@ import { DateTimePicker } from "./DateTimePicker";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import DropDownList from "./DropDownList";
+import { useHistory } from "react-router-dom";
 
 export const Booking = () => {
 	const { store, actions } = useContext(Context);
+	let history = useHistory();
 
 	const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -59,6 +61,8 @@ export const Booking = () => {
 			date: exampleDate
 		};
 		console.log(request);
+		actions.createNewAppointment(request);
+		history.push("/");
 	};
 
 	const isObjectExist = object => {
@@ -128,18 +132,6 @@ export const Booking = () => {
 						{inputPet && (
 							<div className="form-row justify-content-center">
 								<div className="form-group col-md-5 border-bottom border-info mr-4">
-									<label htmlFor="inputSpeciality">Elija Especialidad</label>
-									{/* <select
-										id="inputSpeciality"
-										name="inputSpeciality"
-										className="form-control border-0 erase-outline"
-										ref={register({ required: true })}>
-										<option value="" selected>
-											Seleccione...
-										</option>
-										<option value="alergias">Veterinaria</option>
-										<option value="general">Peluquería</option>
-									</select> */}
 									<DropDownList
 										data={dataCategories.dataEspecialidad}
 										nameDropDown={"inputSpeciality"}
@@ -153,18 +145,6 @@ export const Booking = () => {
 									/>
 								</div>
 								<div className="form-group col-md-5 border-bottom border-info mr-4">
-									{/* <label htmlFor="inputSpecialist">Especialista</label> */}
-									{/* <select
-										id="inputSpecialist"
-										name="inputSpecialist"
-										className="form-control border-0 erase-outline"
-										ref={register({ required: true })}>
-										<option value="" selected>
-											Seleccione...
-										</option>
-										<option value="doctor-1">Pedro Perez</option>
-										<option value="doctor-2">German Gatica</option>
-									</select> */}
 									<DropDownList
 										data={dropDownListData.especialistas}
 										textField={"nombre"}

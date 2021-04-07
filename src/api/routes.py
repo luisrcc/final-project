@@ -9,16 +9,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 import datetime
 
 api = Blueprint('api', __name__)
-
-
-#@api.route('/hello', methods=['POST', 'GET'])
-#def handle_hello():
-
-#    response_body = {
-#        "message": "Hello! I'm a message that came from the backend"
-#    }
-
-
+ 
 @api.route('/users', methods=['GET'])
 def handle_hello():
     users = User.query.all()
@@ -73,11 +64,7 @@ def login():
         return jsonify({"msg": "The email is not correct",
         "status": 401
         
-        }), 401
-    # if not check_password_hash(user.password, password):
-    #      return jsonify({"msg": "The password is not correct",
-    #     "status": 401
-    #     }), 400
+        }), 401 
 
     expiracion = datetime.timedelta(days=3)
     access_token = create_access_token(identity=user.email, expires_delta=expiracion)
@@ -133,8 +120,7 @@ def register():
     return jsonify(response_body), 200
 
 
-@api.route('/reservar',methods=['POST'])
-# @login_required
+@api.route('/reservar', methods=['POST'])
 def book():
     user_id = request.json['user_id']
     exists = bool(User.query.filter_by(id = user_id).first())
@@ -145,7 +131,6 @@ def book():
         speciality = request.json['speciality']
         specialist = request.json['specialist']
         date = request.json['date']
-        # cost = request.json['cost']
         new_appointment = Appointment(user_id=user_id, pet_name=pet_name, pet=pet, speciality=speciality, specialist=specialist, date=date)
     else:
         return jsonify("no existe el usuario"), 404
@@ -153,23 +138,3 @@ def book():
     db.session.add(new_appointment)
     db.session.commit()
     return jsonify("Hora agendada"), 200
-
-# @api.route('/cancelbooking',methods=['GET','POST'])
-# # @login_required
-# def cancelbooking():
-#     # if not current_user.is_authenticated:
-#     #     flash('Por favor igresar para cancelar reserva')
-#     #     return redirect(url_for('login')) 
-    
-#     form=CancelbookingForm()
-#     if 
-
-#         if appointment.date<=datetime.now():
-#             (f'Reserva no puede ser cancelada')
-#             return         
-        
-        
-#         db.session.delete(appointment)
-#         db.session.commit()
-#         print('Reserva cancelada! ')
-#         return jsonify(response), 200

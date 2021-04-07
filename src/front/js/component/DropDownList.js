@@ -33,7 +33,7 @@ const DropDownList = ({
 
 	return (
 		<>
-			<label htmlFor={nameDropDown} />
+			<label htmlFor={nameDropDown}>{titulo}</label>
 			<select
 				id={nameDropDown}
 				name={nameDropDown}

@@ -44,12 +44,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createNewAppointment: async request => {
 				const settings = {
-					method: "POST"
+					method: "POST",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
 				};
-				const response = await fetch(
-					"https://3001-yellow-kite-xee0xamh.ws-us03.gitpod.io/api/reservar",
-					settings
-				);
+				const response = await fetch(process.env.BACKEND_URL + "api/reservar", settings);
 				const json = await response.json();
 			}
 		}
