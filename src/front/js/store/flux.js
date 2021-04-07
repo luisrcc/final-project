@@ -95,23 +95,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// history.push("/dasboard");
 			// },
 			createNewAppointment: async request => {
-				fetch(process.env.BACKEND_URL + "/api/reservar", {
+
+				const settings = {
 					method: "POST",
-					body: JSON.stringify(request),
-					headers: { "Content-type": "application/json; charset=UTF-8" }
-				})
-					.then(resp => resp.json())
-					.then(data => {
-						console.log("--data--", data);
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "api/reservar", settings);
+
+				// fetch(process.env.BACKEND_URL + "/api/reservar", {
+				//	method: "POST",
+				//	body: JSON.stringify(request),
+				//	headers: { "Content-type": "application/json; charset=UTF-8" }
+				//})
+					//.then(resp => resp.json())
+					//.then(data => {
+						//console.log("--data--", data);
 						// const json = await response.json();
-					})
-					.catch(error => console.log("Error loading message from backend", error));
+					//})
+					//.catch(error => console.log("Error loading message from backend", error));
 
 				// const settings = {
 				// 	method: "POST"
 				// };
 				// const response = await fetch(URL + "/api/reservar", settings);
+
 				//const json = await response.json();
+
+
 			}
 
 			// getMessage: () => {
