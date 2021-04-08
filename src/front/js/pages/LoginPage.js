@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import GoogleLogin from "react-google-login";
+// import GoogleLogin from "react-google-login";
 
 export const LoginPage = () => {
 	const { store, actions } = useContext(Context);

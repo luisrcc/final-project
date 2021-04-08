@@ -1,115 +1,25 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { imgProfile } from "../../img/photoProfile.png";
 
 export const ProfilePage = () => {
-	const { name } = useParams();
+	const { first_name } = useParams();
 	return (
-		<div className="">
-			<div className="container">
-				<form method="post">
-					<div className="row">
-						<div className="col-md-5">
-							<div className="profile-img">
-								<img
-									src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-									alt=""
-								/>
-								<div className="file">
-									<button className="btn btn-md btn-info m-2">Cambiar foto</button>
-									<input className="mb-2" type="file" name="file" />
-								</div>
-								{/* <h1>Prueba Perfil: {name}</h1> */}
-							</div>
-
-							<div className="mb-2">
-								<input
-									type="submit"
-									className="profile-edit-btn"
-									name="btnAddMore"
-									value="Edit Profile"
-								/>
-							</div>
-						</div>
-
-						<div className="col-md-6">
-							<div className="row">
-								<div className="profile-head my-4">
-									<h5 className="mb-4">Kshiti Ghelani</h5>
-
-									<ul className="nav nav-tabs mb-3" id="myTab" role="tablist">
-										<li className="nav-item">
-											<a
-												className="nav-link active"
-												id="home-tab"
-												data-toggle="tab"
-												href="#home"
-												role="tab"
-												aria-controls="home"
-												aria-selected="true">
-												Información
-											</a>
-										</li>
-										<li className="nav-item">
-											<a
-												className="nav-link"
-												id="profile-tab"
-												data-toggle="tab"
-												href="#profile"
-												role="tab"
-												aria-controls="profile"
-												aria-selected="false">
-												Reservas
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-
-							<div className="row mb-4">
-								<div className="tab-content profile-tab" id="myTabContent">
-									<div
-										className="tab-pane fade show active"
-										id="home"
-										role="tabpanel"
-										aria-labelledby="home-tab">
-										<div className="row">
-											<div className="col-md-6">
-												<label>Nombre</label>
-											</div>
-											<div className="col-md-6">
-												<p>Kshiti Ghelani</p>
-											</div>
-										</div>
-										<div className="row">
-											<div className="col-md-6">
-												<label>Email</label>
-											</div>
-											<div className="col-md-6">
-												<p>kshitighelani@gmail.com</p>
-											</div>
-										</div>
-										<div className="row">
-											<div className="col-md-6">
-												<label>Telefono</label>
-											</div>
-											<div className="col-md-6">
-												<p>123 456 7890</p>
-											</div>
-										</div>
-										<div className="row">
-											<div className="col-md-6">
-												<label>Contraseña</label>
-											</div>
-											<div className="col-md-6">
-												<p>*******</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+		<div className="container">
+			<div className="boxDatos">
+				<div className="row">
+					<div className="col-sm-4">
+						<h1>Bienvenido</h1>
 					</div>
-				</form>
+					<div className="col-sm-8">
+						<h1>Usuario</h1>
+					</div>
+					<div className="photoProfile">
+						<img src={imgProfile} />
+					</div>
+					<div className="col-sm-4">Tu Informacion</div>
+					<div className="col-sm-8"> Reservas</div>
+				</div>
 			</div>
 		</div>
 	);
