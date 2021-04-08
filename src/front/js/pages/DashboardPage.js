@@ -100,8 +100,15 @@ export const DashboardPage = () => {
 													<span className="mr-2 d-block d-sm-inline-block mb-1 mb-sm-0">
 														Contacto:
 													</span>
-													<span className="border-right pr-2 mr-2">9 34212452</span>
+													<span className="border-right pr-2">9 34212452</span>
 													<span> jhoninoue@correo.com</span>
+													<hr />
+													<botton className="btn btn-success btn-sm">Confirmar</botton>
+													<botton
+														className="btn btn-outline-danger btn-sm"
+														style={{ margin: "10px" }}>
+														Cancelar
+													</botton>
 												</div>
 											</div>
 										</div>
@@ -148,6 +155,13 @@ export const DashboardPage = () => {
 													</span>
 													<span className="border-right pr-2 mr-2">9 8765431</span>
 													<span> mariaespinoza@correo.com</span>
+													<hr />
+													<botton className="btn btn-success btn-sm">Confirmar</botton>
+													<botton
+														className="btn btn-outline-danger btn-sm"
+														style={{ margin: "10px" }}>
+														Cancelar
+													</botton>
 												</div>
 											</div>
 										</div>
