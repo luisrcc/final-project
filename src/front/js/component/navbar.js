@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ButtonRegister } from "./ButtonRegister";
 import { ButtonLogin } from "./ButtonLogin";
+import { LogoutButton } from "./LogoutButton";
 
 export const Navbar = () => {
 	return (
@@ -15,6 +16,9 @@ export const Navbar = () => {
 				</Link>
 				<Link to="/login">
 					<ButtonLogin />
+				</Link>
+				<Link to="/login">
+					<LogoutButton />
 				</Link>
 			</div>
 		</nav>

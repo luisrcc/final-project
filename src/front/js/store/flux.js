@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", JSON.stringify(userLocal));
 			},
 
-			setLogin: user => {
+			setLogin: (user, history) => {
 				fetch(process.env.BACKEND_URL + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -71,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			setRegister: async (request, history) => {
-				fetch("https://3001-green-reptile-n7zbsap7.ws-us03.gitpod.io/api/register", {
+				fetch(process.env.BACKEND_URL + "/api/register", {
 					method: "POST",
 					body: JSON.stringify(request),
 					headers: { "Content-type": "application/json; charset=UTF-8" }

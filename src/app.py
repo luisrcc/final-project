@@ -11,7 +11,7 @@ from api.models import db
 from api.routes import api 
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity 
-from flask_mail import Message
+# from flask_mail import Message
 
 #from models import Person
 
@@ -21,12 +21,12 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 jwt = JWTManager(app)
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'milycrn26@gmail.com'
-app.config['MAIL_PASSWORD'] = ''
-mail = Mail(app)
+# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+# app.config['MAIL_PORT'] = 465
+# app.config['MAIL_USE_SSL'] = True
+# app.config['MAIL_USERNAME'] = 'milycrn26@gmail.com'
+# app.config['MAIL_PASSWORD'] = ''
+# mail = Mail(app)
 
 
 # database condiguration
@@ -75,10 +75,10 @@ if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
 
-@app.route('/')
-    msg = Message()
-    msg.subject = "Email Subject"
-    msg.recipients = ['recipient@gmail.com']
-    msg.sender = 'username@gmail.com'
-    msg.body = 'Email body'
-    mail.send(msg)
+# @app.route('/')
+#     msg = Message()
+#     msg.subject = "Email Subject"
+#     msg.recipients = ['recipient@gmail.com']
+#     msg.sender = 'username@gmail.com'
+#     msg.body = 'Email body'
+#     mail.send(msg)
