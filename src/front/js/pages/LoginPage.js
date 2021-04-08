@@ -1,7 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+
 import { Formik, Field, Form, ErrorMessage } from "formik";
+
+// import GoogleLogin from "react-google-login";
+
 
 export const LoginPage = () => {
 	const { store, actions } = useContext(Context);
@@ -80,9 +84,11 @@ export const LoginPage = () => {
 						<div className="text-center w-100">
 							<p className="text-muted font-weight-bold">
 								¿Olvidó su contraseña?{" "}
-								<a href="#" className="text-info ml-2 mb-5">
-									Recuperar contraseña
-								</a>
+								<Link to="/recuperar">
+									<a href="#" className="text-info ml-2 mb-5">
+										Recuperar contraseña
+									</a>
+								</Link>
 							</p>
 						</div>
 						<div className="text-center mt-4">

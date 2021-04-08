@@ -2,6 +2,11 @@ import React, { useState, useContext } from "react";
 import UserProfile from "../component/UserProfile";
 
 const PersonalProfile = () => {
+    
+    const showSuccessfulLogin =  () => {
+        
+    }
+
 	return (
 		<div className="">
 			<div className="container">

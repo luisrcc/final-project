@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import GoogleLogin from "react-google-login";
 
 export const RegisterPage = () => {
 	const { store, actions } = useContext(Context);
@@ -29,10 +30,14 @@ export const RegisterPage = () => {
 		);
 	};
 
+	// const responseGoogle = answer => {
+	// 	console.log(answer);
+	// };
+
 	return (
 		<div className="register-background">
 			<div className="container">
-				<div className="row py-4 mt-4 align-items-center">
+				<div className="row py-4 my-4 align-items-center">
 					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0" />
 
 					<div className="col-md-7 col-lg-6 ml-auto border text-center p-4">
@@ -175,17 +180,30 @@ export const RegisterPage = () => {
 										<i className="fa fa-facebook-f mr-2" />
 										<span className="font-weight-bold">Continuar con Facebook</span>
 									</a>
-									<a href="#" className="btn btn-info btn-block py-2 btn-twitter">
-										<i className="fa fa-twitter mr-2" />
-										<span className="font-weight-bold">Continuar con Twitter</span>
-									</a>
+									{/* <a href="#" className="btn btn-info btn-block py-2 btn-google">
+										<i className="fa fa-google mr-2" />
+										<span className="font-weight-bold"></span>
+									</a> */}
+									{/* <GoogleLogin
+										clientId="379174833224-9tqjj5j9scg5djh473ootp0pm2am9311.apps.googleusercontent.com"
+										buttonText="Continuar con Google"
+										onSuccess={responseGoogle}
+										onFailure={responseGoogle}
+										cookiePolicy={"single_host_origin"}
+										className="btn-block justify-content-center"
+									/> */}
 								</div>
-								<div className="text-center w-100">
+
+								<div className="text-center w-100 mb-5">
 									<p className="text-muted font-weight-bold">
 										¿Ya tienes cuenta?{" "}
-										<a href="/login" className="text-info ml-2 mb-5">
-											Ingresa
-										</a>
+
+										<Link to="/login">
+											<a href="#" className="text-info ml-2 mb-5">
+												Ingresa
+											</a>
+										</Link>
+
 									</p>
 								</div>
 							</div>

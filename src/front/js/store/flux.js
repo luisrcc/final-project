@@ -3,7 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			user: null
+			user: null,
+			appointment: null,
+			appointments: []
 		},
 		actions: {
 			getToken: () => {
@@ -65,7 +67,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-type": "application/json; charset=UTF-8" },
 					body: JSON.stringify(request)
 				};
+
 				const response = await fetch(process.env.BACKEND_URL + "api/reservar", settings);
+
+				// const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
+
+				if (response) {
+					history.push("/profile");
+				}
+			},
+
+			deleteAppointment: async request => {
+				const settings = {
+					method: "DELETE",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
+			},
+
+			editAppointment: async request => {
+				const settings = {
+					method: "PUT",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
+			},
+
+			getAppointment: async id => {
+				const settings = {
+					method: "GET",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(id)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
+				const json = await response.json();
+				setStore({ appointment: json });
+
 			}
 		}
 	};
