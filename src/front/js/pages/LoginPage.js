@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 
 export const LoginPage = () => {
 	const { store, actions } = useContext(Context);
@@ -9,16 +10,16 @@ export const LoginPage = () => {
 
 	const history = useHistory();
 
-	function validateForm(values) {
-		const errors = {};
-		if (!values.email) {
-			errors.email = "El email es requerido";
-		}
-		if (!values.password) {
-			errors.password = "La contraseña es requerida";
-		}
-		return errors;
-	}
+	// function validateForm() {
+	// 	const campo = this.state.campo;
+	// 	const error = {};
+	// 	const formualarioValido = true;
+
+	// 	if (!campo["email"]) {
+	// 		formualarioValido = false;
+	// 		error["email"] = "Ingresar Email";
+	// 	}
+	// }
 
 	function handlerClick(event) {
 		event.preventDefault();

@@ -49,12 +49,13 @@ export const RegisterPage = () => {
 									</div>
 									<input
 										id="firstName"
-										type="email"
+										type="texto"
 										name="firstName"
 										value={firstName}
 										onChange={e => setFirstName(e.target.value)}
 										placeholder="Ingrese Nombre"
 										className="form-control bg-white border-left-0 border-md"
+										required
 									/>
 								</div>
 
@@ -72,6 +73,7 @@ export const RegisterPage = () => {
 										onChange={e => setLastName(e.target.value)}
 										placeholder="Ingrese Apellido"
 										className="form-control bg-white border-left-0 border-md"
+										required
 									/>
 								</div>
 								<div className="input-group col-lg-12 mb-4">
@@ -86,8 +88,9 @@ export const RegisterPage = () => {
 										name="email"
 										value={email}
 										onChange={e => setEmail(e.target.value)}
-										placeholder="Ingrese su email"
+										placeholder="correo@correo.com"
 										className="form-control bg-white border-left-0 border-md"
+										required
 									/>
 								</div>
 								<div className="input-group col-lg-12 mb-4">
@@ -113,6 +116,7 @@ export const RegisterPage = () => {
 										onChange={e => setPhone(e.target.value)}
 										placeholder="Ingrese numero telefonico"
 										className="form-control bg-white border-md border-left-0 pl-3"
+										required
 									/>
 								</div>
 
@@ -130,10 +134,11 @@ export const RegisterPage = () => {
 										onChange={e => setPassword(e.target.value)}
 										placeholder="Ingrese Contraseña"
 										className="form-control bg-white border-left-0 border-md"
+										required
 									/>
 								</div>
 
-								<div className="input-group col-lg-6 mb-4 mx-auto">
+								<div className="input-group col-lg-6 mb-4 mx-auto ">
 									<div className="input-group-prepend">
 										<span className="input-group-text bg-white px-4 border-md border-right-0">
 											<i className="fa fa-lock text-muted" />
@@ -147,7 +152,9 @@ export const RegisterPage = () => {
 										onChange={e => setPasswordConfirmation(e.target.value)}
 										placeholder="Confirme Contraseña"
 										className="form-control bg-white border-left-0 border-md"
+										required
 									/>
+									<div className="alertPassword alert-danger">Las contraseñas deben ser iguales</div>
 								</div>
 
 								<div className="form-group col-lg-12 mx-auto mb-0">
@@ -176,7 +183,7 @@ export const RegisterPage = () => {
 								<div className="text-center w-100">
 									<p className="text-muted font-weight-bold">
 										¿Ya tienes cuenta?{" "}
-										<a href="#" className="text-info ml-2 mb-5">
+										<a href="/login" className="text-info ml-2 mb-5">
 											Ingresa
 										</a>
 									</p>
