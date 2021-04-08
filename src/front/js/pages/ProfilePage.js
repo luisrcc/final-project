@@ -26,12 +26,9 @@ export const ProfilePage = () => {
 										<Link to="/booking">
 											<button className="btn btn-outline-info">Reserva tu Hora</button>
 										</Link>
+										<hr />
 										<Link to="#">
-											<button
-												className="btn btn-outline-danger btn-sm"
-												style={{ marginTop: "10px" }}>
-												Cancela tu Hora
-											</button>
+											<button className="btn btn-outline-danger btn-sm">Cancela tu Hora</button>
 										</Link>
 									</div>
 								</div>
