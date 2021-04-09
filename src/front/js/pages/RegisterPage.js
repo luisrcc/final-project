@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const RegisterPage = ({ typeUser }) => {
 	const { store, actions } = useContext(Context);
@@ -191,4 +192,8 @@ export const RegisterPage = ({ typeUser }) => {
 			</div>
 		</div>
 	);
+};
+
+RegisterPage.propTypes = {
+	typeUser: PropTypes.object
 };

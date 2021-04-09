@@ -83,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ isError: true });
 				}
 			},
- 
+
 			createNewAppointment: async request => {
 				const settings = {
 					method: "POST",

@@ -34,17 +34,17 @@ export const Roles = () => {
 		// 		return MySwal.fire(<p>Shorthand works too</p>);
 		// 	});
 		// }
-        if(textRol === "Adminsitrator"){
-            history.push("/reservar-admin");
-        }else {
-            history.push("/reservar-client");
-        }
+		if (textRol === "Adminsitrator") {
+			history.push("/user");
+		} else {
+			history.push("/register");
+		}
 	};
 
 	const handleChange = event => {
 		setRole({
 			role: event
-		}); 
+		});
 	};
 
 	return (
