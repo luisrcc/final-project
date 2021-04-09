@@ -5,16 +5,15 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    rol_id = db.Column(db.Integer, db.ForeignKey('rol.id'), nullable=False)
     first_name = db.Column(db.String(250))
     last_name = db.Column(db.String(250))
     email = db.Column(db.String(250), unique=True, nullable=False)
     phone = db.Column(db.Integer)
     password = db.Column(db.String(250), nullable=False)
-    #por defecto los unique estan en false
-    #por defecto nullable siempre esta en obligatorio(agregar cuando sea TRUE)
-    #username = db.Column(db.String(250), unique=True, nullable=False) 
-    #username esta de mas xq no lo usamos
     appointment = db.relationship('Appointment', backref='user', lazy=True)
+    rol = db.relationship('Rol', backref='user', lazy=True)
+    
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -22,13 +21,25 @@ class User(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
-            #"username":self.username,
+            "rol_id": self.rol_id,            
             "first_name": self.first_name,
             "last_name": self.last_name,
-            "phone": self.phone
-            #"appointment": list(map(lambda x: x.serialize(), self.appointment))
-            # do not serialize the password, its a security breach
+            "email": self.email,            
+            "phone": self.phone            
+        }
+
+
+class Rol(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    rol_name = db.Column(db.String(250))
+    
+    def __repr__(self):
+        return '<Rol %r>' % self.rol_name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "rol_name": self.rol_name
         }
 
 class Appointment(db.Model):

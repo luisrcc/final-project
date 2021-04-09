@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			user: null,
 			appointment: null,
-			appointments: []
+			appointments: [],
+			isError: false
 		},
 		actions: {
 			getToken: () => {
@@ -71,19 +72,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			setRegister: async (request, history) => {
-				fetch(process.env.BACKEND_URL + "/api/register", {
+				const response = await fetch(process.env.BACKEND_URL + "/api/user", {
 					method: "POST",
 					body: JSON.stringify(request),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
-				})
-					.then(resp => resp.json())
-					.then(data => {
-						alert("Registro Exitoso");
-						history.push("/login");
-					})
-					.catch(error => console.log("Error loading message from backend", error));
+				});
+				if (!response.ok) {
+					setStore({ isError: false });
+				} else {
+					setStore({ isError: true });
+				}
 			},
-
+ 
 			createNewAppointment: async request => {
 				const settings = {
 					method: "POST",

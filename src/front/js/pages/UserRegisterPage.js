@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useHistory } from "react-router-dom";
 
-export const RegisterPage = ({ typeUser }) => {
+export const UserRegisterPage = () => {
 	const { store, actions } = useContext(Context);
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");

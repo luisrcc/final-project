@@ -28,13 +28,42 @@ def create_a_user():
     first_name = request.json['first_name']
     last_name = request.json['last_name']
     phone = request.json['phone']
+    role_id = request.json['role_id'] 
 
-    new_user = User(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone)
+    if not email:
+        return jsonify({"msg": "Email is required"}), 400    
+    if not password:
+        return jsonify({"msg": "Password is required"}), 400
+    if not first_name:
+        return jsonify({"msg": "First Name is required"}), 400
+    if not last_name:
+        return jsonify({"msg": "Last Name is required"}), 400
+    if not phone:
+        return jsonify({"msg": "Phone Number is required"}), 400
+    if not role_id:
+        return jsonify({"msg": "Rol is required"}), 400 
+
+    new_user = User(email=email, password=password, first_name=first_name, last_name=last_name, phone=phone, role_id=role_id)
 
     db.session.add(new_user)
     db.session.commit()
 
     return jsonify("usuario creado"), 200
+
+@api.route('/create-rol', methods=['POST'])
+def create_a_new_rol():
+     
+    rol_name = request.json['rol_name'] 
+    
+    if not rol_name:
+        return jsonify({"msg": "rol_name is required"}), 400 
+
+    new_rol = Rol(rol_name=rol_name)
+
+    db.session.add(new_rol)
+    db.session.commit()
+
+    return jsonify("rol creado"), 200
 
 
 @api.route('/hash', methods=['POST', 'GET'])
@@ -93,52 +122,52 @@ def login():
     return jsonify("logged"), 200
 
 
-@api.route('/register', methods=['POST'])
-def register():
- #if request.method == 'POST':
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    #username = request.json.get("username")
-    first_name = request.json.get("first_name", None)
-    last_name = request.json.get("last_name", None)
-    phone = request.json.get('phone', None)
+# @api.route('/register', methods=['POST'])
+# def register():
+#  #if request.method == 'POST':
+#     email = request.json.get("email", None)
+#     password = request.json.get("password", None)
+#     #username = request.json.get("username")
+#     first_name = request.json.get("first_name", None)
+#     last_name = request.json.get("last_name", None)
+#     phone = request.json.get('phone', None)
     
-    if not email:
-        return jsonify({"msg": "Email is required"}), 400
-    #if not username:
-        #return jsonify({"msg": "Username is required"}), 400
-    if not password:
-        return jsonify({"msg": "Password is required"}), 400
-    if not first_name:
-        return jsonify({"msg": "First Name is required"}), 400
-    if not last_name:
-        return jsonify({"msg": "Last Name is required"}), 400
-    if not phone:
-        return jsonify({"msg": "Phone Number is required"}), 400
+#     if not email:
+#         return jsonify({"msg": "Email is required"}), 400
+#     #if not username:
+#         #return jsonify({"msg": "Username is required"}), 400
+#     if not password:
+#         return jsonify({"msg": "Password is required"}), 400
+#     if not first_name:
+#         return jsonify({"msg": "First Name is required"}), 400
+#     if not last_name:
+#         return jsonify({"msg": "Last Name is required"}), 400
+#     if not phone:
+#         return jsonify({"msg": "Phone Number is required"}), 400
 
-    email_query = User.query.filter_by(email=email).first()
-    if email_query:
-        return jsonify({"msg": "This email has been already taken"}), 400
+#     email_query = User.query.filter_by(email=email).first()
+#     if email_query:
+#         return jsonify({"msg": "This email has been already taken"}), 400
         
     
-    user = User()
-    user.email = email
-    user.is_active= True
-    user.first_name= first_name
-    user.last_name= last_name
-    user.phone = phone
-    #user.username = username
-    hashed_password = generate_password_hash(password)
-    user.password = hashed_password
-    print(email)
-    db.session.add(user)
-    db.session.commit()
+#     user = User()
+#     user.email = email
+#     user.is_active= True
+#     user.first_name= first_name
+#     user.last_name= last_name
+#     user.phone = phone
+#     #user.username = username
+#     hashed_password = generate_password_hash(password)
+#     user.password = hashed_password
+#     print(email)
+#     db.session.add(user)
+#     db.session.commit()
 
-    response = {
-        "msg": "Added successfully",
-        #"username": username
-    }
-    return jsonify(response), 200
+#     response = {
+#         "msg": "Added successfully",
+#         #"username": username
+#     }
+#     return jsonify(response), 200
 
 
 

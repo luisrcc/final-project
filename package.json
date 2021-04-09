@@ -92,6 +92,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-swal": "^3.0.0",
 		"sweetalert-react": "^0.4.11",
-		"sweetalert2": "^10.16.0"
+		"sweetalert2": "^10.16.0",
+		"sweetalert2-react-content": "^3.3.1"
 	}
 }

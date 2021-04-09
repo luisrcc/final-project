@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ButtonRegister } from "./ButtonRegister";
 import { ButtonLogin } from "./ButtonLogin";
 import { LogoutButton } from "./LogoutButton";
+import { Roles } from "./Roles";
 
 export const Navbar = () => {
 	return (
@@ -11,7 +12,7 @@ export const Navbar = () => {
 				<span className="navbar-brand">Brand</span>
 			</Link>
 			<div className="form-inline ml-auto">
-				<Link to="/register">
+				<Link to="/roles">
 					<ButtonRegister />
 				</Link>
 				<Link to="/login">

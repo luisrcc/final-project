@@ -10,6 +10,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import { UserRegisterPage } from "./pages/UserRegisterPage";
 
 import { CommunityPage } from "./pages/CommunityPage";
 import { FeaturesPage } from "./pages/FeaturesPage";
@@ -22,6 +23,7 @@ import { PrivateRoute } from "../Routers/PrivateRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { Booking } from "./component/Booking";
 import { ForgotPassword } from "./component/ForgotPassword";
+import { Roles } from "./component/Roles";
 
 //create your first component
 const Layout = () => {
@@ -37,7 +39,9 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route exact path="/Login" component={LoginPage} />
-						<Route exact path="/Register" component={RegisterPage} />
+						<Route exact path="/roles" component={Roles} />
+						<Route exact path="/register" component={RegisterPage} />
+						<Route exact path="/user" component={UserRegisterPage} />
 
 						<PrivateRoute component={DashboardPage} exact path="/dashboard" />
 						<Route exact path="/profile" component={ProfilePage} />
