@@ -22,7 +22,8 @@ const BookingJumbotron = () => {
 							<button
 								type="submit"
 								className="btn btn-outline-info btn-lg ml-5 book-appointment-button"
-								onClick={e => handleClick(e)}>
+								// onClick={e => handleClick(e)}
+							>
 								Agendar una cita
 							</button>
 						</Link>
