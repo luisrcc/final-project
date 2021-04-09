@@ -14,12 +14,8 @@ export const Home = () => {
 	return (
 		<>
 			<div className="text-center">
-				<Carousel />
-			</div>
-
-			<div className="justify-content-center">
 				<div className="ml-auto">
-					<BookingJumbotron />
+					<Carousel />
 				</div>
 			</div>
 

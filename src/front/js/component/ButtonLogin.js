@@ -4,7 +4,7 @@ export const ButtonLogin = () => {
 	return (
 		<div className="buttonLogin">
 			<button type="button" className="btn btn-outline-info btn-md mx-2">
-				Log in
+				Ingresar
 			</button>
 		</div>
 	);
