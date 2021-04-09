@@ -92,10 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(request)
 				};
 				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
-
-				if (response) {
-					history.push("/profile");
-				}
+				return response;
 			},
 
 			deleteAppointment: async request => {
