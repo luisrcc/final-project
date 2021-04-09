@@ -1,4 +1,4 @@
-const URL = process.env.BACKEND_URL;
+// const URL = process.env.BACKEND_URL;
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -78,6 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => {
+						console.log("--data--", data);
 						alert("Registro Exitoso");
 						history.push("/login");
 					})
