@@ -14,6 +14,7 @@ html, body { height: 100% }
     margin-bottom: 50px;
 }
 
+
 .register-background {    
     background-image: url(../img/Corgi-banner.jpg);
     background-size: cover;
@@ -24,6 +25,12 @@ html, body { height: 100% }
     background-image: url(../img/cat-background.jpg);
     background-size: cover;
     width: 100%;
+    height: auto;
+}
+.jumbotron-inicio{
+    background-image: url(../img/dog-relax.jpeg);
+    background-size: cover;
+    min-height: 600px;
     height: auto;
 }
 .booking-background {    
