@@ -1,52 +1,30 @@
-import React, { useState } from "react";
-import petFood from "../../img/pet-food.jpg";
-import petGrooming from "../../img/pet-grooming.jpg";
-import petPharmacy from "../../img/pet-pharmacy.jpg";
-import Card from "./Card";
-import PropTypes from "prop-types";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
+import cat from "../../img/cat-veterinari.jpeg";
 
-const ProductCards = ({ title, content, url, buttonName }) => {
-	const [cards] = useState([
-		{
-			title: "",
-			content: "",
-			url: petGrooming,
-			buttonName: "Peluquería"
-		},
-		{
-			title: "",
-			content: "",
-			url: petFood,
-			buttonName: "Alimentos"
-		},
-		{
-			title: "",
-			content: "",
-			url: petPharmacy,
-			buttonName: "Farmacia"
-		}
-	]);
-
+const DogList = () => {
+	const { store, actions } = useContext(Context);
+	useEffect(() => {
+		actions.getDogApi();
+	}, []);
 	return (
-		<div className="card-deck">
-			{cards.map((card, index) => (
-				<Card
-					key={index}
-					title={card.title}
-					content={card.content}
-					url={card.url}
-					buttonName={card.buttonName}
-				/>
-			))}
+		<div className="cards">
+			{!!store.getDog &&
+				store.getDog.map((item, index) => (
+					<div
+						className="card"
+						key={index}
+						style={{
+							width: "300px"
+						}}>
+						<img className="card-img-top" src={cat} alt="Card image" />
+						<div className="card-body">
+							<h4 className="card-title">{item.name}</h4>
+						</div>
+					</div>
+				))}
 		</div>
 	);
 };
 
-ProductCards.propTypes = {
-	title: PropTypes.string,
-	content: PropTypes.string,
-	url: PropTypes.string,
-	buttonName: PropTypes.string
-};
-
-export default ProductCards;
+export default DogList;

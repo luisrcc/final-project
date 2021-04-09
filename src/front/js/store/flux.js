@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			user: null,
 			appointment: null,
-			appointments: []
+			appointments: [],
+			getDog: []
 		},
 		actions: {
 			getToken: () => {
@@ -45,29 +46,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.catch(error => console.log("Error loading message from backend", error));
-
-				// fetch(URL + "/api/login", {
-				// 	method: "POST",
-				// 	body: JSON.stringify(user),
-				// 	headers: { "Content-type": "application/json; charset=UTF-8" }
-				// })
-				// 	.then(resp => resp.json())
-				// 	.then(data => {
-				// 		if (!data.msg) {
-				// 			console.log("--data--", data);
-				// 			setStore({ user: data });
-
-				// 			if (typeof Storage !== "undefined") {
-				// 				// cambiar a sessionStorage
-				// 				localStorage.setItem("token", data.token);
-				// 				localStorage.setItem("user", JSON.stringify(data.user));
-				// 			} else {
-				// 				// LocalStorage no soportado en este navegador
-				// 			}
-				// 			history.push("/dasboard");
-				// 		}
-				// 	})
-				// 	.catch(error => console.log("Error loading message from backend", error));
 			},
 
 			setRegister: async (request, history) => {
@@ -125,14 +103,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
 				const json = await response.json();
 				setStore({ appointment: json });
-			}
+			},
 
-			// getMessage: () => {
-			// 	fetch(process.env.BACKEND_URL + "/api/hello")
-			// 		.then(resp => resp.json())
-			// 		.then(data => setStore({ message: data.message }))
-			// 		.catch(error => console.log("Error loading message from backend", error));
-			//}
+			getDogApi: async () => {
+				const settings = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application.json"
+					}
+				};
+				const response = await fetch("https://api.thedogapi.com/v1/images/search", settings);
+				const json = await response.json();
+
+				console.log(json, "<-Aqui");
+
+				setStore({ getDog: json.results });
+			}
 		}
 	};
 };

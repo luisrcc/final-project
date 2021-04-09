@@ -8,6 +8,7 @@ import Reviews from "../component/Reviews";
 import ProductCards from "../component/ProductCards";
 import JoinUsBanner from "../component/JoinUsBanner";
 import BookingJumbotron from "../component/BookingJumbotron";
+import DogList from "../component/ProductCards";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -32,7 +33,7 @@ export const Home = () => {
 			</div>
 
 			<div className="mx-auto my-5">
-				<ProductCards />
+				<DogList />
 			</div>
 
 			<div className="register-join-us-banner">
