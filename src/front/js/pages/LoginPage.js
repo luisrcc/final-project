@@ -1,12 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-// import GoogleLogin from "react-google-login";
+import Authentication from "../component/Authentication";
+import { AuthContext } from "../store/AuthContext";
 
 export const LoginPage = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const authContext = useContext(AuthContext);
+	const loginHandler = () => {
+		authContext.login();
+	};
+
+	const logoutHandler = () => {
+		authContext.logout();
+	};
 
 	const history = useHistory();
 
@@ -32,6 +42,7 @@ export const LoginPage = () => {
 			history
 		);
 	}
+	// , login: login, logout: logout
 
 	return (
 		<div className="login-background">

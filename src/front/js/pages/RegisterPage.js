@@ -30,10 +30,6 @@ export const RegisterPage = () => {
 		);
 	};
 
-	// const responseGoogle = answer => {
-	// 	console.log(answer);
-	// };
-
 	return (
 		<div className="register-background">
 			<div className="container">
@@ -173,18 +169,10 @@ export const RegisterPage = () => {
 										<i className="fa fa-facebook-f mr-2" />
 										<span className="font-weight-bold">Continuar con Facebook</span>
 									</a>
-									{/* <a href="#" className="btn btn-info btn-block py-2 btn-google">
+									<a href="#" className="btn btn-info btn-block py-2 btn-google">
 										<i className="fa fa-google mr-2" />
-										<span className="font-weight-bold"></span>
-									</a> */}
-									{/* <GoogleLogin
-										clientId="379174833224-9tqjj5j9scg5djh473ootp0pm2am9311.apps.googleusercontent.com"
-										buttonText="Continuar con Google"
-										onSuccess={responseGoogle}
-										onFailure={responseGoogle}
-										cookiePolicy={"single_host_origin"}
-										className="btn-block justify-content-center"
-									/> */}
+										<span className="font-weight-bold">Continuar con Google</span>
+									</a>
 								</div>
 
 								<div className="text-center w-100 mb-5">

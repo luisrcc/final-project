@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import { imgProfile } from "../../img/photoProfile.png";
+import Authentication from "../component/Authentication";
+import { AuthContext } from "../store/AuthContext";
 
 export const ProfilePage = () => {
 	const { first_name } = useParams();

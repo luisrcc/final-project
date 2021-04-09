@@ -22,6 +22,7 @@ import { PrivateRoute } from "../Routers/PrivateRoute";
 import { DashboardPage } from "./pages/DashboardPage";
 import { Booking } from "./component/Booking";
 import { ForgotPassword } from "./component/ForgotPassword";
+import Authentication from "../js/component/Authentication";
 
 //create your first component
 const Layout = () => {
@@ -40,7 +41,17 @@ const Layout = () => {
 						<Route exact path="/Register" component={RegisterPage} />
 
 						<Route exact path="/dashboard" component={DashboardPage} />
-						<Route exact path="/profile" component={ProfilePage} />
+						<Route
+							exact
+							path="/profile"
+							render={() => {
+								if (Auth.isAuthenticated()) {
+									return (component = { ProfilePage });
+								} else {
+									return (component = { LoginPage });
+								}
+							}}
+						/>
 						<Route exact path="/booking" component={Booking} />
 						<Route exact path="/recuperar" component={ForgotPassword} />
 						<Route path="*" component={Error} />
