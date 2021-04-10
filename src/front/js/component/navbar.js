@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 import { ButtonRegister } from "./ButtonRegister";
 import { ButtonLogin } from "./ButtonLogin";
 import { LogoutButton } from "./LogoutButton";
+import logo from "../../img/logo.jpg";
 
 export const Navbar = () => {
 	const { store } = useContext(Context);
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<Link to="/">
-				<span className="navbar-brand">Brand</span>
+				<a href="/#" className="navbar-brand">
+					<img src={logo} alt="logo" width="80" />
+				</a>
 			</Link>
 			<div className="form-inline ml-auto">
 				<Link to="/register">{!store.isLogged ? <ButtonRegister /> : null}</Link>
