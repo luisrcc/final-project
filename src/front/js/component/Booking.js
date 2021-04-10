@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import DropDownList from "./DropDownList";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Booking = () => {
 	const { store, actions } = useContext(Context);
@@ -37,20 +38,7 @@ export const Booking = () => {
 		especialista: null
 	});
 
-	// const handleSubmit = event => {
-	// 	event.preventDefault();
-	// 	// const request = {
-	// 	//     petName: data.petName,
-	// 	//     pet: data.pet,
-	// 	//     speciality: data.speciality,
-	// 	//     specialist: data.specialist,
-	// 	//     date: data.date
-	// 	// }
-	// 	// actions.createNewAppointment(request);
-	// 	console.log("entró al submit");
-	// };
-
-	const onSubmit = data => {
+	const onSubmit = async data => {
 		const exampleDate = moment(currentDate).format("YYYY-MM-DD HH:mm:ss");
 		const request = {
 			user_id: 1,
@@ -60,9 +48,27 @@ export const Booking = () => {
 			specialist: dropDownListData.especialista.nombre,
 			date: exampleDate
 		};
-		// console.log(request);
-		actions.createNewAppointment(request);
-		history.push("/");
+
+		const response = await actions.createNewAppointment(request);
+		if (!response.ok) {
+			Swal.fire({
+				title: "Hubo un Error!",
+				text: "Favor reintente la operación",
+				icon: "error",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		} else {
+			Swal.fire({
+				title: "Hora Agendada con éxito",
+				text: "¿Deseas continuar?",
+				icon: "success",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		}
 	};
 
 	const isObjectExist = object => {
@@ -92,9 +98,6 @@ export const Booking = () => {
 			especialista: especialista
 		});
 	};
-
-	// console.log("especialista");
-	// console.log(dropDownListData.especialista);
 
 	return (
 		<div className="booking-background">

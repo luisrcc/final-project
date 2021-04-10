@@ -11,7 +11,15 @@ const BookingJumbotron = () => {
 
 					{
 						<Link to="/booking">
+<<<<<<< HEAD
 							<button type="submit" className="btn btn-outline-info btn-lg ml-5 book-appointment-button">
+=======
+							<button
+								type="submit"
+								className="btn btn-outline-info btn-lg ml-5 book-appointment-button"
+								// onClick={e => handleClick(e)}
+							>
+>>>>>>> afab8151bd6f0cd2b2884fa6b238e06b43860278
 								Agendar una cita
 							</button>
 						</Link>

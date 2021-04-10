@@ -147,6 +147,7 @@ def register():
 def book():
     user_id = request.json['user_id']
     user_exists = bool(User.query.filter_by(id = user_id).first())
+
     if user_exists:
         user_id = request.json['user_id']
         pet_name = request.json['pet_name']
@@ -160,8 +161,6 @@ def book():
 
     db.session.add(new_appointment)
     db.session.commit()
-
-   #return jsonify("Hora agendada"), 200
 
     return jsonify("Hora agendada"), 200
 
