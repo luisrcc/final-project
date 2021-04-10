@@ -6,10 +6,10 @@ const Card = ({ title, content, url, buttonName }) => {
 		<div className="">
 			<div className="card" style={{}}>
 				<img className="card-img-top" src={url} alt="Card cap" />
-				<div className="card-body">
+				<div className="card-body text-center">
 					<h5 className="card-title">{title}</h5>
 					<p className="card-text">{content}</p>
-					<a href="/#" className="btn btn-info">
+					<a href="/#" className="btn btn-info text-center">
 						{buttonName}
 					</a>
 				</div>

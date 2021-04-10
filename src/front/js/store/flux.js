@@ -70,10 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(request)
 				};
 				const response = await fetch(process.env.BACKEND_URL + "/api/reservar", settings);
-
-				if (response) {
-					history.push("/profile");
-				}
+				return response;
 			},
 
 			deleteAppointment: async request => {
@@ -112,12 +109,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application.json"
 					}
 				};
-				const response = await fetch("https://api.thedogapi.com/v1/images/search", settings);
+				const response = await fetch("https://api.thedogapi.com/v1/images/search/", settings);
 				const json = await response.json();
 
 				console.log(json, "<-Aqui");
 
-				setStore({ getDog: json.results });
+				setStore({ getDog: json.breeds });
 			}
 		}
 	};

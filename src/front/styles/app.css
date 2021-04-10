@@ -32,13 +32,33 @@ html, body { height: 100% }
     background-size: cover;
     min-height: 600px;
     height: auto;
+    
+    text-shadow: 3px 3px 5px #000000;   
 }
+
+.welcome-text {
+    font-family: 'Roboto',sans-serif;    
+    color: white;
+}
+.brand-text {
+    color: white;
+    font-family: 'Amatic SC', cursive;
+}
+
+
 .booking-background {    
     background-image: url(../img/dog-cat.jpg);
     background-size: cover;
     width: 100%;
     height: 600px;
-} 
+}
+
+.center-welcome-text{
+    padding-top: 150px;
+}
+.book-appointment-button{
+    margin-left: 60px;
+}
 
 .jumbotron-booking{
     background-image: url(../img/white-bg-banner.jpg);
@@ -55,17 +75,20 @@ html, body { height: 100% }
     text-decoration: none;
 }
 
-.reviews-title{
+/* .reviews-title{
     padding-top: 130px;
     font-family: 'Amatic SC', cursive;
+    color: white;
     text-shadow: 3px 3px 5px #000000;
-}
+} */
 
 .reviews-text{
+    color: white;
     text-shadow: 3px 3px 5px #000000;
 }
 
 .reviews-name{
+    color: white;
     text-shadow: 3px 3px 5px #000000;
 }
 
@@ -78,7 +101,7 @@ html, body { height: 100% }
 
 .booking-jumbotron-text {
     color: rgb(39, 39, 39);
-    /* font-family: 'Amatic SC', cursive; */
+    font-family: 'Amatic SC', cursive;
     text-shadow: 3px 3px 5px #000000;
 }
 
@@ -150,14 +173,12 @@ border:1px solid #ccc !important;
   top: 0px;
 }
 
-.book-appointment-button {
-    background: white;
-}
+
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  /* width: 100%; */
   text-align: center;
 }
 .boxDatos{
@@ -167,7 +188,7 @@ border:1px solid #ccc !important;
     height: 600px;
 }
 body{
-    margin-top:20px;
+    /* margin-top:20px; */
     background:#eee;
 }
 /* My Account */

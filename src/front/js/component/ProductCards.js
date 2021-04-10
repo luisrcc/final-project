@@ -8,21 +8,17 @@ const DogList = () => {
 		actions.getDogApi();
 	}, []);
 	return (
-		<div className="cards">
-			{!!store.getDog &&
-				store.getDog.map((item, index) => (
-					<div
-						className="card"
-						key={index}
-						style={{
-							width: "300px"
-						}}>
-						<img className="card-img-top" src={cat} alt="Card image" />
-						<div className="card-body">
-							<h4 className="card-title">{item.name}</h4>
-						</div>
-					</div>
-				))}
+		<div className="dog">
+			<div
+				className="llamadaDog"
+				style={{
+					minHeight: "600px"
+				}}>
+				<img className="" alt="Card image" />
+				<div className="">
+					<span>{JSON.stringify(store.getDog)}</span>
+				</div>
+			</div>
 		</div>
 	);
 };
