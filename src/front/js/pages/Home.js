@@ -5,10 +5,9 @@ import "../../styles/home.scss";
 import { Carousel } from "../component/Carousel";
 import Cards from "../component/Cards";
 import Reviews from "../component/Reviews";
-import ProductCards from "../component/ProductCards";
+import DogList from "../component/DogList";
 import JoinUsBanner from "../component/JoinUsBanner";
 import BookingJumbotron from "../component/BookingJumbotron";
-import DogList from "../component/ProductCards";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -29,7 +28,7 @@ export const Home = () => {
 			</div>
 
 			<div className="mx-auto my-5">
-				<DogList />
+				<DogList breeds={store.breeds} />
 			</div>
 
 			<div className="register-join-us-banner">

@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: null,
 			appointment: null,
 			appointments: [],
-			getDog: []
+			getDog: [],
+			breeds: []
 		},
 		actions: {
 			getToken: () => {
@@ -115,6 +116,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(json, "<-Aqui");
 
 				setStore({ getDog: json.breeds });
+			},
+			getDogBreeds: async () => {
+				const settings = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				};
+				const response = await fetch("https://api.thedogapi.com/v1/breeds", settings);
+				const json = await response.json();
+				setStore({ breeds: json });
 			}
 		}
 	};
