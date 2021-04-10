@@ -47,19 +47,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return true;
 			},
 
-			setRegister: async (request, history) => {
-				fetch(process.env.BACKEND_URL + "/api/register", {
+			setRegister: async request => {
+				const response = await fetch(process.env.BACKEND_URL + "/api/register", {
 					method: "POST",
 					body: JSON.stringify(request),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
-				})
-					.then(resp => resp.json())
-					.then(data => {
-						console.log("--data--", data);
-						alert("Registro Exitoso");
-						history.push("/login");
-					})
-					.catch(error => console.log("Error loading message from backend", error));
+				});
+
+				if (response.ok) {
+					const json = await response.json();
+					return true;
+				} else {
+					return false;
+				}
+				// .then(resp => resp.json())
+				// .then(data => {
+				// 	console.log("--data--", data);
+				// 	alert("Registro Exitoso");
+				// 	history.push("/login");
+				// })
+				// .catch(error => console.log("Error loading message from backend", error));
 			},
 
 			createNewAppointment: async request => {

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useHistory } from "react-router-dom";
 import GoogleLogin from "react-google-login";
+import Swal from "sweetalert2";
 
 export const RegisterPage = () => {
 	const { store, actions } = useContext(Context);
@@ -14,25 +15,38 @@ export const RegisterPage = () => {
 
 	const history = useHistory();
 
-	const handlerClick = e => {
+	const handlerClick = async e => {
 		e.preventDefault();
 
-		actions.setRegister(
-			{
-				first_name: firstName,
-				last_name: lastName,
-				email: email,
-				phone: phone,
-				password: password,
-				password: passwordConfirmation
-			},
-			history
-		);
-	};
+		const isOk = await actions.setRegister({
+			first_name: firstName,
+			last_name: lastName,
+			email: email,
+			phone: phone,
+			password: password,
+			password: passwordConfirmation
+		});
 
-	// const responseGoogle = answer => {
-	// 	console.log(answer);
-	// };
+		if (!isOk) {
+			Swal.fire({
+				title: "Hubo un Error!",
+				text: "Favor reintente la operación",
+				icon: "error",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		} else {
+			Swal.fire({
+				title: "Usuario registrado con exito",
+				text: "¿Deseas continuar?",
+				icon: "success",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		}
+	};
 
 	return (
 		<div className="register-background">
@@ -173,18 +187,12 @@ export const RegisterPage = () => {
 										<i className="fa fa-facebook-f mr-2" />
 										<span className="font-weight-bold">Continuar con Facebook</span>
 									</a>
-									{/* <a href="#" className="btn btn-info btn-block py-2 btn-google">
-										<i className="fa fa-google mr-2" />
-										<span className="font-weight-bold"></span>
-									</a> */}
-									{/* <GoogleLogin
-										clientId="379174833224-9tqjj5j9scg5djh473ootp0pm2am9311.apps.googleusercontent.com"
-										buttonText="Continuar con Google"
-										onSuccess={responseGoogle}
-										onFailure={responseGoogle}
-										cookiePolicy={"single_host_origin"}
-										className="btn-block justify-content-center"
-									/> */}
+								</div>
+								<div className="form-group col-lg-12 mx-auto">
+									<a href="#" className="btn btn-info btn-block py-2 btn-facebook">
+										<i className="fa fa-facebook-f mr-2" />
+										<span className="font-weight-bold">Continuar con Google</span>
+									</a>
 								</div>
 
 								<div className="text-center w-100 mb-5">

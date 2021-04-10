@@ -8,9 +8,7 @@ const JoinUsBanner = () => {
 				<div className="content join-us-content p-lg-6 pt-2">
 					<h1 className="text-uppercase join-us-text-1">Nos encantaría conecerte</h1>
 					<h1 className="text-uppercase join-us-text-2">a ti y a tu mascota</h1>
-					<h5 className="register-button-padding">
-						<ButtonRegister />
-					</h5>
+					<h5 className="register-button-padding" />
 				</div>
 			</div>
 		</div>

@@ -102,6 +102,16 @@ export const LoginPage = () => {
 								</Link>
 							</p>
 						</div>
+						<div className="text-center w-100">
+							<p className="text-muted font-weight-bold">
+								¿No tienes cuenta?{" "}
+								<Link to="/register">
+									<a href="#" className="text-info ml-2 mb-5">
+										Crear cuenta
+									</a>
+								</Link>
+							</p>
+						</div>
 						<div className="text-center mt-4">
 							<div className="my-4">
 								<button
