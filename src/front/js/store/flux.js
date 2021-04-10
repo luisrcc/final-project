@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			user: null,
+			isLogged: false,
 			appointment: null,
 			appointments: []
 		},
@@ -21,53 +22,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("-->", JSON.stringify(userLocal));
 			},
 
-			setLogin: (user, history) => {
-				fetch(process.env.BACKEND_URL + "/api/login", {
+			setLogin: async user => {
+				const response = await fetch(process.env.BACKEND_URL + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json; charset=UTF-8" }
-				})
-					.then(resp => resp.json())
-					.then(data => {
-						console.log("--data--", data);
-						if (!data.msg) {
-							console.log("--data--", data);
-							setStore({ user: data });
+				});
 
-							if (typeof Storage !== "undefined") {
-								// cambiar a sessionStorage
-								localStorage.setItem("token", data.token);
-								localStorage.setItem("user", JSON.stringify(data.user));
-							} else {
-								// LocalStorage no soportado en este navegador
-							}
-							history.push("/profile");
-						}
-					})
-					.catch(error => console.log("Error loading message from backend", error));
+				if (response.ok) {
+					const json = await response.json();
+					setStore({ user: json, isLogged: true });
+					if (typeof Storage !== "undefined") {
+						localStorage.setItem("token", json.token);
+						localStorage.setItem("user", JSON.stringify(json.user));
+					}
+					return response;
+				} else {
+					setStore({ user: null, isLogged: false });
+				}
+			},
 
-				// fetch(URL + "/api/login", {
-				// 	method: "POST",
-				// 	body: JSON.stringify(user),
-				// 	headers: { "Content-type": "application/json; charset=UTF-8" }
-				// })
-				// 	.then(resp => resp.json())
-				// 	.then(data => {
-				// 		if (!data.msg) {
-				// 			console.log("--data--", data);
-				// 			setStore({ user: data });
-
-				// 			if (typeof Storage !== "undefined") {
-				// 				// cambiar a sessionStorage
-				// 				localStorage.setItem("token", data.token);
-				// 				localStorage.setItem("user", JSON.stringify(data.user));
-				// 			} else {
-				// 				// LocalStorage no soportado en este navegador
-				// 			}
-				// 			history.push("/dasboard");
-				// 		}
-				// 	})
-				// 	.catch(error => console.log("Error loading message from backend", error));
+			logout: async () => {
+				await setStore({ user: null, isLogged: false });
+				return true;
 			},
 
 			setRegister: async (request, history) => {
@@ -123,13 +100,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const json = await response.json();
 				setStore({ appointment: json });
 			}
-
-			// getMessage: () => {
-			// 	fetch(process.env.BACKEND_URL + "/api/hello")
-			// 		.then(resp => resp.json())
-			// 		.then(data => setStore({ message: data.message }))
-			// 		.catch(error => console.log("Error loading message from backend", error));
-			//}
 		}
 	};
 };

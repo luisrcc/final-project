@@ -22,12 +22,11 @@ class User(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
-            #"username":self.username,
+            "email": self.email,            
             "first_name": self.first_name,
             "last_name": self.last_name,
-            "phone": self.phone
-            #"appointment": list(map(lambda x: x.serialize(), self.appointment))
+            "phone": self.phone,
+            "password": self.password
             # do not serialize the password, its a security breach
         }
 

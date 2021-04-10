@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-// import GoogleLogin from "react-google-login";
+import Swal from "sweetalert2";
 
 export const LoginPage = () => {
 	const { store, actions } = useContext(Context);
@@ -10,7 +10,7 @@ export const LoginPage = () => {
 
 	const history = useHistory();
 
-	function validateForm(values) {
+	const validateForm = values => {
 		const errors = {};
 		if (!values.email) {
 			errors.email = "El email es requerido";
@@ -19,19 +19,34 @@ export const LoginPage = () => {
 			errors.password = "La contraseña es requerida";
 		}
 		return errors;
-	}
+	};
 
-	function handlerClick(event) {
+	const handlerClick = async event => {
 		event.preventDefault();
+		const response = await actions.setLogin({ email: email, password: password });
 
-		actions.setLogin(
-			{
-				email: email,
-				password: password
-			},
-			history
-		);
-	}
+		console.log("response login!");
+		console.log(response);
+
+		if (!response.ok) {
+			Swal.fire({
+				title: "Credenciales incorrectas!",
+				text: "Favor reintente la operación",
+				icon: "error",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		} else {
+			Swal.fire({
+				title: "Has iniciado sesión exitosamente",
+				icon: "success",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		}
+	};
 
 	return (
 		<div className="login-background">

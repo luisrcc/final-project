@@ -23,8 +23,7 @@ def handle_hello():
 @api.route('/user', methods=['POST'])
 def create_a_user():
     email = request.json['email']
-    password = request.json['password']
-    #username = request.json['username']
+    password = request.json['password']    
     first_name = request.json['first_name']
     last_name = request.json['last_name']
     phone = request.json['phone']
@@ -86,11 +85,10 @@ def login():
         "user": user.serialize(),
         "token": access_token,
         "expires": expiracion.total_seconds()*1000,
-        "userId": user.id,
-        #"username": user.username
+        "userId": user.id
     }
 
-    return jsonify("logged"), 200
+    return jsonify(data), 200
 
 
 @api.route('/register', methods=['POST'])

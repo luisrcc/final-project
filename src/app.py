@@ -19,6 +19,7 @@ ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+app.config["JWT_SECRET_KEY"] = "hyper-secret-token-pets"
 jwt = JWTManager(app)
 
 # app.config['MAIL_SERVER'] = 'smtp.gmail.com'
