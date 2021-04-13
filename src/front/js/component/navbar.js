@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ButtonRegister } from "./ButtonRegister";
 import { ButtonLogin } from "./ButtonLogin";
 import { LogoutButton } from "./LogoutButton";
+import { ProfileButton } from "./ProfileButton";
 import logo from "../../img/logo.jpg";
 
 export const Navbar = () => {
@@ -19,6 +20,9 @@ export const Navbar = () => {
 				<Link to="/register">{!store.isLogged ? <ButtonRegister /> : null}</Link>
 				<Link to="/login">{!store.isLogged ? <ButtonLogin /> : null}</Link>
 				<Link to="/login">{store.isLogged ? <LogoutButton /> : null}</Link>
+				<Link to="/profile">
+					<ProfileButton />
+				</Link>
 			</div>
 		</nav>
 	);

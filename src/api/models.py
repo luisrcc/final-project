@@ -35,8 +35,8 @@ class Appointment(db.Model):
     specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.id'), nullable=False)
     pet_name = db.Column(db.String(250), unique=False, nullable=False)
     pet = db.Column(db.String(250), unique=False, nullable=False)
-    date = db.Column(db.date ,nullable=False)   
-    time = db.Column(db.time, nullable=False)
+    date = db.Column(db.Date ,nullable=False)   
+    time = db.Column(db.Time, nullable=False)
 
     def __repr__(self):
         return '<Appointment %r>' % self.date
@@ -58,7 +58,7 @@ class Appointment(db.Model):
 class Time(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True) 
     speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
-    time = db.Column(db.time, nullable=False)
+    time = db.Column(db.Time, nullable=False)
 
     def __repr__(self):
         return '<Speciality %r>' % self.time
