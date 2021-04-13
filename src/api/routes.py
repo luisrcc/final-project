@@ -50,8 +50,7 @@ def handle_hash():
 
 @api.route('/login', methods=['POST', 'GET'])
 def login():
-    if request.method == 'POST':
-        
+    if request.method == 'POST':        
         email = request.json.get("email", None)
         password = request.json.get("password", None)
 
@@ -66,12 +65,7 @@ def login():
 
     if not user:
         return jsonify({"msg": "The email is not correct",
-        "status": 401
-        
-
-       # }), 401 
-
-        }), 401
+        "status": 401 }), 401
     if not check_password_hash(user.password, password):
          return jsonify({"msg": "The password is not correct",
          "status": 401
@@ -92,19 +86,15 @@ def login():
 
 
 @api.route('/register', methods=['POST'])
-def register():
- #if request.method == 'POST':
+def register(): 
     email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    #username = request.json.get("username")
+    password = request.json.get("password", None)    
     first_name = request.json.get("first_name", None)
     last_name = request.json.get("last_name", None)
     phone = request.json.get('phone', None)
     
     if not email:
-        return jsonify({"msg": "Email is required"}), 400
-    #if not username:
-        #return jsonify({"msg": "Username is required"}), 400
+        return jsonify({"msg": "Email is required"}), 400    
     if not password:
         return jsonify({"msg": "Password is required"}), 400
     if not first_name:
@@ -133,8 +123,7 @@ def register():
     db.session.commit()
 
     response = {
-        "msg": "Added successfully",
-        #"username": username
+        "msg": "Added successfully",        
     }
     return jsonify(response), 200
 

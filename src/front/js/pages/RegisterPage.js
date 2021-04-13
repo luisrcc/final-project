@@ -204,6 +204,11 @@ export const RegisterPage = () => {
 											</a>
 										</Link>
 									</p>
+									<Link to="/">
+										<span className="btn btn-outline-info" href="#" role="button">
+											Regresa
+										</span>
+									</Link>
 								</div>
 							</div>
 						</form>

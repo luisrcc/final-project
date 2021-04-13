@@ -10,10 +10,7 @@ class User(db.Model):
     email = db.Column(db.String(250), unique=True, nullable=False)
     phone = db.Column(db.Integer)
     password = db.Column(db.String(250), nullable=False)
-    #por defecto los unique estan en false
-    #por defecto nullable siempre esta en obligatorio(agregar cuando sea TRUE)
-    #username = db.Column(db.String(250), unique=True, nullable=False) 
-    #username esta de mas xq no lo usamos
+
     appointment = db.relationship('Appointment', backref='user', lazy=True)
 
     def __repr__(self):
@@ -26,9 +23,9 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "phone": self.phone,
-            "password": self.password
-            # do not serialize the password, its a security breach
+            "password": self.password      
         }
+ 
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)    
@@ -37,10 +34,7 @@ class Appointment(db.Model):
     pet = db.Column(db.String(250), unique=False, nullable=False)
     speciality = db.Column(db.String(250), unique=False, nullable=False)
     specialist = db.Column(db.String(250), unique=False, nullable=False)
-    date = db.Column(db.DateTime,nullable=False)
-    # start_time = db.Column(db.Integer,nullable=False)
-    # end_time = db.Column(db.Integer,nullable=False) 
-    # cost = db.Column(db.Integer,nullable=False)
+    date = db.Column(db.DateTime,nullable=False)   
      
     def __repr__(self):
         return '<Appointment %r>' % self.date
@@ -53,10 +47,7 @@ class Appointment(db.Model):
             "pet": self.pet,
             "speciality": self.speciality,
             "specialist": self.specialist,
-            "date": self.date
-            # "start_time": self.start_time,
-            # "end_time": self.end_time,
-            # "cost": self.cost
+            "date": self.date            
         }
 
 class Speciality(db.Model):

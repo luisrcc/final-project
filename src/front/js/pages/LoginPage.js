@@ -1,9 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
 
-export const LoginPage = () => {
+export const LoginPage = ({ path }) => {
+	console.log(path);
+
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -43,7 +46,7 @@ export const LoginPage = () => {
 				icon: "success",
 				confirmButtonText: "Continuar"
 			}).then(() => {
-				history.push("/");
+				history.push(path ? path : "/");
 			});
 		}
 	};
@@ -132,4 +135,8 @@ export const LoginPage = () => {
 			</div>
 		</div>
 	);
+};
+
+LoginPage.propTypes = {
+	path: PropTypes.string
 };

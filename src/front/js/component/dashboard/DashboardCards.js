@@ -16,13 +16,6 @@ export const DashboardCards = ({ title, content, information, number }) => {
 			information: "3.56%",
 			nummber: 3
 		}
-		// ,
-		// {
-		// 	title: "Pacientes",
-		// 	content: "",
-		// 	information: "3.56%",
-		// 	nummber: 4
-		// }
 	]);
 
 	return (

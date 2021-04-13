@@ -79,8 +79,6 @@ export const Booking = () => {
 	const especialidadChange = event => {
 		const especialidad = JSON.parse(event.target.value);
 		const datos = dataCategories.dataEspecialista;
-
-		// if (parseInt(especialidad.especialidadId) > 0) {
 		const especialistas = datos.filter(
 			especialista => especialista.especialidadId === parseInt(especialidad.especialidadId)
 		);
