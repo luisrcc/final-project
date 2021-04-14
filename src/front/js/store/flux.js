@@ -1,4 +1,3 @@
-// const URL = process.env.BACKEND_URL;
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -38,7 +37,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					return response;
 				} else {
-					setStore({ user: null, isLogged: false });
+					await setStore({ user: null, isLogged: false });
+					return response;
 				}
 			},
 
@@ -60,13 +60,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					return false;
 				}
-				// .then(resp => resp.json())
-				// .then(data => {
-				// 	console.log("--data--", data);
-				// 	alert("Registro Exitoso");
-				// 	history.push("/login");
-				// })
-				// .catch(error => console.log("Error loading message from backend", error));
 			},
 
 			createNewAppointment: async request => {
