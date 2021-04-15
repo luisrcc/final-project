@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from sqlalchemy.dialects.postgresql import TIME, DATE
 
 db = SQLAlchemy()
 
@@ -24,39 +25,57 @@ class User(db.Model):
             "last_name": self.last_name,
             "phone": self.phone,
             "password": self.password      
-        }
- 
+        } 
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)    
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
+    specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.id'), nullable=False)
     pet_name = db.Column(db.String(250), unique=False, nullable=False)
     pet = db.Column(db.String(250), unique=False, nullable=False)
-    speciality = db.Column(db.String(250), unique=False, nullable=False)
-    specialist = db.Column(db.String(250), unique=False, nullable=False)
-    date = db.Column(db.DateTime,nullable=False)   
-     
-    def __repr__(self):
+    date = db.Column(db.Date ,nullable=False)   
+    time = db.Column(db.Time, nullable=False)
+
+    def _repr_(self):
         return '<Appointment %r>' % self.date
 
     def serialize(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "speciality_id": self.speciality_id,
+            "specialist_id": self.specialist_id,
             "pet_name": self.pet_name,
             "pet": self.pet,
             "speciality": self.speciality,
             "specialist": self.specialist,
-            "date": self.date            
+            "date": self.date,
+            "time": self.time
         }
+#tabla maestra de oferta de horas
+class Working_hours(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True) 
+    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)    
+    time = db.Column(db.Time, nullable=False)
+
+    def _repr_(self):
+        return '<Speciality %r>' % self.time
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "time":self.time
+        }
+
 
 class Speciality(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     name = db.Column(db.String(250), unique=False, nullable=False)
     specialist = db.relationship('Specialist', backref='speciality', lazy=True)
+    appointment = db.relationship('Appointment', backref='speciality', lazy=True)
 
-
-    def __repr__(self):
+    def _repr_(self):
         return '<Speciality %r>' % self.name
 
     def serialize(self):
@@ -70,7 +89,9 @@ class Specialist(db.Model):
     speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
     name = db.Column(db.String(250), unique=False, nullable=False)
 
-    def __repr__(self):
+    appointment = db.relationship('Appointment', backref='specialist', lazy=True)
+
+    def _repr_(self):
         return '<Specialist %r>' % self.name
 
     def serialize(self):

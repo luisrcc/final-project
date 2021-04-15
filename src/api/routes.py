@@ -1,12 +1,10 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Appointment, Speciality, Specialist
 from api.utils import generate_sitemap, APIException
-from werkzeug.security import generate_password_hash, check_password_hash       ## Nos permite manejar tokens por authentication (usuarios)    
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity   #from models import Person
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import datetime
+from api.services import check_available_time_specialist
 
 api = Blueprint('api', __name__)
 
@@ -53,15 +51,13 @@ def login():
     if request.method == 'POST':        
         email = request.json.get("email", None)
         password = request.json.get("password", None)
-
+        
     if not email:
         return jsonify({"msg":"Email required"}), 400
-
     if not password:
         return jsonify({"msg":"Password required"}), 400
     
-    user = User.query.filter_by(email=email).first()
-    print(user)
+    user = User.query.filter_by(email=email).first()    
 
     if not user:
         return jsonify({"msg": "The email is not correct",
@@ -70,7 +66,6 @@ def login():
          return jsonify({"msg": "The password is not correct",
          "status": 401
          }), 400
-
 
     expiracion = datetime.timedelta(days=3)
     access_token = create_access_token(identity=user.email, expires_delta=expiracion)
@@ -178,15 +173,13 @@ def cancel_booking(id):
 def edit_booking(id):
     appointment_exists = Appointment.query.filter_by(id=id).first_or_404()
     if appointment_exists:
-        updated_appointment = request.json['date'] 
+        updated_appointment = request.json['date']
             
         appointment_exists.date = updated_appointment
         db.session.commit()
         return jsonify('Reserva actualizada!'), 200
     else:
         return jsonify("no existe la reserva"), 404
-
-
 
 @api.route('/especialidad',methods=['POST'])
 def create_speciality():
@@ -213,8 +206,8 @@ def create_specialist():
     return jsonify("especialista creado"), 200
 
 
-@api.route('/speciality',methods=['GET'])
-def get_speciality():
+@api.route('/data-especialities',methods=['GET'])
+def get_data_specialities():
     specialities = Speciality.query.all()
     specialities = list(map(lambda x: x.serialize(), specialities))
 
@@ -225,15 +218,17 @@ def get_speciality():
         "specialities": specialities,
         "specialists": specialists
     }
-
     return jsonify(response_body), 200
 
-
-
-# @api.route('/actualizar-reserva',methods=['PUT'])
-# def update_appointment():
-#     name = request.json['name']
-#     speciality_id = request.json['speciality_id']
-
-#     return jsonify("especialista"), 200
-
+@api.route('/available-times', methods=['POST'])
+def get_available_times():
+    id_speciality = request.json['id_speciality']
+    response = check_available_time_specialist(id_speciality)
+    if response:
+        response_body = {
+            "speciality_id": response.speciality_id,
+            "time": response.time
+        }
+        return jsonify(response_body), 200
+    else:        
+        return jsonify({"msg": "no existe la especialidad en time"}), 200
