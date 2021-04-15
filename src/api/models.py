@@ -25,8 +25,7 @@ class User(db.Model):
             "last_name": self.last_name,
             "phone": self.phone,
             "password": self.password      
-        }
- 
+        } 
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)    
@@ -54,10 +53,10 @@ class Appointment(db.Model):
             "date": self.date,
             "time": self.time
         }
-
-class Time(db.Model):
+#tabla maestra de oferta de horas
+class Working_hours(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True) 
-    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
+    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)    
     time = db.Column(db.Time, nullable=False)
 
     def _repr_(self):
@@ -74,7 +73,6 @@ class Speciality(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     name = db.Column(db.String(250), unique=False, nullable=False)
     specialist = db.relationship('Specialist', backref='speciality', lazy=True)
-
     appointment = db.relationship('Appointment', backref='speciality', lazy=True)
 
     def _repr_(self):
