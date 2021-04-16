@@ -47,25 +47,25 @@ class Appointment(db.Model):
             "speciality_id": self.speciality_id,
             "specialist_id": self.specialist_id,
             "pet_name": self.pet_name,
-            "pet": self.pet,
-            "speciality": self.speciality,
-            "specialist": self.specialist,
+            "pet": self.pet,            
             "date": self.date,
-            "time": self.time
+            "time": self.time.isoformat()
         }
+
 #tabla maestra de oferta de horas
 class Working_hours(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True) 
-    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)    
+    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
     time = db.Column(db.Time, nullable=False)
 
     def _repr_(self):
-        return '<Speciality %r>' % self.time
+        return '<Speciality %r>' % self.time.isoformat()
 
     def serialize(self):
         return {
             "id": self.id,
-            "time":self.time
+            "speciality_id":self.speciality_id,
+            "time": self.time.isoformat()
         }
 
 
@@ -74,6 +74,7 @@ class Speciality(db.Model):
     name = db.Column(db.String(250), unique=False, nullable=False)
     specialist = db.relationship('Specialist', backref='speciality', lazy=True)
     appointment = db.relationship('Appointment', backref='speciality', lazy=True)
+    specialist_rel = db.relationship('Working_hours', backref='speciality', lazy=True)
 
     def _repr_(self):
         return '<Speciality %r>' % self.name
