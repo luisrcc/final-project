@@ -56,6 +56,7 @@ class Appointment(db.Model):
 class Working_hours(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True) 
     speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
+    specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.id'), nullable=False)
     time = db.Column(db.Time, nullable=False)
 
     def _repr_(self):

@@ -14,9 +14,14 @@ def get_times_by_speciality(id_speciality):
     if speciality_response == 404:
         return False
     
-    working_hours = Working_hours.query.filter_by(id=speciality_response.id).first()
+    working_hours = Working_hours.query.filter(Working_hours.speciality_id == speciality_response.id)
 
     if working_hours:
+
+        working_hours
+
+
+        working_hours = list(map(lambda x: x.serialize(), working_hours))
         return working_hours
     
     return False

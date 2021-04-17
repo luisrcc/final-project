@@ -234,12 +234,8 @@ def get_data_specialities():
 def get_available_times():
     id_speciality = request.json['id_speciality']
     response = check_available_time_specialist(id_speciality)
-    if response:
-        response_body = {
-            "id": response.id,
-            "time": response.time.isoformat()
-        }
-        return jsonify(response_body), 200
+    if response:        
+        return jsonify(response), 200
     else:
         return jsonify({"msg": "no existe la especialidad en time"}), 200
 
