@@ -67,6 +67,19 @@ html, body { height: 100% }
     text-decoration: none;
 }
 
+.jumbotron-info{
+    background: white;
+}
+.jumbotron-info-title{
+    font-family: 'Amatic SC', cursive;
+    color: #17A2B8;
+    text-shadow: 3px 3px 5px #747373;
+}
+
+.delete-bullet-points{
+    list-style-type: none;
+}
+
 .jumbotron-reviews{
     background-image: url(../img/dog-banner.jpg);
     background-size: cover;

@@ -9,6 +9,7 @@ import ProductCards from "../component/ProductCards";
 import JoinUsBanner from "../component/JoinUsBanner";
 import BookingJumbotron from "../component/BookingJumbotron";
 import Tabs from "../component/Tabs";
+import JumbotronInfo from "../component/JumbotronInfo";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -18,6 +19,10 @@ export const Home = () => {
 				<div className="ml-auto">
 					<Carousel />
 				</div>
+			</div>
+
+			<div className="mx-auto">
+				<JumbotronInfo />
 			</div>
 
 			<div className="mx-auto my-5">
