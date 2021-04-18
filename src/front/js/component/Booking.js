@@ -20,28 +20,16 @@ export const Booking = () => {
 	const inputSpecialist = watch("inputSpecialist");
 	const inputSpeciality = watch("inputSpeciality");
 
-	// data hardcoded.
-
 	const defaultItemEspecialidad = { nombre: "Seleccione especialidad..." };
 	const defaultItemEspecialista = { nombre: "Seleccione especialista..." };
 
+	const dataEspecialidades = store.dataEspecialities ? store.dataEspecialities.specialities : [];
 	const dataEspecialistas = store.dataEspecialities ? store.dataEspecialities.specialists : [];
-	const dataEspecialidades = store.dataEspecialities ? store.dataEspecialities.specialists : [];
-
-	// const dataCategories = {
-	// 	dataEspecialidad: [{ name: "Veterinaria", id: 1 }, { name: "Peluquería", id: 2 }],
-	// 	dataEspecialista: [
-	// 		{ name: "Felipe Gutierrez", id: 1, speciality_id: 1 },
-	// 		{ name: "Chang", id: 2, speciality_id: 1 },
-	// 		{ nombre: "Aniseed Syrup", idEspecialista: 3, especialidadId: 2 },
-	// 		{ nombre: "Genen Shouyu", idEspecialista: 4, especialidadId: 2 }
-	// 	]
-	// };
 
 	const [dropDownListData, setDropDownListData] = useState({
-		especialidad: null,
-		especialistas: dataCategories.dataEspecialista,
-		especialista: null
+		especialidad: 0,
+		especialistas: null,
+		especialista: 0
 	});
 
 	const onSubmit = async data => {
@@ -50,8 +38,8 @@ export const Booking = () => {
 			user_id: 1,
 			pet_name: data.inputPetName,
 			pet: data.inputPet,
-			speciality: dropDownListData.especialidad.nombre,
-			specialist: dropDownListData.especialista.nombre,
+			speciality: dropDownListData.specialities.name,
+			specialist: dropDownListData.especialista.name,
 			date: exampleDate
 		};
 
@@ -84,14 +72,13 @@ export const Booking = () => {
 
 	const especialidadChange = event => {
 		const especialidad = JSON.parse(event.target.value);
-		const datos = dataCategories.dataEspecialista;
-		const especialistas = datos.filter(
-			especialista => especialista.especialidadId === parseInt(especialidad.especialidadId)
-		);
+		const datos = dataEspecialistas;
+		const especialistas = datos.filter(especialista => especialista.speciality_id === parseInt(especialidad));
+
 		setDropDownListData({
 			especialidad: especialidad,
-			especialistas: especialistas,
-			especialista: null
+			especialistas: especialistas.length > 0 ? especialistas : [],
+			especialista: 0
 		});
 	};
 
@@ -102,10 +89,6 @@ export const Booking = () => {
 			especialista: especialista
 		});
 	};
-
-	useEffect(() => {
-		actions.getDataEspecialities();
-	});
 
 	return (
 		<div className="booking-background">
@@ -160,14 +143,19 @@ export const Booking = () => {
 											</span>
 										</div>
 										<DropDownList
-											data={dataEspecialistas}
-											dataEspecialistas
+											data={dataEspecialidades}
 											nameDropDown={"inputSpeciality"}
-											textField={"nombre"}
-											idTextField={"especialidadId"}
+											textField={"name"}
+											idTextField={"id"}
 											defaultItem={defaultItemEspecialidad}
 											onChange={especialidadChange}
-											value={dropDownListData.especialidad}
+											value={
+												dropDownListData.especialidad === 0
+													? dropDownListData.especialidad
+													: dropDownListData.especialidad
+														? dropDownListData.especialidad.id
+														: 0
+											}
 											ref={register({ required: true })}
 											titulo={"Especialidad"}
 										/>
@@ -180,12 +168,16 @@ export const Booking = () => {
 										</div>
 										<DropDownList
 											data={dropDownListData.especialistas}
-											textField={"nombre"}
+											textField={"name"}
 											nameDropDown={"inputSpecialist"}
-											idTextField={"especialidadId"}
+											idTextField={"speciality_id"}
 											defaultItem={defaultItemEspecialista}
 											onChange={especialistaChange}
-											value={dropDownListData.especialista}
+											value={
+												dropDownListData.especialista === 0
+													? dropDownListData.especialista
+													: dropDownListData.especialista.id
+											}
 											ref={register({ required: true })}
 											titulo={"Especialista"}
 										/>

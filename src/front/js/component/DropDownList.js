@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const DropDownList = ({
 	data,
@@ -14,17 +14,16 @@ const DropDownList = ({
 	const renderOptions = data => {
 		if (data !== null && data !== undefined) {
 			return data.map((item, index) => (
-				<option key={index + 1} value={JSON.stringify(item)}>
+				<option key={index + 1} value={item === 0 ? item : item.id}>
 					{item[textField]}
 				</option>
 			));
 		}
-		return null;
 	};
 
 	const addDefaultItem = defaultItem => {
 		return (
-			<option key={0} value={0} selected>
+			<option key={0} value={0}>
 				{defaultItem.nombre}
 			</option>
 		);
@@ -37,7 +36,8 @@ const DropDownList = ({
 				name={nameDropDown}
 				className="form-control border-left-0 erase-outline"
 				ref={reference}
-				onChange={onChange}>
+				onChange={onChange}
+				value={value}>
 				{addDefaultItem(defaultItem)}
 				{renderOptions(data)}
 			</select>
