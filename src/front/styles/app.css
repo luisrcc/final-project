@@ -95,7 +95,7 @@ html, body { height: 100% }
 .jumbotron-join-us{
     background-image: url(../img/dog-licking-mans-face.jpg);
     background-size: cover;
-    min-height: 400px;    
+    min-height: 700px;    
     text-decoration: none;
 }
 
@@ -189,7 +189,7 @@ border:1px solid #ccc !important;
 }
 body{
     /* margin-top:20px; */
-    background:#eee;
+    background: white;
 }
 /* My Account */
 .payments-item img.mr-3 {
@@ -307,4 +307,105 @@ body{
 }
 a:hover{
     text-decoration:none;
+}
+
+
+/* tabs styles */
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 300px;
+  background: #f1f1f1;
+  word-break: break-all;
+  border: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.bloc-tabs {
+  display: flex;
+}
+.tabs {
+
+  padding: 15px;
+  text-align: center;
+  width: 50%;
+  background: rgba(128, 128, 128, 0.075);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  box-sizing: content-box;
+  position: relative;
+  outline: none;
+}
+.tabs:not(:last-child){
+  border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tabs  {
+  background: white;
+  border-bottom: 1px solid transparent;
+}
+
+.active-tabs::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 5px;
+  background: #17a2b8;
+}
+
+.inactive-tab-style::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 2px;
+    background: white;
+}
+
+.tabs-button-style {
+  border: none;  
+}
+.content-tabs {
+  flex-grow : 1;
+}
+.content {
+  background: #F6F6F6;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.content h2 {
+  padding: 0px 0 5px 0px;
+}
+.content hr {
+  width: 100px;
+  height: 2px;
+  background: #222;
+  margin-bottom: 5px;
+}
+.content p {
+  height: 100%;
+}
+.active-content {
+  display: block;
+}
+.preventative-care-img {
+    width: 100%;
+    min-height: 150px; 
+}
+.dental-care-img {
+    width: 100%;
+    min-height: 150px; 
+}
+.other-services-img {
+    width: 100%;
+    min-height: 150px; 
+}
+.tabs-info-text {
+    word-break: normal;
 }
