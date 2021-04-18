@@ -309,6 +309,9 @@ a:hover{
     text-decoration:none;
 }
 
+
+/* tabs styles */
+
 .tabs-container {
   display: flex;
   flex-direction: column;
@@ -353,6 +356,14 @@ a:hover{
   width: calc(100% + 2px);
   height: 5px;
   background: #17a2b8;
+}
+
+.inactive-tab-style::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 2px;
+    background: white;
 }
 
 .tabs-button-style {

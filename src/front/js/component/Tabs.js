@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import cat from "../../img/cat-at-vet.jpg";
-import dog from "../../img/dog-smile.jpg";
+import cat from "../../img/cat-with-vet.jpg";
+import dog from "../../img/dog-smiling.jpg";
 import groomer from "../../img/dog-groomer.jpg";
 
 const Tabs = () => {
@@ -12,7 +12,7 @@ const Tabs = () => {
 	};
 
 	return (
-		<div className="container border-0">
+		<div className="container">
 			<div className="row justify-content-center">
 				<h4 className="p-2">Servicios veterinarios excepcionales para cualquier situación</h4>
 				<p className="px-4 text-center">
@@ -24,10 +24,14 @@ const Tabs = () => {
 				</p>
 			</div>
 			<div className="row mt-5">
-				<div className="tabs-container">
+				<div className="tabs-container border-0">
 					<div className="bloc-tabs">
 						<button
-							className={toggleState === 1 ? "tabs active-tabs tabs-button-style" : "tabs"}
+							className={
+								toggleState === 1
+									? "tabs active-tabs tabs-button-style rounded-top"
+									: "tabs border border-light inactive-tab-style"
+							}
 							onClick={() => toggleTab(1)}>
 							<span className="pr-2">
 								<i className="fas fa-stethoscope" />
@@ -35,7 +39,9 @@ const Tabs = () => {
 							Cuidado Preventivo
 						</button>
 						<button
-							className={toggleState === 2 ? "tabs active-tabs tabs-button-style" : "tabs"}
+							className={
+								toggleState === 2 ? "tabs active-tabs tabs-button-style" : "tabs border border-light"
+							}
 							onClick={() => toggleTab(2)}>
 							<span className="pr-2">
 								<i className="fas fa-tooth" />
@@ -43,7 +49,9 @@ const Tabs = () => {
 							Cuidado dental
 						</button>
 						<button
-							className={toggleState === 3 ? "tabs active-tabs tabs-button-style" : "tabs"}
+							className={
+								toggleState === 3 ? "tabs active-tabs tabs-button-style" : "tabs border border-light"
+							}
 							onClick={() => toggleTab(3)}>
 							<span className="pr-2">
 								<i className="fas fa-paw" />
