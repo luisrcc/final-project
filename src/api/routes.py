@@ -256,12 +256,15 @@ def get_working_hours():
 
 @api.route('/available-times', methods=['POST'])
 def get_available_times():
+    
     id_speciality = request.json['id_speciality']
     id_specialist = request.json['id_specialist']
     date = request.json['date']
-    response = check_available_time_specialist(id_speciality, id_specialist, date)
-    #response = list(map(lambda x: x.serialize(), response))    
+    user_id = request.json['user_id']
+
+    response = check_available_time_specialist(id_speciality, id_specialist, date, user_id)
+    response = list(map(lambda x: x.serialize(), response))    
     if response:
         return jsonify(response), 200
     else:
-        return jsonify({"msg": "no existe la especialidad en time"}), 200
+        return jsonify({"msg": "No existen horas disponibles"}), 205

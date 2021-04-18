@@ -21,17 +21,23 @@ export const Booking = () => {
 	const inputSpeciality = watch("inputSpeciality");
 
 	// data hardcoded.
+
 	const defaultItemEspecialidad = { nombre: "Seleccione especialidad..." };
 	const defaultItemEspecialista = { nombre: "Seleccione especialista..." };
-	const dataCategories = {
-		dataEspecialidad: [{ nombre: "Veterinaria", especialidadId: 1 }, { nombre: "Peluquería", especialidadId: 2 }],
-		dataEspecialista: [
-			{ nombre: "Felipe Gutierrez", idEspecialista: 1, especialidadId: 1 },
-			{ nombre: "Chang", idEspecialista: 2, especialidadId: 1 },
-			{ nombre: "Aniseed Syrup", idEspecialista: 3, especialidadId: 2 },
-			{ nombre: "Genen Shouyu", idEspecialista: 4, especialidadId: 2 }
-		]
-	};
+
+	const dataEspecialistas = store.dataEspecialities ? store.dataEspecialities.specialists : [];
+	const dataEspecialidades = store.dataEspecialities ? store.dataEspecialities.specialists : [];
+
+	// const dataCategories = {
+	// 	dataEspecialidad: [{ name: "Veterinaria", id: 1 }, { name: "Peluquería", id: 2 }],
+	// 	dataEspecialista: [
+	// 		{ name: "Felipe Gutierrez", id: 1, speciality_id: 1 },
+	// 		{ name: "Chang", id: 2, speciality_id: 1 },
+	// 		{ nombre: "Aniseed Syrup", idEspecialista: 3, especialidadId: 2 },
+	// 		{ nombre: "Genen Shouyu", idEspecialista: 4, especialidadId: 2 }
+	// 	]
+	// };
+
 	const [dropDownListData, setDropDownListData] = useState({
 		especialidad: null,
 		especialistas: dataCategories.dataEspecialista,
@@ -97,6 +103,10 @@ export const Booking = () => {
 		});
 	};
 
+	useEffect(() => {
+		actions.getDataEspecialities();
+	});
+
 	return (
 		<div className="booking-background">
 			<div className="container pt-4">
@@ -150,7 +160,8 @@ export const Booking = () => {
 											</span>
 										</div>
 										<DropDownList
-											data={dataCategories.dataEspecialidad}
+											data={dataEspecialistas}
+											dataEspecialistas
 											nameDropDown={"inputSpeciality"}
 											textField={"nombre"}
 											idTextField={"especialidadId"}

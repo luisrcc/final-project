@@ -76,7 +76,7 @@ class Working_hours(db.Model):
 
 class Speciality(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
-    name = db.Column(db.String(250), unique=False, nullable=False)
+    name = db.Column(db.String(250), unique=False, nullable=False)    
     
     specialist = db.relationship('Specialist', backref='speciality', lazy=True)
     appointment = db.relationship('Appointment', backref='speciality', lazy=True)

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-//const DropDownList = ({ data, textField, idTextField, onChange, defaultItem, value, disabled, reference }) => {
 const DropDownList = ({
 	data,
 	textField,
@@ -33,17 +32,11 @@ const DropDownList = ({
 
 	return (
 		<>
-			{/* <label htmlFor={nameDropDown}>{titulo}</label> */}
 			<select
 				id={nameDropDown}
 				name={nameDropDown}
 				className="form-control border-left-0 erase-outline"
 				ref={reference}
-				// id={textField}
-				// name={textField}
-				// className="form-control bg-white border-left-0 border-md"
-				// ref={reference}
-
 				onChange={onChange}>
 				{addDefaultItem(defaultItem)}
 				{renderOptions(data)}
