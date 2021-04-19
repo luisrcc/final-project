@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			isLogged: false,
 			appointment: null,
 			appointments: [],
-			dataEspecialities: null
+			dataEspecialities: null,
+			listTimesAvailable: null
 		},
 		actions: {
 			getToken: () => {
@@ -110,6 +111,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = await fetch(process.env.BACKEND_URL + "/api/data-especialities", settings);
 				const json = await response.json();
 				setStore({ dataEspecialities: json });
+			},
+			getAvailableTimes: async request => {
+				const settings = {
+					method: "POST",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/available-times", settings);
+				const json = await response.json();
+				setStore({ listTimesAvailable: json });
 			}
 		}
 	};

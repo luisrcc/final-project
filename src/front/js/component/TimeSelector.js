@@ -1,26 +1,36 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { Button } from "bootstrap";
 
-const TimeSelector = ({ timeList }) => {
-	console.log(timeList);
+const TimeSelector = () => {
+	const { store } = useContext(Context);
+
+	const listTimesAvailable = store.listTimesAvailable ? store.listTimesAvailable : null;
 
 	return (
 		<div className="container">
-			<div className="row">
-				<div className="col-lg btn-block">
-					<button type="button" className="btn btn-outline-success btn-lg btn-block">
-						12:00
-					</button>
+			{listTimesAvailable ? (
+				listTimesAvailable.map((item, index) => {
+					return (
+						<div key={index} className="row">
+							<div className="col-lg btn-block">
+								<button type="button" className="btn btn-outline-success btn-lg btn-block">
+									{item.time}
+								</button>
+							</div>
+						</div>
+					);
+				})
+			) : (
+				<div className="row">
+					<div className="col-lg btn-block">
+						<button type="button" className="btn btn-outline-success btn-lg btn-block">
+							No existen horas disponibles
+						</button>
+					</div>
 				</div>
-			</div>
-			<div className="row">
-				<div className="col-lg btn-block">
-					<button type="button" className="btn btn-outline-success btn-lg btn-block">
-						12:00
-					</button>
-				</div>
-			</div>
+			)}
 		</div>
 	);
 };

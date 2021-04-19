@@ -1,4 +1,5 @@
-import React, { Component, useState, forwardRef, useEffect } from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
@@ -10,9 +11,8 @@ import PropTypes from "prop-types";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const DateTimePicker = ({ currentDate, setCurrentDate, dropDownListData }) => {
-	const [startDate, setStartDate] = useState(currentDate);
-	const [user, setUser] = useState(null);
-	let userData = JSON.parse(localStorage.getItem("user"));
+	const { store, actions } = useContext(Context);
+	const userData = JSON.parse(localStorage.getItem("user"));
 
 	const isWeekday = date => {
 		const day = getDay(date);
@@ -21,18 +21,13 @@ export const DateTimePicker = ({ currentDate, setCurrentDate, dropDownListData }
 
 	const handleChangeDateSelect = async date => {
 		if (dropDownListData.especialidad !== 0 && dropDownListData.especialidad !== 0) {
-			console.log(dropDownListData);
-			console.log(dropDownListData);
-
 			const request = {
 				id_speciality: dropDownListData.especialidad,
 				id_specialist: dropDownListData.especialista,
 				date: date,
 				user_id: userData ? userData.id : null
 			};
-
-			console.log("request para action available hours");
-			console.log(request);
+			await actions.getAvailableTimes(request);
 		}
 		await setCurrentDate(date);
 	};
