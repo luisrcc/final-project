@@ -33,30 +33,30 @@ const Tabs = () => {
 									: "tabs border border-light inactive-tab-style"
 							}
 							onClick={() => toggleTab(1)}>
-							<span className="pr-2">
-								<i className="fas fa-stethoscope" />
-							</span>
-							Cuidado Preventivo
+							<p className="mb-0">
+								<i className="fas fa-stethoscope pr-1" />
+								Cuidado Preventivo
+							</p>
 						</button>
 						<button
 							className={
 								toggleState === 2 ? "tabs active-tabs tabs-button-style" : "tabs border border-light"
 							}
 							onClick={() => toggleTab(2)}>
-							<span className="pr-2">
-								<i className="fas fa-tooth" />
-							</span>
-							Cuidado dental
+							<p className="mb-0">
+								<i className="fas fa-tooth pr-1" />
+								Cuidado dental
+							</p>
 						</button>
 						<button
 							className={
 								toggleState === 3 ? "tabs active-tabs tabs-button-style" : "tabs border border-light"
 							}
 							onClick={() => toggleTab(3)}>
-							<span className="pr-2">
-								<i className="fas fa-paw" />
-							</span>
-							Otros servicios
+							<p className="mb-0">
+								<i className="fas fa-paw pr-1" />
+								Otros servicios
+							</p>
 						</button>
 					</div>
 

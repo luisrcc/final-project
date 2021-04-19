@@ -7,10 +7,10 @@ export const Carousel = () => {
 			<div className="container">
 				<div className="jumbotron-booking-content py-5">
 					<h1 className="text-uppercase text-left welcome-text center-welcome-text">Bienvenidos a</h1>
-					<h1 className="display-4 text-uppercase text-left brand-text">petsvets</h1>
+					<h1 className="text-uppercase text-left brand-text">petsvets</h1>
 					<div className="jumbotron-booking-button text-left">
 						<Link to="/booking">
-							<button type="submit" className="btn btn-info btn-lg book-appointment-button">
+							<button type="submit" className="btn btn-info btn-md book-appointment-button">
 								Agendar una cita
 							</button>
 						</Link>
