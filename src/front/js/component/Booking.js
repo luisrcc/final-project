@@ -5,6 +5,7 @@ import { DateTimePicker } from "./DateTimePicker";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import DropDownList from "./DropDownList";
+import TimeSelector from "./TimeSelector";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -15,6 +16,8 @@ export const Booking = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
 
 	const { register, errors, handleSubmit, watch } = useForm({ mode: "onChange" });
+
+	const dataUser = localStorage.getItem("user");
 
 	const inputPet = watch("inputPet");
 	const inputSpecialist = watch("inputSpecialist");
@@ -38,7 +41,7 @@ export const Booking = () => {
 			user_id: 1,
 			pet_name: data.inputPetName,
 			pet: data.inputPet,
-			speciality: dropDownListData.specialities.name,
+			speciality: dropDownListData.especialidad.id,
 			specialist: dropDownListData.especialista.name,
 			date: exampleDate
 		};
@@ -187,8 +190,12 @@ export const Booking = () => {
 
 							{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
 								<>
-									<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
-
+									<DateTimePicker
+										currentDate={currentDate}
+										setCurrentDate={setCurrentDate}
+										dropDownListData={dropDownListData}
+									/>
+									<TimeSelector />
 									<div className="row justify-content-center pt-4">
 										<button
 											disabled={
