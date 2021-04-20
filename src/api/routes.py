@@ -267,4 +267,4 @@ def get_available_times():
     if response:
         return jsonify(response), 200
     else:
-        return jsonify({"msg": "No existen horas disponibles"}), 205
+        return jsonify([]), 205

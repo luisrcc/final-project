@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			appointment: null,
 			appointments: [],
 			dataEspecialities: null,
-			listTimesAvailable: null
+			listTimesAvailable: []
 		},
 		actions: {
 			getToken: () => {

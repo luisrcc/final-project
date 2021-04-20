@@ -7,6 +7,7 @@ import subDays from "date-fns/subDays";
 import getDay from "date-fns/getDay";
 import es from "date-fns/locale/es";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -20,11 +21,15 @@ export const DateTimePicker = ({ currentDate, setCurrentDate, dropDownListData }
 	};
 
 	const handleChangeDateSelect = async date => {
+		//console.log(new Date(date.toUTCString()));
+		const exampleDate = moment(date).format("YYYY-MM-DD");
+		console.log(exampleDate);
+
 		if (dropDownListData.especialidad !== 0 && dropDownListData.especialidad !== 0) {
 			const request = {
 				id_speciality: dropDownListData.especialidad,
 				id_specialist: dropDownListData.especialista,
-				date: date,
+				date: exampleDate,
 				user_id: userData ? userData.id : null
 			};
 			await actions.getAvailableTimes(request);
@@ -38,7 +43,8 @@ export const DateTimePicker = ({ currentDate, setCurrentDate, dropDownListData }
 				selected={currentDate}
 				onChange={date => handleChangeDateSelect(date)}
 				filterDate={isWeekday}
-				excludeDates={[new Date(), subDays(new Date(), 1)]}
+				locale="pt-CL"
+				// excludeDates={[new Date(), subDays(new Date(), 1)]}
 				dateFormat="dd/MM/yyyy"
 			/>
 		</div>

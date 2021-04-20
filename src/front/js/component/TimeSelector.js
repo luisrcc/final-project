@@ -6,11 +6,11 @@ import { Button } from "bootstrap";
 const TimeSelector = () => {
 	const { store } = useContext(Context);
 
-	const listTimesAvailable = store.listTimesAvailable ? store.listTimesAvailable : null;
+	let listTimesAvailable = store.listTimesAvailable;
 
 	return (
 		<div className="container">
-			{listTimesAvailable ? (
+			{listTimesAvailable !== undefined && listTimesAvailable !== null ? (
 				listTimesAvailable.map((item, index) => {
 					return (
 						<div key={index} className="row">
@@ -26,7 +26,7 @@ const TimeSelector = () => {
 				<div className="row">
 					<div className="col-lg btn-block">
 						<button type="button" className="btn btn-outline-success btn-lg btn-block">
-							No existen horas disponibles
+							{"No existen horas disponibles"}
 						</button>
 					</div>
 				</div>
