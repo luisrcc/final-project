@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment, Speciality, Specialist
+from api.models import db, User, Appointment, Speciality, Specialist, Working_hours
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
@@ -126,18 +126,28 @@ def register():
 
 
 @api.route('/reservar', methods=['POST'])
-def book():
+def booking():
     user_id = request.json['user_id']
     user_exists = bool(User.query.filter_by(id = user_id).first())
 
     if user_exists:
         user_id = request.json['user_id']
+        speciality_id = request.json['speciality_id']
+        specialist_id = request.json['specialist_id']
+        working_hour_id = request.json['working_hour_id']
         pet_name = request.json['pet_name']
         pet = request.json['pet']
-        speciality = request.json['speciality']
-        specialist = request.json['specialist']
-        date = request.json['date']
-        new_appointment = Appointment(user_id=user_id, pet_name=pet_name, pet=pet, speciality=speciality, specialist=specialist, date=date)
+        date = request.json['date']        
+
+        new_appointment = Appointment(
+                user_id=user_id, 
+                speciality_id=speciality_id, 
+                specialist_id=specialist_id,
+                working_hour_id=working_hour_id,
+                pet_name=pet_name,
+                pet=pet,
+                date=date                
+            )
     else:
         return jsonify("no existe el usuario"), 404
 
@@ -220,15 +230,41 @@ def get_data_specialities():
     }
     return jsonify(response_body), 200
 
+@api.route('/working-hours', methods=['POST'])
+def add_working_hours():
+    
+    speciality_id = request.json['speciality_id']
+    specialist_id = request.json['specialist_id']
+    time = request.json['time']
+
+    new_working_hour = Working_hours(speciality_id=speciality_id, specialist_id=specialist_id,time=time)
+
+    db.session.add(new_working_hour)
+    db.session.commit()
+    
+    return jsonify({ "msg": "hora de especialidad asignada"}), 200
+
+@api.route('/working-hours', methods=['GET'])
+def get_working_hours():
+    list_working_hours = Working_hours.query.all()
+    list_working_hours = list(map(lambda x: x.serialize(), list_working_hours))
+
+    response_body = {
+        "working-hours": list_working_hours
+    }
+    return jsonify(response_body), 200
+
 @api.route('/available-times', methods=['POST'])
 def get_available_times():
+    
     id_speciality = request.json['id_speciality']
-    response = check_available_time_specialist(id_speciality)
+    id_specialist = request.json['id_specialist']
+    date = request.json['date']
+    user_id = request.json['user_id']
+
+    response = check_available_time_specialist(id_speciality, id_specialist, date, user_id)
+    response = list(map(lambda x: x.serialize(), response))    
     if response:
-        response_body = {
-            "speciality_id": response.speciality_id,
-            "time": response.time
-        }
-        return jsonify(response_body), 200
-    else:        
-        return jsonify({"msg": "no existe la especialidad en time"}), 200
+        return jsonify(response), 200
+    else:
+        return jsonify([]), 205
