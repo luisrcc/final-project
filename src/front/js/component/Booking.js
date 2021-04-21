@@ -17,9 +17,10 @@ export const Booking = () => {
 
 	const { register, errors, handleSubmit, watch } = useForm({ mode: "onChange" });
 
-	const dataUser = localStorage.getItem("user");
+	const userData = JSON.parse(localStorage.getItem("user"));
 
 	const inputPet = watch("inputPet");
+	const inputPetName = watch("inputPetName");
 	const inputSpecialist = watch("inputSpecialist");
 	const inputSpeciality = watch("inputSpeciality");
 
@@ -35,38 +36,38 @@ export const Booking = () => {
 		especialista: 0
 	});
 
-	const onSubmit = async data => {
-		const exampleDate = moment(currentDate).format("YYYY-MM-DD HH:mm:ss");
-		const request = {
-			user_id: 1,
-			pet_name: data.inputPetName,
-			pet: data.inputPet,
-			speciality: dropDownListData.especialidad.id,
-			specialist: dropDownListData.especialista.name,
-			date: exampleDate
-		};
+	// const onSubmit = async data => {
+	// 	const exampleDate = moment(currentDate).format("YYYY-MM-DD HH:mm:ss");
+	// 	const request = {
+	// 		user_id: 1,
+	// 		pet_name: data.inputPetName,
+	// 		pet: data.inputPet,
+	// 		speciality: dropDownListData.especialidad.id,
+	// 		specialist: dropDownListData.especialista.name,
+	// 		date: exampleDate
+	// 	};
 
-		const response = await actions.createNewAppointment(request);
-		if (!response.ok) {
-			Swal.fire({
-				title: "Hubo un Error!",
-				text: "Favor reintente la operación",
-				icon: "error",
-				confirmButtonText: "Continuar"
-			}).then(() => {
-				history.push("/");
-			});
-		} else {
-			Swal.fire({
-				title: "Hora Agendada con éxito",
-				text: "¿Deseas continuar?",
-				icon: "success",
-				confirmButtonText: "Continuar"
-			}).then(() => {
-				history.push("/");
-			});
-		}
-	};
+	// 	const response = await actions.createNewAppointment(request);
+	// 	if (!response.ok) {
+	// 		Swal.fire({
+	// 			title: "Hubo un Error!",
+	// 			text: "Favor reintente la operación",
+	// 			icon: "error",
+	// 			confirmButtonText: "Continuar"
+	// 		}).then(() => {
+	// 			history.push("/");
+	// 		});
+	// 	} else {
+	// 		Swal.fire({
+	// 			title: "Hora Agendada con éxito",
+	// 			text: "¿Deseas continuar?",
+	// 			icon: "success",
+	// 			confirmButtonText: "Continuar"
+	// 		}).then(() => {
+	// 			history.push("/");
+	// 		});
+	// 	}
+	// };
 
 	const isObjectExist = object => {
 		if (object === null && object === undefined) return false;
@@ -102,12 +103,49 @@ export const Booking = () => {
 		});
 	};
 
+	const handleClickReservar = async e => {
+		e.preventDefault();
+
+		const exampleDate = moment(currentDate).format("YYYY-MM-DD");
+		const request = {
+			user_id: userData.id,
+			speciality_id: dropDownListData.especialidad,
+			specialist_id: dropDownListData.especialista,
+			working_hour_id: parseInt(e.target.value),
+			pet_name: inputPetName,
+			pet: inputPet,
+			date: exampleDate
+		};
+
+		const response = await actions.createNewAppointment(request);
+		if (!response.ok) {
+			Swal.fire({
+				title: "Hubo un Error!",
+				text: "Favor reintente la operación",
+				icon: "error",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		} else {
+			Swal.fire({
+				title: "Hora Agendada con éxito",
+				text: "¿Deseas continuar?",
+				icon: "success",
+				confirmButtonText: "Continuar"
+			}).then(() => {
+				history.push("/");
+			});
+		}
+	};
+
 	return (
 		<div className="booking-background">
 			<div className="container pt-4">
 				<div className="row justify-content-center">
 					<div className="col-md-6 border p-4">
-						<form onSubmit={handleSubmit(onSubmit)}>
+						{/* <form onSubmit={handleSubmit(onSubmit)}> */}
+						<form>
 							<div className="row justify-content-center">
 								<div className="input-group col-md-6 mb-4">
 									<div className="input-group-prepend">
@@ -205,19 +243,7 @@ export const Booking = () => {
 										setCurrentDate={setCurrentDate}
 										dropDownListData={dropDownListData}
 									/>
-									<TimeSelector />
-									<div className="row justify-content-center pt-4">
-										<button
-											disabled={
-												isObjectExist(errors) && Object.entries(errors).length === 0
-													? false
-													: true
-											}
-											className="btn btn-info"
-											type="submit">
-											Reservar {console.log(process.env.BACKEND_URL)}
-										</button>
-									</div>
+									<TimeSelector handleClick={handleClickReservar} />
 								</>
 							) : null}
 							<div className="row justify-content-center pt-4">

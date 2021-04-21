@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { Button } from "bootstrap";
 
-const TimeSelector = () => {
+const TimeSelector = ({ handleClick }) => {
 	const { store } = useContext(Context);
 
 	let listTimesAvailable = store.listTimesAvailable;
@@ -19,7 +19,7 @@ const TimeSelector = () => {
 									type="button"
 									className="btn btn-outline-success btn-lg btn-block"
 									value={item.id}
-									onClick={() => handleClickTime()}>
+									onClick={e => handleClick(e)}>
 									{item.time}
 								</button>
 							</div>
@@ -42,5 +42,6 @@ const TimeSelector = () => {
 export default TimeSelector;
 
 TimeSelector.propTypes = {
-	timeList: PropTypes.object
+	timeList: PropTypes.object,
+	handleClick: PropTypes.func
 };
