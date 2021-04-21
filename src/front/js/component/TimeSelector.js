@@ -10,12 +10,16 @@ const TimeSelector = () => {
 
 	return (
 		<div className="container">
-			{listTimesAvailable !== undefined && listTimesAvailable !== null ? (
+			{listTimesAvailable !== undefined && listTimesAvailable !== null && listTimesAvailable.length > 0 ? (
 				listTimesAvailable.map((item, index) => {
 					return (
 						<div key={index} className="row">
 							<div className="col-lg btn-block">
-								<button type="button" className="btn btn-outline-success btn-lg btn-block">
+								<button
+									type="button"
+									className="btn btn-outline-success btn-lg btn-block"
+									value={item.id}
+									onClick={() => handleClickTime()}>
 									{item.time}
 								</button>
 							</div>

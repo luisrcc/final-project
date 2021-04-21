@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
@@ -21,9 +21,7 @@ export const DateTimePicker = ({ currentDate, setCurrentDate, dropDownListData }
 	};
 
 	const handleChangeDateSelect = async date => {
-		//console.log(new Date(date.toUTCString()));
 		const exampleDate = moment(date).format("YYYY-MM-DD");
-		console.log(exampleDate);
 
 		if (dropDownListData.especialidad !== 0 && dropDownListData.especialidad !== 0) {
 			const request = {
@@ -37,10 +35,24 @@ export const DateTimePicker = ({ currentDate, setCurrentDate, dropDownListData }
 		await setCurrentDate(date);
 	};
 
+	useEffect(() => {
+		if (!currentDate) {
+			const exampleDate = moment(new Date()).format("YYYY-MM-DD");
+			const request = {
+				id_speciality: dropDownListData.especialidad,
+				id_specialist: dropDownListData.especialista,
+				date: exampleDate,
+				user_id: userData ? userData.id : null
+			};
+			actions.getAvailableTimes(request);
+			setCurrentDate(new Date());
+		}
+	});
+
 	return (
 		<div className="form-row justify-content-center">
 			<DatePicker
-				selected={currentDate}
+				selected={currentDate ? currentDate : new Date()}
 				onChange={date => handleChangeDateSelect(date)}
 				filterDate={isWeekday}
 				locale="pt-CL"

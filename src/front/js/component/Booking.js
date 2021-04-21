@@ -13,7 +13,7 @@ export const Booking = () => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
 
-	const [currentDate, setCurrentDate] = useState(new Date());
+	const [currentDate, setCurrentDate] = useState(null);
 
 	const { register, errors, handleSubmit, watch } = useForm({ mode: "onChange" });
 
@@ -91,6 +91,15 @@ export const Booking = () => {
 			...dropDownListData,
 			especialista: especialista
 		});
+		setCurrentDate(null);
+	};
+
+	const handleChangeInputPet = () => {
+		setDropDownListData({
+			especialidad: 0,
+			especialistas: null,
+			especialista: 0
+		});
 	};
 
 	return (
@@ -127,7 +136,8 @@ export const Booking = () => {
 										id="inputPet"
 										name="inputPet"
 										className="form-control border-md border-left-0 erase-outline"
-										ref={register({ required: true })}>
+										ref={register({ required: true })}
+										onChange={() => handleChangeInputPet()}>
 										<option value="" selected>
 											Seleccione...
 										</option>
