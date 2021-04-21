@@ -9,7 +9,7 @@ const Card = ({ title, content, url, buttonName }) => {
 				<div className="card-body text-center">
 					<h5 className="card-title">{title}</h5>
 					<p className="card-text">{content}</p>
-					<a href="/#" className="btn btn-info text-center">
+					<a href="/#" className="btn btn-info text-center reponsive-button">
 						{buttonName}
 					</a>
 				</div>

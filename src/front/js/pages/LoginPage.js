@@ -118,14 +118,14 @@ export const LoginPage = ({ path }) => {
 						<div className="text-center mt-4">
 							<div className="my-4">
 								<button
-									className="btn btn-info center-button"
+									className="btn btn-info center-button reponsive-button"
 									type="submit"
 									onClick={e => handlerClick(e)}>
 									Iniciar Sesión
 								</button>
 							</div>
 							<Link to="/">
-								<span className="btn btn-outline-info" href="#" role="button">
+								<span className="btn btn-outline-info reponsive-button" href="#" role="button">
 									Regresa
 								</span>
 							</Link>

@@ -19,7 +19,7 @@ const PersonalProfile = () => {
 									alt=""
 								/>
 								<div className="file">
-									<button className="btn btn-md btn-info m-2">Cambiar foto</button>
+									<button className="btn btn-md btn-info m-2 reponsive-button">Cambiar foto</button>
 									<input className="mb-2" type="file" name="file" />
 								</div>
 							</div>

@@ -193,7 +193,7 @@ export const Booking = () => {
 													? false
 													: true
 											}
-											className="btn btn-info"
+											className="btn btn-info reponsive-button"
 											type="submit">
 											Reservar {console.log(process.env.BACKEND_URL)}
 										</button>
@@ -202,7 +202,7 @@ export const Booking = () => {
 							) : null}
 							<div className="row justify-content-center pt-4">
 								<Link to="/">
-									<span className="btn btn-outline-info" href="#" role="button">
+									<span className="btn btn-outline-info reponsive-button" href="#" role="button">
 										Regresa
 									</span>
 								</Link>

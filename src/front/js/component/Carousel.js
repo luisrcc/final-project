@@ -10,7 +10,9 @@ export const Carousel = () => {
 					<h1 className="text-uppercase text-left brand-text">petsvets</h1>
 					<div className="jumbotron-booking-button text-left">
 						<Link to="/booking">
-							<button type="submit" className="btn btn-info btn-md book-appointment-button">
+							<button
+								type="submit"
+								className="btn btn-info btn-md book-appointment-button reponsive-button">
 								Agendar una cita
 							</button>
 						</Link>

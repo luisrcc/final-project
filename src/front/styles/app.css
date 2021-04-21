@@ -1,21 +1,13 @@
 html, body { height: 100% }
 
-
-
 .supportForm{
     align-items: center;
     width: 800px;
 }
 
-/* .carousel-item .img-fluid{
-    width: 100%; 
-    height: 100%;
-} */
-
 .register-form {
     margin-bottom: 50px;
 }
-
 
 .register-background {    
     background-image: url(../img/Corgi-banner.jpg);
@@ -30,16 +22,12 @@ html, body { height: 100% }
     max-width: 100%;
 }
 .jumbotron-inicio{
-    background-image: url(../img/dog-relax.jpeg);
+    background-image: linear-gradient(rgba(214, 214, 214, 0.29), rgba(231, 231, 231, 0.29)), url(../img/dog-relax.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     max-width: 100%;
-    /* height: 600px;     */
     text-shadow: 3px 3px 5px #000000;
-    /* @media (max-width:768px) {
-        max-width: 100%;
-    } */
 }
 
 .welcome-text {
@@ -65,9 +53,6 @@ html, body { height: 100% }
 
 .center-welcome-text{
     padding-top: 150px;
-}
-.book-appointment-button{
-    margin-left: 60px;
 }
 
 .jumbotron-booking{
@@ -490,7 +475,7 @@ p .vets-info {
     }
 }
 
-.btn {
+.reponsive-button {
     @media (max-width:930px) {
         font-size: 2vw;
     }
@@ -500,4 +485,44 @@ p .vets-info {
     @media (max-width:930px) {
         width: 60px;
     }
+}
+
+.accordion-title {
+    color: black;
+}
+
+.show-hide-tabs{
+    @media (max-width:992px) {
+        display: none;
+    }
+}
+
+.show-hide-accordion {
+    @media (max-width:992px) {
+        display: block;
+    }
+}
+
+.show-hide-accordion {
+    @media (min-width:991px) {
+        display: none;
+    }
+}
+
+.accordion-title {
+    display: block;
+ }
+.accordion-title:hover{
+    background-color: #F8F9FA;
+}
+.accordion-title::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 2px);
+    height: 5px;
+    background: #17a2b8;
 }

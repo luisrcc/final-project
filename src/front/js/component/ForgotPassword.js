@@ -39,7 +39,7 @@ export const ForgotPassword = () => {
 										<div className="form-group">
 											<input
 												name="recover-submit"
-												className="btn btn-lg btn-info btn-block"
+												className="btn btn-lg btn-info btn-block reponsive-button"
 												value="Reestablecer Contraseña"
 												type="submit"
 											/>

@@ -9,6 +9,7 @@ import ProductCards from "../component/ProductCards";
 import JoinUsBanner from "../component/JoinUsBanner";
 import BookingJumbotron from "../component/BookingJumbotron";
 import Tabs from "../component/Tabs";
+import Accordion from "../component/Accordion";
 import JumbotronInfo from "../component/JumbotronInfo";
 
 export const Home = () => {
@@ -33,8 +34,9 @@ export const Home = () => {
 				<Reviews />
 			</div>
 
-			<div className="mx-auto my-5">
+			<div className="mx-2 my-5 show-tabs">
 				<Tabs />
+				<Accordion />
 			</div>
 
 			<div className="register-join-us-banner">

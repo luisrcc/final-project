@@ -20,14 +20,14 @@ const JumbotronInfo = () => {
 					<div className="col-sm-10 col-md-10 col-lg-5">
 						<img className="text-left info-image" src={catDog} />
 					</div>
-					<div className="col-sm-10 col-md-10 col-lg-5">
+					<div className="col-sm-10 col-md-10 col-lg-5 mb-4">
 						<div className="row">
-							<div className="col-sm-8 col-md-10 col-lg-5">
+							<div className="col-sm-1 col-md-1 col-lg-1">
 								<i className="far fa-clock" />
 							</div>
-							<div className="col-sm-8 col-md-10 col-lg-5">
+							<div className="col">
 								<p>
-									<ul className="delete-bullet-points">
+									<ul className="delete-bullet-points m-0 p-0">
 										<li>Lun - Vie: 8:30 am - 7:00 pm</li>
 										<li>Sab - Dog: 9:00 am - 1:00 pm</li>
 									</ul>
