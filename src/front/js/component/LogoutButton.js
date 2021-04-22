@@ -14,7 +14,7 @@ export const LogoutButton = () => {
 	};
 
 	return (
-		<button type="button" className="btn btn-info btn-md" onClick={() => handleLogOut()}>
+		<button type="button" className="btn btn-info btn-md reponsive-button" onClick={() => handleLogOut()}>
 			Cerrar sesión
 		</button>
 	);

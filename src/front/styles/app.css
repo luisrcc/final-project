@@ -5,35 +5,29 @@ html, body { height: 100% }
     width: 800px;
 }
 
-/* .carousel-item .img-fluid{
-    width: 100%; 
-    height: 100%;
-} */
-
 .register-form {
     margin-bottom: 50px;
 }
 
-
 .register-background {    
     background-image: url(../img/Corgi-banner.jpg);
     background-size: cover;
-    width: 100%;
+    max-width: 100%;
     height: auto;
 }
 .login-background {    
     background-image: url(../img/cat-background.jpg);
     background-size: cover;
-    width: 100%;
     height: auto;
+    max-width: 100%;
 }
 .jumbotron-inicio{
-    background-image: url(../img/dog-relax.jpeg);
+    background-image: linear-gradient(rgba(214, 214, 214, 0.29), rgba(231, 231, 231, 0.29)), url(../img/dog-relax.jpeg);
     background-size: cover;
-    min-height: 600px;
-    height: auto;
-    
-    text-shadow: 3px 3px 5px #000000;   
+    background-repeat: no-repeat;
+    background-position: center;
+    max-width: 100%;
+    text-shadow: 3px 3px 5px #000000;
 }
 
 .welcome-text {
@@ -43,40 +37,56 @@ html, body { height: 100% }
 .brand-text {
     color: white;
     font-family: 'Amatic SC', cursive;
+    font-size: 56px;
+    @media (max-width: 768px) {
+        font-size: 30px;
+    }
 }
 
 
 .booking-background {    
     background-image: url(../img/dog-cat.jpg);
     background-size: cover;
-    width: 100%;
+    max-width: 100%;
     height: 600px;
 }
 
 .center-welcome-text{
     padding-top: 150px;
 }
-.book-appointment-button{
-    margin-left: 60px;
-}
 
 .jumbotron-booking{
     background-image: url(../img/white-bg-banner.jpg);
     background-size: cover;
-    min-height: 600px;
-    text-decoration: none;
+    background-repeat: no-repeat;
+    background-position: center;    
+    height: 100%;     
+    text-decoration: none;    
+}
+
+.jumbotron-info{
+    background: white;
+}
+.jumbotron-info-title{
+    font-family: 'Amatic SC', cursive;
+    color: #17A2B8;
+    text-shadow: 3px 3px 5px #747373;
+}
+
+.delete-bullet-points{
+    list-style-type: none;
 }
 
 .jumbotron-reviews{
-    background-image: url(../img/dog-banner.jpg);
+    background: url(../img/dog-banner.jpg);
     background-size: cover;
-    min-height: 600px;
-    color: white;
+    background-position: center;    
+    background-repeat: no-repeat;
     text-decoration: none;
 }
 
 .reviews-title{
-    padding-top: 130px;
+    padding-top: 100px;
     font-family: 'Amatic SC', cursive;
     color: white;
     text-shadow: 3px 3px 5px #000000;
@@ -88,6 +98,7 @@ html, body { height: 100% }
 }
 
 .reviews-name{
+    padding-bottom: 100px;
     color: white;
     text-shadow: 3px 3px 5px #000000;
 }
@@ -95,8 +106,11 @@ html, body { height: 100% }
 .jumbotron-join-us{
     background-image: url(../img/dog-licking-mans-face.jpg);
     background-size: cover;
-    min-height: 700px;    
+    background-repeat: no-repeat;
+    background-position: center;    
+    height: 700px;   
     text-decoration: none;
+    max-width: 100%;
 }
 
 .booking-jumbotron-text {
@@ -318,7 +332,7 @@ a:hover{
   position: relative;
   height: 300px;
   background: #f1f1f1;
-  word-break: break-all;
+  word-break: normal;
   border: 1px solid rgba(0, 0, 0, 0.274);
 }
 
@@ -395,8 +409,11 @@ a:hover{
   display: block;
 }
 .preventative-care-img {
-    width: 100%;
-    min-height: 150px; 
+    max-width: 100%;
+    /* @media (max-width:1091px) and (min-width:500px ) {
+        width: 548px;
+        height: 275px;
+    } */
 }
 .dental-care-img {
     width: 100%;
@@ -408,4 +425,104 @@ a:hover{
 }
 .tabs-info-text {
     word-break: normal;
+}
+
+/* and (min-width: 768px) */
+h1 {
+    @media (max-width: 1320px) {
+        font-size: 35px;
+    }
+    @media (max-width: 1090px) {
+        font-size: 30px;
+    }
+    @media (max-width: 768px) {
+        font-size: 25px;
+    }
+    @media (max-width: 636px) {
+        font-size: 20px;
+    }    
+
+}
+
+h2 {
+    @media (max-width: 768px) {
+        font-size: 20px;
+    }
+}
+h4 {
+    @media (max-width: 768px) {
+        font-size: 15px;
+    }
+}
+p {
+    @media (max-width: 500px) {
+        font-size: 10px;
+    }
+}
+p .vets-info {
+    @media (max-width: 578px) {
+        padding-left:10px;
+    }
+}
+
+.info-image {
+    max-width: 100%;
+}
+
+.tabs-button-style button{
+    @media (max-width:846px ) {
+        padding: 0px;
+    }
+}
+
+.reponsive-button {
+    @media (max-width:930px) {
+        font-size: 2vw;
+    }
+}
+
+.navbar-logo {
+    @media (max-width:930px) {
+        width: 60px;
+    }
+}
+
+.accordion-title {
+    color: black;
+}
+
+.show-hide-tabs{
+    @media (max-width:992px) {
+        display: none;
+    }
+}
+
+.show-hide-accordion {
+    @media (max-width:992px) {
+        display: block;
+    }
+}
+
+.show-hide-accordion {
+    @media (min-width:991px) {
+        display: none;
+    }
+}
+
+.accordion-title {
+    display: block;
+ }
+.accordion-title:hover{
+    background-color: #F8F9FA;
+}
+.accordion-title::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 2px);
+    height: 5px;
+    background: #17a2b8;
 }

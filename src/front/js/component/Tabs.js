@@ -14,7 +14,7 @@ const Tabs = () => {
 	return (
 		<div className="container">
 			<div className="row justify-content-center">
-				<h4 className="p-2">Servicios veterinarios excepcionales para cualquier situación</h4>
+				<h2 className="text-center p-2">Servicios veterinarios excepcionales para cualquier situación</h2>
 				<p className="px-4 text-center">
 					La comunicación y la educación son el sello distintivo de la atención que brindamos a nuestros
 					pacientes y clientes. Cuando una mascota se enferma, sabemos lo nerviosa y desprevenida que puede
@@ -24,7 +24,7 @@ const Tabs = () => {
 				</p>
 			</div>
 			<div className="row mt-5">
-				<div className="tabs-container border-0">
+				<div className="tabs-container border-0 show-hide-tabs">
 					<div className="bloc-tabs">
 						<button
 							className={
@@ -33,30 +33,30 @@ const Tabs = () => {
 									: "tabs border border-light inactive-tab-style"
 							}
 							onClick={() => toggleTab(1)}>
-							<span className="pr-2">
-								<i className="fas fa-stethoscope" />
-							</span>
-							Cuidado Preventivo
+							<p className="mb-0">
+								<i className="fas fa-stethoscope pr-1" />
+								Cuidado Preventivo
+							</p>
 						</button>
 						<button
 							className={
 								toggleState === 2 ? "tabs active-tabs tabs-button-style" : "tabs border border-light"
 							}
 							onClick={() => toggleTab(2)}>
-							<span className="pr-2">
-								<i className="fas fa-tooth" />
-							</span>
-							Cuidado dental
+							<p className="mb-0">
+								<i className="fas fa-tooth pr-1" />
+								Cuidado dental
+							</p>
 						</button>
 						<button
 							className={
 								toggleState === 3 ? "tabs active-tabs tabs-button-style" : "tabs border border-light"
 							}
 							onClick={() => toggleTab(3)}>
-							<span className="pr-2">
-								<i className="fas fa-paw" />
-							</span>
-							Otros servicios
+							<p className="mb-0">
+								<i className="fas fa-paw pr-1" />
+								Otros servicios
+							</p>
 						</button>
 					</div>
 

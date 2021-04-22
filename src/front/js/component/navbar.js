@@ -12,7 +12,7 @@ export const Navbar = () => {
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<Link to="/">
 				<a href="/#" className="navbar-brand">
-					<img src={logo} alt="logo" width="80" />
+					<img className="navbar-logo" src={logo} alt="logo" width="80" />
 				</a>
 			</Link>
 			<div className="form-inline ml-auto">

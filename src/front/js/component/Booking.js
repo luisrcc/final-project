@@ -238,7 +238,25 @@ export const Booking = () => {
 
 							{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
 								<>
+// <<<<<<< solve-conflicts
+									{/* <DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
+
+									<div className="row justify-content-center pt-4">
+										<button
+											disabled={
+												isObjectExist(errors) && Object.entries(errors).length === 0
+													? false
+													: true
+											}
+											className="btn btn-info reponsive-button"
+											type="submit">
+											Reservar {console.log(process.env.BACKEND_URL)}
+										</button>
+									</div> */}
+                                 //   <DateTimePicker
+//=======
 									<DateTimePicker
+//>>>>>>> develop
 										currentDate={currentDate}
 										setCurrentDate={setCurrentDate}
 										dropDownListData={dropDownListData}
@@ -248,7 +266,7 @@ export const Booking = () => {
 							) : null}
 							<div className="row justify-content-center pt-4">
 								<Link to="/">
-									<span className="btn btn-outline-info" href="#" role="button">
+									<span className="btn btn-outline-info reponsive-button" href="#" role="button">
 										Regresa
 									</span>
 								</Link>
