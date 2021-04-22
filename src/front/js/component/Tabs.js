@@ -14,7 +14,7 @@ const Tabs = () => {
 	return (
 		<div className="container">
 			<div className="row justify-content-center">
-				<h2 className="p-2">Servicios veterinarios excepcionales para cualquier situación</h2>
+				<h2 className="text-center p-2">Servicios veterinarios excepcionales para cualquier situación</h2>
 				<p className="px-4 text-center">
 					La comunicación y la educación son el sello distintivo de la atención que brindamos a nuestros
 					pacientes y clientes. Cuando una mascota se enferma, sabemos lo nerviosa y desprevenida que puede

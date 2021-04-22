@@ -27,7 +27,7 @@ const Accordion = () => {
 						className="collapse show"
 						aria-labelledby="headingOne"
 						data-parent="#accordionExample">
-						<div className="card-body">
+						<div className="card-body text-center">
 							<h2>Cuidado preventivo</h2>
 
 							<p className="tabs-info-text">
@@ -58,7 +58,7 @@ const Accordion = () => {
 						className="collapse"
 						aria-labelledby="headingTwo"
 						data-parent="#accordionExample">
-						<div className="card-body">
+						<div className="card-body text-center">
 							<h2>Cuidado dental</h2>
 
 							<p className="tabs-info-text">
@@ -90,8 +90,8 @@ const Accordion = () => {
 						className="collapse"
 						aria-labelledby="headingThree"
 						data-parent="#accordionExample">
-						<div className="card-body">
-							<h2>Otros servicios</h2>
+						<div className="card-body ">
+							<h2 className="text-center">Otros servicios</h2>
 
 							<p className="tabs-info-text">
 								PetsVets también ofrece:
