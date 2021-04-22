@@ -184,7 +184,7 @@ export const Booking = () => {
 
 							{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
 								<>
-									<DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
+									{/* <DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
 
 									<div className="row justify-content-center pt-4">
 										<button
@@ -197,7 +197,13 @@ export const Booking = () => {
 											type="submit">
 											Reservar {console.log(process.env.BACKEND_URL)}
 										</button>
-									</div>
+									</div> */}
+                                    <DateTimePicker
+										currentDate={currentDate}
+										setCurrentDate={setCurrentDate}
+										dropDownListData={dropDownListData}
+									/>
+									<TimeSelector handleClick={handleClickReservar} />
 								</>
 							) : null}
 							<div className="row justify-content-center pt-4">
