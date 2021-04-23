@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-//import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 
 export const ForgotPassword = () => {
 	const { store, actions } = useContext(Context);
