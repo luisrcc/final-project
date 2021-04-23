@@ -14,13 +14,23 @@ html, body { height: 100% }
     background-size: cover;
     max-width: 100%;
     height: auto;
+    /* background-repeat: no-repeat; */
+    /* @media (max-width:1420px )  {
+        /* background-image: url(../img/Corgi-banner-bg.jpg); */
+        /* width: 90%; */
+        /* background-size: 80%; */
+        /* background-repeat: no-repeat; */
+    /* } */ 
 }
-.login-background {    
+/* .login-background {    
     background-image: url(../img/cat-background.jpg);
     background-size: cover;
     height: auto;
     max-width: 100%;
-}
+    @media (max-width:992px ) {
+
+    }
+} */
 .jumbotron-inicio{
     background-image: linear-gradient(rgba(214, 214, 214, 0.29), rgba(231, 231, 231, 0.29)), url(../img/dog-relax.jpeg);
     background-size: cover;
@@ -48,7 +58,6 @@ html, body { height: 100% }
     background-image: url(../img/dog-cat.jpg);
     background-size: cover;
     max-width: 100%;
-    height: 600px;
 }
 
 .center-welcome-text{
@@ -526,3 +535,7 @@ p .vets-info {
     height: 5px;
     background: #17a2b8;
 }
+
+.margin-bottom-style {
+    margin-bottom: 110px;
+} 

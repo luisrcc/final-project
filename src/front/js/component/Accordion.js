@@ -93,15 +93,14 @@ const Accordion = () => {
 						<div className="card-body ">
 							<h2 className="text-center">Otros servicios</h2>
 
-							<p className="tabs-info-text">
-								PetsVets también ofrece:
-								<ul>
-									<li>Cirugía de tejidos blandos, incluidas esterilizaciones y castraciones.</li>
-									<li>Cuidado de la piel y manejo de alergias.</li>
-									<li>Peluquería.</li>
-									<li>Atención de emergencia diurna.</li>
-								</ul>
-							</p>
+							<p className="tabs-info-text">PetsVets también ofrece:</p>
+							<ul>
+								<li>Cirugía de tejidos blandos, incluidas esterilizaciones y castraciones.</li>
+								<li>Cuidado de la piel y manejo de alergias.</li>
+								<li>Peluquería.</li>
+								<li>Atención de emergencia diurna.</li>
+							</ul>
+
 							<img className="other-services-img" src={groomer} />
 						</div>
 					</div>

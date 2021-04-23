@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useHistory } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
+import dog from "../../img/Corgi-banner-bg.jpg";
 
 export const RegisterPage = () => {
 	const { store, actions } = useContext(Context);
@@ -49,12 +50,14 @@ export const RegisterPage = () => {
 	};
 
 	return (
-		<div className="register-background">
-			<div className="container">
+		<div className="">
+			<div className="container-fluid register-background">
 				<div className="row py-4 my-4 align-items-center">
-					<div className="col-md-5 pr-lg-5 mb-5 mb-md-0" />
+					<div className="col-sm-12 col-md-6 col-lg-4 ">
+						{/* <img src={dog} className="register-background" /> */}
+					</div>
 
-					<div className="col-md-7 col-lg-6 ml-auto border text-center p-4">
+					<div className="col-sm-12 col-md-6 col-lg-5 ml-auto border text-center p-4 mr-5">
 						<div className="py-4 register-title">
 							<h1>Crea una cuenta</h1>
 						</div>

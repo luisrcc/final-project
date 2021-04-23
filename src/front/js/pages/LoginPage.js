@@ -3,6 +3,7 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
+import cat from "../../img/cat-peeking-bg.jpg";
 
 export const LoginPage = ({ path }) => {
 	console.log(path);
@@ -55,7 +56,7 @@ export const LoginPage = ({ path }) => {
 		<div className="login-background">
 			<div className="container">
 				<div className="row py-4 mt-4 Login">
-					<div className="col-md-7 col-lg-6 mr-auto border p-4 col-centered">
+					<div className="col-sm-12 col-md-7 col-lg-6 mr-auto border p-4 col-centered">
 						<form>
 							<div className="row justify-content-center login-content">
 								<div className="py-4 login-title">
@@ -130,6 +131,10 @@ export const LoginPage = ({ path }) => {
 								</span>
 							</Link>
 						</div>
+					</div>
+					<div className="col-sm-12 col-md-5 col-lg-6 mr-auto pb-4 col-centered">
+						{" "}
+						<img src={cat} />{" "}
 					</div>
 				</div>
 			</div>
