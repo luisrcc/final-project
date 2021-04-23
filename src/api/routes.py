@@ -268,3 +268,52 @@ def get_available_times():
         return jsonify(response), 200
     else:
         return jsonify([]), 205
+
+@api.route('/reset-pass', methods=['POST'])
+def get_reset_pass():
+
+    email = request.json.get('email', None)
+    token = request.json.get('tokenNumber', None)
+
+    if not email:
+        return jsonify({'msg':'Error de Validacion'}), 201
+
+    if not token:
+        return jsonify({'msg':'Error de Validacion'}), 201
+
+    user = User.query.filter_by(email=email).first()
+
+    if not user:
+        return jsonify({'msg':'Error de Validacion'}), 201
+
+    user.password = randit(100000, 900000)
+    user.reset_password = token
+    db.session.commit()
+
+    reponse={
+        'msg': 'Token Modificado'
+    }
+
+    return jsonify(reponse), 201
+
+    @api.route('/modify-pass', metohds=['POST'])
+    def get_modify_pass():
+        token = request.json.get('tokenNumber', None)
+        password = request.json.get('password', None)
+
+        if not token:
+            return 'Error, intentar Nuevamente', 401
+        if not password:
+            return 'Error, intentar Nuevamente', 401
+
+        selectedUser = User.query.filter_by(reset_password=token).first()
+
+        selectedUser.reset_password = 0
+        print(selectedUser)
+        selectedUser.password = password
+        db.session.commit() 
+
+        response={
+            'msg': 'Modificado Exitosamente'
+        }
+        return jsonify(response), 200
