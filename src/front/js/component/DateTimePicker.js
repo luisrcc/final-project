@@ -54,9 +54,7 @@ export const DateTimePicker = ({ currentDate, setCurrentDate, dropDownListData }
 			<DatePicker
 				selected={currentDate ? currentDate : new Date()}
 				onChange={date => handleChangeDateSelect(date)}
-				filterDate={isWeekday}
 				locale="pt-CL"
-				// excludeDates={[new Date(), subDays(new Date(), 1)]}
 				dateFormat="dd/MM/yyyy"
 			/>
 		</div>

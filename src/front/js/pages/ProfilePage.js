@@ -24,7 +24,7 @@ export const ProfilePage = () => {
 									<div className="mt-3">
 										<h4>{`${userData.first_name} ${userData.last_name}`}</h4>
 										<Link to="/booking">
-											<button className="btn btn-outline-info">{"Reserva tu Hora"}</button>
+											<button className="btn btn-info">{"Reserva tu Hora"}</button>
 										</Link>
 									</div>
 									<div className="mt-3">

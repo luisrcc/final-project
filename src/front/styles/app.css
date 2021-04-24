@@ -59,6 +59,7 @@ html, body { height: 100% }
     @media screen {
         display: block;
         max-width: 100%;
+        margin: auto;
     }
     @media (min-width: 1200px) {
         display: none;
@@ -118,9 +119,8 @@ html, body { height: 100% }
 }
 
 .jumbotron-join-us{
-    background-image: url(../img/dog-licking-mans-face.jpg);
+    background-image: linear-gradient(rgba(214, 214, 214, 0.29), rgba(231, 231, 231, 0.29)), url(../img/dog-licking-mans-face.jpg);
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;    
     height: 700px;   
     text-decoration: none;
