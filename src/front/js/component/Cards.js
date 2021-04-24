@@ -2,28 +2,33 @@ import React, { useState } from "react";
 import petShop1 from "../../img/pet-shop1.jpg";
 import petShop2 from "../../img/pet-shop2.jpg";
 import petShop3 from "../../img/pet-shop3.jpg";
+
+import doctor1 from "../../img/doctor-cruz.jpg";
+import doctor2 from "../../img/doctor-lisa.jpg";
+import doctor3 from "../../img/doctor-ivan.jpg";
+
 import Card from "./Card";
 import PropTypes from "prop-types";
 
 const Cards = ({ title, content, url, buttonName }) => {
 	const [cards] = useState([
 		{
-			title: "petShop1",
+			title: "Luis Cruz",
 			content: "",
-			url: petShop1,
-			buttonName: "Conozca nuestros servicios"
+			url: doctor1,
+			buttonName: "Agendar cita"
 		},
 		{
-			title: "petShop2",
+			title: "Lisa Cordero",
 			content: "",
-			url: petShop2,
-			buttonName: "Conozca nuestros servicios"
+			url: doctor2,
+			buttonName: "Agendar cita"
 		},
 		{
-			title: "petShop3",
+			title: "Ivan Delgado",
 			content: "",
-			url: petShop3,
-			buttonName: "Conozca nuestros servicios"
+			url: doctor3,
+			buttonName: "Agendar cita"
 		}
 	]);
 

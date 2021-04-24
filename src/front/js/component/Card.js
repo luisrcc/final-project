@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Card = ({ title, content, url, buttonName }) => {
 	return (
@@ -9,9 +10,12 @@ const Card = ({ title, content, url, buttonName }) => {
 				<div className="card-body text-center">
 					<h5 className="card-title">{title}</h5>
 					<p className="card-text">{content}</p>
-					<a href="/#" className="btn btn-info text-center reponsive-button">
-						{buttonName}
-					</a>
+
+					<Link to="/booking">
+						<a href="/#" className="btn btn-info text-center reponsive-button">
+							{buttonName}
+						</a>
+					</Link>
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ import DropDownList from "./DropDownList";
 import TimeSelector from "./TimeSelector";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
+import catDog from "../../img/dog-cat-booking.jpg";
 
 export const Booking = () => {
 	const { store, actions } = useContext(Context);
@@ -35,39 +36,6 @@ export const Booking = () => {
 		especialistas: null,
 		especialista: 0
 	});
-
-	// const onSubmit = async data => {
-	// 	const exampleDate = moment(currentDate).format("YYYY-MM-DD HH:mm:ss");
-	// 	const request = {
-	// 		user_id: 1,
-	// 		pet_name: data.inputPetName,
-	// 		pet: data.inputPet,
-	// 		speciality: dropDownListData.especialidad.id,
-	// 		specialist: dropDownListData.especialista.name,
-	// 		date: exampleDate
-	// 	};
-
-	// 	const response = await actions.createNewAppointment(request);
-	// 	if (!response.ok) {
-	// 		Swal.fire({
-	// 			title: "Hubo un Error!",
-	// 			text: "Favor reintente la operación",
-	// 			icon: "error",
-	// 			confirmButtonText: "Continuar"
-	// 		}).then(() => {
-	// 			history.push("/");
-	// 		});
-	// 	} else {
-	// 		Swal.fire({
-	// 			title: "Hora Agendada con éxito",
-	// 			text: "¿Deseas continuar?",
-	// 			icon: "success",
-	// 			confirmButtonText: "Continuar"
-	// 		}).then(() => {
-	// 			history.push("/");
-	// 		});
-	// 	}
-	// };
 
 	const isObjectExist = object => {
 		if (object === null && object === undefined) return false;
@@ -140,11 +108,13 @@ export const Booking = () => {
 	};
 
 	return (
-		<div className="booking-background">
+		<div className="margin-bottom-style">
 			<div className="container pt-4">
 				<div className="row justify-content-center">
-					<div className="col-md-6 border p-4">
-						{/* <form onSubmit={handleSubmit(onSubmit)}> */}
+					<div className="col-lg-6 col-md-12 col-sm-12 ">
+						<img src={catDog} className="booking-background" />
+					</div>
+					<div className="col-lg-6 col-md-12 border p-4 col-sm-12">
 						<form>
 							<div className="row justify-content-center">
 								<div className="input-group col-md-6 mb-4">
@@ -238,25 +208,7 @@ export const Booking = () => {
 
 							{dropDownListData.especialista && dropDownListData.especialista !== 0 ? (
 								<>
-// <<<<<<< solve-conflicts
-									{/* <DateTimePicker currentDate={currentDate} setCurrentDate={setCurrentDate} />
-
-									<div className="row justify-content-center pt-4">
-										<button
-											disabled={
-												isObjectExist(errors) && Object.entries(errors).length === 0
-													? false
-													: true
-											}
-											className="btn btn-info reponsive-button"
-											type="submit">
-											Reservar {console.log(process.env.BACKEND_URL)}
-										</button>
-									</div> */}
-                                 //   <DateTimePicker
-//=======
 									<DateTimePicker
-//>>>>>>> develop
 										currentDate={currentDate}
 										setCurrentDate={setCurrentDate}
 										dropDownListData={dropDownListData}
@@ -264,14 +216,17 @@ export const Booking = () => {
 									<TimeSelector handleClick={handleClickReservar} />
 								</>
 							) : null}
-							<div className="row justify-content-center pt-4">
+							<div className="row justify-content-center">
 								<Link to="/">
-									<span className="btn btn-outline-info reponsive-button" href="#" role="button">
+									<span className="btn btn-info reponsive-button" href="#" role="button">
 										Regresa
 									</span>
 								</Link>
 							</div>
 						</form>
+					</div>
+					<div className="col-md-12 col-sm-12 text-center">
+						<img src={catDog} className="booking-background-small" />
 					</div>
 				</div>
 			</div>
