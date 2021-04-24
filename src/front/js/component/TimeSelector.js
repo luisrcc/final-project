@@ -9,11 +9,11 @@ const TimeSelector = ({ handleClick }) => {
 	let listTimesAvailable = store.listTimesAvailable;
 
 	return (
-		<div className="container pt-3 mb-3">
+		<div className="container pt-3 mb-3 ">
 			{listTimesAvailable !== undefined && listTimesAvailable !== null && listTimesAvailable.length > 0 ? (
 				listTimesAvailable.map((item, index) => {
 					return (
-						<div key={index} className="row text-center p-1">
+						<div key={index} className="row text-center p-1 justify-content-center">
 							<div className="col-lg btn-sm">
 								<button
 									type="button"
@@ -28,10 +28,8 @@ const TimeSelector = ({ handleClick }) => {
 				})
 			) : (
 				<div className="row">
-					<div className="col-lg btn-block">
-						<button type="button" className="btn btn-outline-success btn-lg btn-block">
-							{"No existen horas disponibles"}
-						</button>
+					<div className="alert alert-warning" role="alert">
+						{"No existen horas disponibles"}
 					</div>
 				</div>
 			)}

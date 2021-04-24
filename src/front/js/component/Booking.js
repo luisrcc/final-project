@@ -8,6 +8,7 @@ import DropDownList from "./DropDownList";
 import TimeSelector from "./TimeSelector";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
+import catDog from "../../img/dog-cat-booking.jpg";
 
 export const Booking = () => {
 	const { store, actions } = useContext(Context);
@@ -107,11 +108,13 @@ export const Booking = () => {
 	};
 
 	return (
-		<div className="booking-background margin-bottom-style">
+		<div className="margin-bottom-style">
 			<div className="container pt-4">
 				<div className="row justify-content-center">
-					<div className="col-md-6 col-sm-12" />
-					<div className="col-md-6 border p-4 col-sm-12">
+					<div className="col-lg-6 col-md-12 col-sm-12 ">
+						<img src={catDog} className="booking-background" />
+					</div>
+					<div className="col-lg-6 col-md-12 border p-4 col-sm-12">
 						<form>
 							<div className="row justify-content-center">
 								<div className="input-group col-md-6 mb-4">
@@ -221,6 +224,9 @@ export const Booking = () => {
 								</Link>
 							</div>
 						</form>
+					</div>
+					<div className="col-md-12 col-sm-12 text-center">
+						<img src={catDog} className="booking-background-small" />
 					</div>
 				</div>
 			</div>

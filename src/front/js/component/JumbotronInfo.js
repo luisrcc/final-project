@@ -4,7 +4,7 @@ import catDog from "../../img/cat-dog-info.jpg";
 
 const JumbotronInfo = () => {
 	return (
-		<div className="jumbotron jumbotron-info">
+		<div className="jumbotron jumbotron-info mb-0 pb-1">
 			<div className="container">
 				<div className="jumbotron-info-content py-5 text-center">
 					<h2 className="jumbotron-info-title text-uppercase">Veterinarios PetsVets</h2>
@@ -16,14 +16,14 @@ const JumbotronInfo = () => {
 						concentrarnos tanto tiempo como podamos en su cuidado y su educación.
 					</p>
 				</div>
-				<div className="row">
-					<div className="col-sm-10 col-md-10 col-lg-5">
-						<img className="text-left info-image" src={catDog} />
+				<div className="row justify-content-center">
+					<div className="col-sm-10 col-md-10 col-lg-3">
+						<img className="text-left info-image" src={catDog} width="200px" />
 					</div>
-					<div className="col-sm-10 col-md-10 col-lg-5 mb-4">
+					<div className="col-sm-10 col-md-10 col-lg-5 mb-4 pl-0">
 						<div className="row">
-							<div className="col-sm-1 col-md-1 col-lg-1">
-								<i className="far fa-clock" />
+							<div className="col-sm-1 col-md-1 col-lg-2">
+								<i className="far fa-clock fa-3x text-info" />
 							</div>
 							<div className="col">
 								<p>
