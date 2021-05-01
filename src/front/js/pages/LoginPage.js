@@ -134,7 +134,7 @@ export const LoginPage = ({ path }) => {
 					</div>
 					<div className="col-sm-12 col-md-5 col-lg-6 mr-auto pb-4 col-centered">
 						{" "}
-						<img src={cat} />{" "}
+						<img className="img-cat" src={cat} />{" "}
 					</div>
 				</div>
 			</div>

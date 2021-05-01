@@ -12,9 +12,10 @@ class User(db.Model):
     email = db.Column(db.String(250), unique=True, nullable=False)
     phone = db.Column(db.Integer)
     password = db.Column(db.String(250), nullable=False)
+    perfil_id = db.Column(db.Integer, db.ForeignKey('perfil.id'), nullable=False)
 
     appointment = db.relationship('Appointment', backref='user', lazy=True)
-
+    
     def __repr__(self):
         return '<User %r>' % self.email
 
@@ -25,8 +26,9 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "phone": self.phone,
-            "password": self.password      
-        } 
+            "password": self.password,
+            "perfil_id": self.perfil_id
+        }
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)    
@@ -58,7 +60,7 @@ class Working_hours(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True) 
     speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
     specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.id'), nullable=False)
-    time = db.Column(db.String, nullable=False)
+    time = db.Column(db.TIME, nullable=False)
 
     appointment_rel = db.relationship('Appointment', backref='working_hours', lazy=True)
 
@@ -70,9 +72,8 @@ class Working_hours(db.Model):
             "id": self.id,
             "speciality_id": self.speciality_id,
             "specialist_id": self.specialist_id,
-            "time": self.time
+            "time": self.time.strftime("%H:%M:%S")
         }
-
 
 class Speciality(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
@@ -107,4 +108,19 @@ class Specialist(db.Model):
             "id": self.id,
             "name": self.name,
             "speciality_id": self.speciality_id
+        }
+
+class Perfil(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    name = db.Column(db.String(250), unique=False, nullable=False)
+    
+    user_rel = db.relationship('User', backref='perfil', lazy=True)
+
+    def _repr_(self):
+        return '<Perfil %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name            
         }

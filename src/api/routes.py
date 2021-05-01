@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment, Speciality, Specialist, Working_hours
+from api.models import db, User, Appointment, Speciality, Specialist, Working_hours, Perfil
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
@@ -87,6 +87,7 @@ def register():
     first_name = request.json.get("first_name", None)
     last_name = request.json.get("last_name", None)
     phone = request.json.get('phone', None)
+    perfil_id = request.json.get('perfil_id', None)
     
     if not email:
         return jsonify({"msg": "Email is required"}), 400    
@@ -98,6 +99,8 @@ def register():
         return jsonify({"msg": "Last Name is required"}), 400
     if not phone:
         return jsonify({"msg": "Phone Number is required"}), 400
+    if not perfil_id:
+        return jsonify({"msg": "perfil_id Number is required"}), 400
 
     email_query = User.query.filter_by(email=email).first()
     if email_query:
@@ -109,11 +112,11 @@ def register():
     user.is_active= True
     user.first_name= first_name
     user.last_name= last_name
-    user.phone = phone
-    #user.username = username
+    user.phone = phone    
     hashed_password = generate_password_hash(password)
     user.password = hashed_password
-    print(email)
+    user.perfil_id = perfil_id
+
     db.session.add(user)
     db.session.commit()
 
@@ -268,3 +271,14 @@ def get_available_times():
         return jsonify(response), 200
     else:
         return jsonify([]), 205
+
+@api.route('/perfil', methods=['POST'])
+def create_new_profile():
+    
+    name = request.json['name']    
+    new_perfil = Perfil(name=name)
+
+    db.session.add(new_perfil)
+    db.session.commit()
+    
+    return jsonify({ "msg": "perfil creado"}), 200
