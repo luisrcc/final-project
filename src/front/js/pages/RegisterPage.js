@@ -5,29 +5,33 @@ import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
 import dog from "../../img/black-dog-bg.jpg";
 
-// import dog from "../../img/smart-dog.jpeg";
-
 export const RegisterPage = () => {
-	const { store, actions } = useContext(Context);
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [phone, setPhone] = useState("");
-	const [password, setPassword] = useState("");
-	const [passwordConfirmation, setPasswordConfirmation] = useState("");
+	const { actions } = useContext(Context);
+
+	const [errors, setErrors] = useState({});
+	const inicializarCamposForm = {
+		firstName: "",
+		lastName: "",
+		email: "",
+		phone: "",
+		password: "",
+		passwordConfirmation: ""
+	};
+	const [values, setValues] = useState(inicializarCamposForm);
 
 	const history = useHistory();
+	const userData = JSON.parse(localStorage.getItem("user"));
 
 	const handlerClick = async e => {
 		e.preventDefault();
 
 		const isOk = await actions.setRegister({
-			first_name: firstName,
-			last_name: lastName,
-			email: email,
-			phone: phone,
-			password: password,
-			password: passwordConfirmation
+			first_name: values.firstName,
+			last_name: values.lastName,
+			email: values.email,
+			phone: values.phone,
+			password: values.password,
+			perfil_id: userData.perfil_id ? paseInt(userData.perfil_id) : 1
 		});
 
 		if (!isOk) {
@@ -50,6 +54,67 @@ export const RegisterPage = () => {
 			});
 		}
 	};
+
+	const handleInputChange = (e, validarNumeros) => {
+		e.preventDefault();
+		const regexp = /^[0-9\b]+$/;
+		const { name, value } = e.target;
+		const valorTrim = value;
+
+		if (validarNumeros) {
+			if (valorTrim === "" || regexp.test(valorTrim)) {
+				const fieldValue = { [name]: valorTrim };
+				setValues({
+					...values,
+					...fieldValue
+				});
+				validate(fieldValue);
+			}
+		} else {
+			const fieldValue = { [name]: valorTrim };
+			setValues({
+				...values,
+				...fieldValue
+			});
+			validate(fieldValue);
+		}
+	};
+
+	const validate = (fieldValues = values) => {
+		let temp = { ...errors };
+
+		if ("firstName" in fieldValues)
+			temp.firstName =
+				fieldValues.firstName && fieldValues.firstName.trim().length > 0 ? "" : "Nombre corto es obligatorio";
+
+		if ("lastName" in fieldValues)
+			temp.lastName =
+				fieldValues.lastName && fieldValues.lastName.trim().length > 0 ? "" : "Apellido es obligatorio";
+
+		if ("email" in fieldValues)
+			temp.email = fieldValues.email && fieldValues.email.trim().length > 0 ? "" : "Email es obligatorio";
+
+		if ("phone" in fieldValues)
+			temp.phone = fieldValues.phone && fieldValues.phone.trim().length > 0 ? "" : "Teléfono es obligatorio";
+
+		if ("password" in fieldValues)
+			temp.password =
+				fieldValues.password && fieldValues.password.trim().length > 0 ? "" : "Password es obligatorio";
+
+		if ("passwordConfirmation" in fieldValues)
+			temp.passwordConfirmation =
+				fieldValues.passwordConfirmation && fieldValues.passwordConfirmation.trim().length > 0
+					? ""
+					: "Confirmación Password es obligatorio";
+
+		setErrors({
+			...temp
+		});
+		if (fieldValues === values) return Object.values(temp).every(x => x === "");
+	};
+
+	console.log("errors");
+	console.log(errors);
 
 	return (
 		<div className="">
@@ -75,11 +140,16 @@ export const RegisterPage = () => {
 										id="firstName"
 										type="email"
 										name="firstName"
-										value={firstName}
-										onChange={e => setFirstName(e.target.value)}
+										value={values.firstName}
+										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese Nombre"
 										className="form-control bg-white border-left-0 border-md"
 									/>
+									{errors.firstName ? (
+										<small id="error-nombre" className="form-text text-danger">
+											{errors.firstName}
+										</small>
+									) : null}
 								</div>
 
 								<div className="input-group col-lg-6 mb-4">
@@ -91,12 +161,17 @@ export const RegisterPage = () => {
 									<input
 										id="lastName"
 										type="email"
-										name="lastname"
-										value={lastName}
-										onChange={e => setLastName(e.target.value)}
+										name="lastName"
+										value={values.lastName}
+										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese Apellido"
 										className="form-control bg-white border-left-0 border-md"
 									/>
+									{errors.lastName ? (
+										<small id="error-lastName" className="form-text text-danger">
+											{errors.lastName}
+										</small>
+									) : null}
 								</div>
 								<div className="input-group col-lg-12 mb-4">
 									<div className="input-group-prepend">
@@ -108,8 +183,8 @@ export const RegisterPage = () => {
 										id="email"
 										type="email"
 										name="email"
-										value={email}
-										onChange={e => setEmail(e.target.value)}
+										value={values.email}
+										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese su email"
 										className="form-control bg-white border-left-0 border-md"
 									/>
@@ -133,8 +208,8 @@ export const RegisterPage = () => {
 										id="phoneNumber"
 										type="tel"
 										name="phone"
-										value={phone}
-										onChange={e => setPhone(e.target.value)}
+										value={values.phone}
+										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese numero telefonico"
 										className="form-control bg-white border-md border-left-0 pl-3"
 									/>
@@ -150,8 +225,8 @@ export const RegisterPage = () => {
 										id="password"
 										type="password"
 										name="password"
-										value={password}
-										onChange={e => setPassword(e.target.value)}
+										value={values.password}
+										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese Contraseña"
 										className="form-control bg-white border-left-0 border-md"
 									/>
@@ -167,8 +242,8 @@ export const RegisterPage = () => {
 										id="passwordConfirmation"
 										type="password"
 										name="passwordConfirmation"
-										value={passwordConfirmation}
-										onChange={e => setPasswordConfirmation(e.target.value)}
+										value={values.passwordConfirmation}
+										onChange={e => handleInputChange(e, false)}
 										placeholder="Confirme Contraseña"
 										className="form-control bg-white border-left-0 border-md"
 									/>
