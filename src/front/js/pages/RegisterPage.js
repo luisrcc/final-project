@@ -9,7 +9,7 @@ export const RegisterPage = () => {
 	const { actions } = useContext(Context);
 
 	const [errors, setErrors] = useState({});
-	const [submitButton, setSubmitButton] = useState(false);
+	const [submitButton, setSubmitButton] = useState(true);
 	const inicializarCamposForm = {
 		firstName: "",
 		lastName: "",
@@ -25,7 +25,7 @@ export const RegisterPage = () => {
 
 	const handlerClick = async e => {
 		e.preventDefault();
-		setSubmitButton(validate());
+
 		if (validate()) {
 			const isOk = await actions.setRegister({
 				first_name: values.firstName,
@@ -83,6 +83,16 @@ export const RegisterPage = () => {
 		}
 	};
 
+	const isEmpty = obj => {
+		for (let key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
 	const validate = (fieldValues = values) => {
 		let temp = { ...errors };
 
@@ -100,19 +110,46 @@ export const RegisterPage = () => {
 		if ("phone" in fieldValues)
 			temp.phone = fieldValues.phone && fieldValues.phone.trim().length > 0 ? "" : "Teléfono es obligatorio";
 
-		if ("password" in fieldValues)
+		if ("password" in fieldValues) {
 			temp.password =
 				fieldValues.password && fieldValues.password.trim().length > 0 ? "" : "Password es obligatorio";
+			if (values.passwordConfirmation && values.passwordConfirmation.length > 0) {
+				if (fieldValues.password === "") {
+					temp.passwordConfirmation = "falta la contraseña";
+				}
+				if (fieldValues.password !== "" && fieldValues.password !== values.passwordConfirmation) {
+					temp.passwordConfirmation = "las contraseñas son diferentes";
+				}
+				if (fieldValues.password !== "" && fieldValues.password === values.passwordConfirmation) {
+					temp.passwordConfirmation = "";
+				}
+			}
+		}
 
-		if ("passwordConfirmation" in fieldValues)
-			temp.passwordConfirmation =
-				fieldValues.passwordConfirmation && fieldValues.passwordConfirmation.trim().length > 0
-					? ""
-					: "Confirmación Password es obligatorio";
+		if ("passwordConfirmation" in fieldValues) {
+			if (fieldValues.passwordConfirmation && fieldValues.passwordConfirmation.length > 0) {
+				if (values.password === "") {
+					temp.passwordConfirmation = "falta la contraseña";
+				}
+				if (values.password !== "" && values.password !== fieldValues.passwordConfirmation) {
+					temp.passwordConfirmation = "las contraseñas son diferentes";
+				}
+				if (values.password !== "" && values.password === fieldValues.passwordConfirmation) {
+					temp.passwordConfirmation = "";
+				}
+			} else {
+				temp.passwordConfirmation = "confirmar contraseña es obligatorio";
+			}
+		}
+
 		setErrors({
 			...temp
 		});
-		if (fieldValues === values) return Object.values(temp).every(x => x === "");
+
+		if (fieldValues === values) {
+			setSubmitButton(!Object.values(temp).every(x => x === ""));
+			return Object.values(temp).every(x => x === "");
+		}
 	};
 
 	return (
@@ -248,11 +285,7 @@ export const RegisterPage = () => {
 								</div>
 
 								<div className="form-group col-lg-12 mx-auto mb-0">
-									<button
-										href="#"
-										type="submit"
-										className="btn btn-info btn-block py-2"
-										disabled={false}>
+									<button href="#" type="submit" className="btn btn-info btn-block py-2">
 										<span clastrue="font-weight-bold">Crea tu cuenta</span>
 									</button>
 								</div>
