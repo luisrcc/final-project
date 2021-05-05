@@ -174,8 +174,8 @@ export const Booking = () => {
 												dropDownListData.especialidad === 0
 													? dropDownListData.especialidad
 													: dropDownListData.especialidad
-														? dropDownListData.especialidad.id
-														: 0
+													? dropDownListData.especialidad.id
+													: 0
 											}
 											ref={register({ required: true })}
 											titulo={"Especialidad"}

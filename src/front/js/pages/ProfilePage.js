@@ -43,9 +43,7 @@ export const ProfilePage = () => {
 									<div className="col-sm-3">
 										<h6 className="mb-0">{"Nombre Completo"}</h6>
 									</div>
-									<div className="col-sm-9 text-secondary">{`${userData.first_name} ${
-										userData.last_name
-									}`}</div>
+									<div className="col-sm-9 text-secondary">{`${userData.first_name} ${userData.last_name}`}</div>
 								</div>
 								<hr />
 								<div className="row">

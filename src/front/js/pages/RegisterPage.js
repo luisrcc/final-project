@@ -9,6 +9,7 @@ export const RegisterPage = () => {
 	const { actions } = useContext(Context);
 
 	const [errors, setErrors] = useState({});
+	const [submitButton, setSubmitButton] = useState(false);
 	const inicializarCamposForm = {
 		firstName: "",
 		lastName: "",
@@ -24,34 +25,36 @@ export const RegisterPage = () => {
 
 	const handlerClick = async e => {
 		e.preventDefault();
-
-		const isOk = await actions.setRegister({
-			first_name: values.firstName,
-			last_name: values.lastName,
-			email: values.email,
-			phone: values.phone,
-			password: values.password,
-			perfil_id: userData.perfil_id ? paseInt(userData.perfil_id) : 1
-		});
-
-		if (!isOk) {
-			Swal.fire({
-				title: "Hubo un Error!",
-				text: "Favor reintente la operación",
-				icon: "error",
-				confirmButtonText: "Continuar"
-			}).then(() => {
-				history.push("/");
+		setSubmitButton(validate());
+		if (validate()) {
+			const isOk = await actions.setRegister({
+				first_name: values.firstName,
+				last_name: values.lastName,
+				email: values.email,
+				phone: values.phone,
+				password: values.password,
+				perfil_id: userData.perfil_id ? paseInt(userData.perfil_id) : 1
 			});
-		} else {
-			Swal.fire({
-				title: "Usuario registrado con exito",
-				text: "¿Deseas continuar?",
-				icon: "success",
-				confirmButtonText: "Continuar"
-			}).then(() => {
-				history.push("/");
-			});
+
+			if (!isOk) {
+				Swal.fire({
+					title: "Hubo un Error!",
+					text: "Favor reintente la operación",
+					icon: "error",
+					confirmButtonText: "Continuar"
+				}).then(() => {
+					history.push("/");
+				});
+			} else {
+				Swal.fire({
+					title: "Usuario registrado con exito",
+					text: "¿Deseas continuar?",
+					icon: "success",
+					confirmButtonText: "Continuar"
+				}).then(() => {
+					history.push("/");
+				});
+			}
 		}
 	};
 
@@ -106,15 +109,11 @@ export const RegisterPage = () => {
 				fieldValues.passwordConfirmation && fieldValues.passwordConfirmation.trim().length > 0
 					? ""
 					: "Confirmación Password es obligatorio";
-
 		setErrors({
 			...temp
 		});
 		if (fieldValues === values) return Object.values(temp).every(x => x === "");
 	};
-
-	console.log("errors");
-	console.log(errors);
 
 	return (
 		<div className="">
@@ -124,26 +123,24 @@ export const RegisterPage = () => {
 						<img src={dog} className="register-background" width="100%" />
 					</div>
 
-					<div className="col-sm-12 col-md-12 col-lg-6 border text-center p-4 mt-3 register-form">
+					<div className="col-sm-12 col-md-12 col-lg-6 border p-4 mt-3 register-form">
 						<div className="py-4 register-title">
 							<h1>Crea una cuenta</h1>
 						</div>
-						<form>
+						<form autoComplete="off" noValidate onSubmit={handlerClick}>
 							<div className="row">
-								<div className="input-group col-lg-6 mb-4 mx-auto">
-									<div className="input-group-prepend">
-										<span className="input-group-text bg-white px-4 border-md border-right-0">
-											<i className="fa fa-user text-muted" />
-										</span>
-									</div>
+								<div className="form-group col-lg-6 mb-4 mx-auto">
+									<label className="font-weight-bold" htmlFor="firstName">
+										Nombre:
+									</label>
 									<input
 										id="firstName"
-										type="email"
+										type="text"
 										name="firstName"
 										value={values.firstName}
 										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese Nombre"
-										className="form-control bg-white border-left-0 border-md"
+										className="form-control bg-white border-md"
 									/>
 									{errors.firstName ? (
 										<small id="error-nombre" className="form-text text-danger">
@@ -152,20 +149,18 @@ export const RegisterPage = () => {
 									) : null}
 								</div>
 
-								<div className="input-group col-lg-6 mb-4">
-									<div className="input-group-prepend">
-										<span className="input-group-text bg-white px-4 border-md border-right-0">
-											<i className="fa fa-user text-muted" />
-										</span>
-									</div>
+								<div className="form-group col-lg-6 mb-4">
+									<label className="font-weight-bold" htmlFor="lastName">
+										Apellido:
+									</label>
 									<input
 										id="lastName"
-										type="email"
+										type="text"
 										name="lastName"
 										value={values.lastName}
 										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese Apellido"
-										className="form-control bg-white border-left-0 border-md"
+										className="form-control bg-white border-md"
 									/>
 									{errors.lastName ? (
 										<small id="error-lastName" className="form-text text-danger">
@@ -173,12 +168,10 @@ export const RegisterPage = () => {
 										</small>
 									) : null}
 								</div>
-								<div className="input-group col-lg-12 mb-4">
-									<div className="input-group-prepend">
-										<span className="input-group-text bg-white px-4 border-md border-right-0">
-											<i className="fa fa-envelope text-muted" />
-										</span>
-									</div>
+								<div className="form-group col-lg-6 mb-4">
+									<label className="font-weight-bold" htmlFor="email">
+										Email:
+									</label>
 									<input
 										id="email"
 										type="email"
@@ -186,41 +179,38 @@ export const RegisterPage = () => {
 										value={values.email}
 										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese su email"
-										className="form-control bg-white border-left-0 border-md"
+										className="form-control bg-white border-md"
 									/>
+									{errors.email ? (
+										<small id="error-email" className="form-text text-danger">
+											{errors.email}
+										</small>
+									) : null}
 								</div>
-								<div className="input-group col-lg-12 mb-4">
-									<div className="input-group-prepend">
-										<span className="input-group-text bg-white px-4 border-md border-right-0">
-											<i className="fa fa-phone-square text-muted" />
-										</span>
-									</div>
-									<select
-										id="countryCode"
-										name="countryCode"
-										className="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-										<option value="">+56</option>
-										<option value="">+10</option>
-										<option value="">+15</option>
-										<option value="">+58</option>
-									</select>
+								<div className="form-group col-lg-6 mb-4">
+									<label className="font-weight-bold" htmlFor="phoneNumber">
+										Celular:
+									</label>
 									<input
 										id="phoneNumber"
-										type="tel"
+										type="text"
 										name="phone"
 										value={values.phone}
 										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese numero telefonico"
-										className="form-control bg-white border-md border-left-0 pl-3"
+										className="form-control bg-white border-md pl-3"
 									/>
+									{errors.phone ? (
+										<small id="error-phone" className="form-text text-danger">
+											{errors.phone}
+										</small>
+									) : null}
 								</div>
 
-								<div className="input-group col-lg-6 mb-4 mx-auto">
-									<div className="input-group-prepend">
-										<span className="input-group-text bg-white px-4 border-md border-right-0">
-											<i className="fa fa-lock text-muted" />
-										</span>
-									</div>
+								<div className="form-group col-lg-6 mb-4 mx-auto">
+									<label className="font-weight-bold" htmlFor="password">
+										{"Contraseña:"}
+									</label>
 									<input
 										id="password"
 										type="password"
@@ -228,16 +218,19 @@ export const RegisterPage = () => {
 										value={values.password}
 										onChange={e => handleInputChange(e, false)}
 										placeholder="Ingrese Contraseña"
-										className="form-control bg-white border-left-0 border-md"
+										className="form-control bg-white border-md"
 									/>
+									{errors.password ? (
+										<small id="error-password" className="form-text text-danger">
+											{errors.password}
+										</small>
+									) : null}
 								</div>
 
-								<div className="input-group col-lg-6 mb-4 mx-auto">
-									<div className="input-group-prepend">
-										<span className="input-group-text bg-white px-4 border-md border-right-0">
-											<i className="fa fa-lock text-muted" />
-										</span>
-									</div>
+								<div className="form-group col-lg-6 mb-4 mx-auto">
+									<label className="font-weight-bold" htmlFor="passwordConfirmation">
+										{"Confirme Contraseña:"}
+									</label>
 									<input
 										id="passwordConfirmation"
 										type="password"
@@ -245,16 +238,22 @@ export const RegisterPage = () => {
 										value={values.passwordConfirmation}
 										onChange={e => handleInputChange(e, false)}
 										placeholder="Confirme Contraseña"
-										className="form-control bg-white border-left-0 border-md"
+										className="form-control bg-white border-md"
 									/>
+									{errors.passwordConfirmation ? (
+										<small id="error-passwordConfirmation" className="form-text text-danger">
+											{errors.passwordConfirmation}
+										</small>
+									) : null}
 								</div>
 
 								<div className="form-group col-lg-12 mx-auto mb-0">
 									<button
 										href="#"
+										type="submit"
 										className="btn btn-info btn-block py-2"
-										onClick={e => handlerClick(e)}>
-										<span className="font-weight-bold">Crea tu cuenta</span>
+										disabled={false}>
+										<span clastrue="font-weight-bold">Crea tu cuenta</span>
 									</button>
 								</div>
 								<div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
