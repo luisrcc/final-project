@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { imgProfile } from "../../img/photoProfile.png";
 import PropTypes from "prop-types";
 import { Context } from ".././store/appContext";
+import BookedHoursList from "../component/BookedHoursList";
 
 export const ProfilePage = () => {
 	const userData = JSON.parse(localStorage.getItem("user"));
@@ -63,6 +64,10 @@ export const ProfilePage = () => {
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div className="col-md-8">
+						<BookedHoursList />
 					</div>
 				</div>
 			</div>

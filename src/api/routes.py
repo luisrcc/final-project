@@ -112,9 +112,8 @@ def register():
     user.is_active= True
     user.first_name= first_name
     user.last_name= last_name
-    user.phone = phone    
-    hashed_password = generate_password_hash(password)
-    user.password = hashed_password
+    user.phone = phone        
+    user.password = generate_password_hash(password)
     user.perfil_id = perfil_id
 
     db.session.add(user)
@@ -281,4 +280,15 @@ def create_new_profile():
     db.session.add(new_perfil)
     db.session.commit()
     
-    return jsonify({ "msg": "perfil creado"}), 200
+    return jsonify({ "msg": "perfil creado"}), 
+
+@api.route('/bookedhourslist',methods=['GET'])
+def booked_hours_list():
+    appointments = Appointment.query.all()
+    appointments = list(map(lambda x: x.serialize(), appointments))
+
+    response_body = {
+        "appointments": appointments,
+    }
+
+    return jsonify(response_body), 200

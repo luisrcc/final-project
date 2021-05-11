@@ -3,6 +3,10 @@ from datetime import datetime
 import json
 from sqlalchemy.dialects.postgresql import TIME, DATE
 
+from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.ext.hybrid import hybrid_property
+
+
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -11,11 +15,13 @@ class User(db.Model):
     last_name = db.Column(db.String(250))
     email = db.Column(db.String(250), unique=True, nullable=False)
     phone = db.Column(db.Integer)
-    password = db.Column(db.String(250), nullable=False)
+    # password = db.Column(db.String(250), nullable=False)
+    password = db.Column(db.String(255))
     perfil_id = db.Column(db.Integer, db.ForeignKey('perfil.id'), nullable=False)
 
     appointment = db.relationship('Appointment', backref='user', lazy=True)
-    
+
+        
     def __repr__(self):
         return '<User %r>' % self.email
 
@@ -28,7 +34,8 @@ class User(db.Model):
             "phone": self.phone,
             "password": self.password,
             "perfil_id": self.perfil_id
-        }
+        } 
+
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)    

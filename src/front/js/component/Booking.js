@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useForm } from "react-hook-form";
 import { DateTimePicker } from "./DateTimePicker";
@@ -16,14 +16,12 @@ export const Booking = () => {
 
 	const [currentDate, setCurrentDate] = useState(null);
 
-	const { register, errors, handleSubmit, watch } = useForm({ mode: "onChange" });
+	const { register, watch } = useForm({ mode: "onChange" });
 
 	const userData = JSON.parse(localStorage.getItem("user"));
 
 	const inputPet = watch("inputPet");
 	const inputPetName = watch("inputPetName");
-	const inputSpecialist = watch("inputSpecialist");
-	const inputSpeciality = watch("inputSpeciality");
 
 	const defaultItemEspecialidad = { nombre: "Seleccione especialidad..." };
 	const defaultItemEspecialista = { nombre: "Seleccione especialista..." };
@@ -36,11 +34,6 @@ export const Booking = () => {
 		especialistas: null,
 		especialista: 0
 	});
-
-	const isObjectExist = object => {
-		if (object === null && object === undefined) return false;
-		return true;
-	};
 
 	const especialidadChange = event => {
 		const especialidad = JSON.parse(event.target.value);

@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useHistory } from "react-router-dom";
-import GoogleLogin from "react-google-login";
 import Swal from "sweetalert2";
 import dog from "../../img/black-dog-bg.jpg";
 
@@ -9,7 +8,7 @@ export const RegisterPage = () => {
 	const { actions } = useContext(Context);
 
 	const [errors, setErrors] = useState({});
-	const [submitButton, setSubmitButton] = useState(true);
+
 	const inicializarCamposForm = {
 		firstName: "",
 		lastName: "",
@@ -81,16 +80,6 @@ export const RegisterPage = () => {
 			});
 			validate(fieldValue);
 		}
-	};
-
-	const isEmpty = obj => {
-		for (let key in obj) {
-			if (obj.hasOwnProperty(key)) {
-				return false;
-			}
-		}
-
-		return true;
 	};
 
 	const validate = (fieldValues = values) => {
