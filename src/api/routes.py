@@ -4,7 +4,7 @@ from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import datetime
-from api.services import check_available_time_specialist
+from api.services import check_available_time_specialist, get_booking_list_client
 
 api = Blueprint('api', __name__)
 
@@ -280,15 +280,33 @@ def create_new_profile():
     db.session.add(new_perfil)
     db.session.commit()
     
-    return jsonify({ "msg": "perfil creado"}), 
+    return jsonify({ "msg": "perfil creado"}), 200
 
-@api.route('/bookedhourslist',methods=['GET'])
-def booked_hours_list():
-    appointments = Appointment.query.all()
-    appointments = list(map(lambda x: x.serialize(), appointments))
+# end-point para obtener las horas asociadas al profesional
+@api.route('/list-hours-professional',methods=['POST'])
+def get_list_hours_professional():
+    
+    id_speciality = request.json['id_speciality']
+    id_specialist = request.json['id_specialist']
+    user_id = request.json['user_id']
+    
+    response = get_booking_list_client(id_speciality, id_specialist, user_id)
+    response = list(map(lambda x: x.serialize(), response))
+    if response:
+        return jsonify(response), 200
+    else:
+        return jsonify([]), 205
+    
 
-    response_body = {
-        "appointments": appointments,
-    }
 
-    return jsonify(response_body), 200
+# end-point para obtener las horas asociadas al usuario
+# @api.route('/bookedhourslist',methods=['GET'])
+# def booked_hours_list():
+#     appointments = Appointment.query.all()
+#     appointments = list(map(lambda x: x.serialize(), appointments))
+
+#     response_body = {
+#         "appointments": appointments,
+#     }
+
+#     return jsonify(response_body), 200

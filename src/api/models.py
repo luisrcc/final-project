@@ -120,7 +120,6 @@ class Specialist(db.Model):
 class Perfil(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     name = db.Column(db.String(250), unique=False, nullable=False)
-    
     user_rel = db.relationship('User', backref='perfil', lazy=True)
 
     def _repr_(self):

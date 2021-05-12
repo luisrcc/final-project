@@ -6,7 +6,6 @@ import dog from "../../img/black-dog-bg.jpg";
 
 export const RegisterPage = () => {
 	const { actions } = useContext(Context);
-
 	const [errors, setErrors] = useState({});
 
 	const inicializarCamposForm = {
@@ -136,7 +135,6 @@ export const RegisterPage = () => {
 		});
 
 		if (fieldValues === values) {
-			setSubmitButton(!Object.values(temp).every(x => x === ""));
 			return Object.values(temp).every(x => x === "");
 		}
 	};

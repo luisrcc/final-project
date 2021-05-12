@@ -27,7 +27,7 @@ const TimeSelector = ({ handleClick }) => {
 					);
 				})
 			) : (
-				<div className="row">
+				<div className="row justify-content-center">
 					<div className="alert alert-warning" role="alert">
 						{"No existen horas disponibles"}
 					</div>
