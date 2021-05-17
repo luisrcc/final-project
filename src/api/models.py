@@ -6,7 +6,6 @@ from sqlalchemy.dialects.postgresql import TIME, DATE
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -19,7 +18,7 @@ class User(db.Model):
     perfil_id = db.Column(db.Integer, db.ForeignKey('perfil.id'), nullable=False)
 
     appointment = db.relationship('Appointment', backref='user', lazy=True)
-    specialist_rel = db.relationship('Specialist', backref='user', lazy=True)
+    specialist = db.relationship('Specialist', backref='user', lazy=True)
         
     def __repr__(self):
         return '<User %r>' % self.email
@@ -40,7 +39,7 @@ class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)    
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
-    specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.user_id'), nullable=False)
+    specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.id'), nullable=False)
     working_hour_id = db.Column(db.Integer, db.ForeignKey('working_hours.id'), nullable=False)
     pet_name = db.Column(db.String(250), unique=False, nullable=False)
     pet = db.Column(db.String(250), unique=False, nullable=False)
@@ -65,7 +64,7 @@ class Appointment(db.Model):
 class Working_hours(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True) 
     speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
-    specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.user_id'), nullable=False)
+    specialist_id = db.Column(db.Integer, db.ForeignKey('specialist.id'), nullable=False)
     time = db.Column(db.TIME, nullable=False)
 
     appointment_rel = db.relationship('Appointment', backref='working_hours', lazy=True)
@@ -77,7 +76,7 @@ class Working_hours(db.Model):
         return {
             "id": self.id,
             "speciality_id": self.speciality_id,
-            "specialist_id": self.user_id,
+            "specialist_id": self.specialist_id,
             "time": self.time.strftime("%H:%M:%S")
         }
 
@@ -98,9 +97,9 @@ class Speciality(db.Model):
             "name":self.name
         }
 
-class Specialist(db.Model):    
-    specialist_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)    
-    speciality_id = db.Column(db.Integer, db.ForeignKey("speciality.id"), primary_key=True)
+class Specialist(db.Model):        
+    id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
+    speciality_id = db.Column(db.Integer, db.ForeignKey('speciality.id'), nullable=False)
     name = db.Column(db.String(250), unique=False, nullable=False)
 
     appointment_rel = db.relationship('Appointment', backref='specialist', lazy=True)
@@ -111,9 +110,9 @@ class Specialist(db.Model):
 
     def serialize(self):
         return {
-            "specialist_id": self.specialist_id,
+            "id": self.id,
+            "speciality_id": self.speciality_id,
             "name": self.name,
-            "speciality_id": self.speciality_id
         }
 
 class Perfil(db.Model):

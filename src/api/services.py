@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Speciality, Working_hours, Appointment
+from api.models import db, Speciality, Working_hours, Appointment, Specialist
 from api.utils import generate_sitemap, APIException
-from datetime import datetime, time
+from datetime import datetime, time, date
+import json
+import collections
 import pytz
 
 
@@ -47,17 +49,25 @@ def get_times_by_speciality(id_speciality, id_specialist, date, user_id):
 
 
 def get_booking_list_client(speciality_id, specialist_id, user_id):
+    timeZ_As = pytz.timezone('America/Santiago')
+    now = datetime.now(timeZ_As).time()
+    nowDate = datetime.now(timeZ_As)
 
-    timeZ_Ny = pytz.timezone('America/Santiago')
-    now = datetime.now(timeZ_Ny).time()
+    # response = db.session.query(Appointment).filter(
+    #     Appointment.speciality_id == speciality_id, Appointment.specialist_id == specialist_id,  Appointment.user_id == user_id)
 
-    ids_horas_tomadas = db.session.query(Appointment.working_hour_id).filter(
-        Appointment.speciality_id == speciality_id, Appointment.specialist_id == specialist_id, Appointment.user_id == user_id)
-    response = db.session.query(Working_hours).filter(Working_hours.specialist_id == specialist_id,
-                                                      Working_hours.speciality_id == speciality_id, Working_hours.id.in_(ids_horas_tomadas),  Working_hours.time >= now)
-    
+    bookingList = db.session.query(\
+    Appointment.pet_name, Appointment.date, Working_hours.time, Speciality.name, Specialist.name.label("especialist_name")).\
+    select_from(Appointment).\
+    join(Working_hours, Speciality, Specialist).all()
+    # .filter(users.id == friendships.friend_id)\
+    # .filter(friendships.user_id == userID)\
 
-    if response:
-        return response
+    if bookingList:
+        return json.dumps([dict(r) for r in bookingList], default=default)
 
     return False
+
+def default(o):
+    if isinstance(o, (date, datetime, time)):
+        return o.isoformat()

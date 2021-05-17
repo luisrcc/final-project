@@ -206,11 +206,12 @@ def create_speciality():
 
 
 @api.route('/especialista',methods=['POST'])
-def create_specialist():
-    name = request.json['name']
+def create_specialist():    
+    id = request.json['user_id']
     speciality_id = request.json['speciality_id']
+    name = request.json['name']
 
-    new_specialist = Specialist(name=name, speciality_id=speciality_id)
+    new_specialist = Specialist(name=name, speciality_id=speciality_id, id=id)
 
     db.session.add(new_specialist)
     db.session.commit()
@@ -291,9 +292,9 @@ def get_list_hours_professional():
     user_id = request.json['user_id']
     
     response = get_booking_list_client(id_speciality, id_specialist, user_id)
-    response = list(map(lambda x: x.serialize(), response))
+   # response = list(map(lambda x: x.serialize(), response))
     if response:
-        return jsonify(response), 200
+        return response, 200, {'Content-Type': 'application/json'} 
     else:
         return jsonify([]), 205
     
