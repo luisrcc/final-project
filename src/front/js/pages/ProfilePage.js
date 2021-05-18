@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { imgProfile } from "../../img/photoProfile.png";
 import PropTypes from "prop-types";
 import { Context } from ".././store/appContext";
 import BookedHoursList from "../component/BookedHoursList";
+import { PROFILE_CODE_CLIENT, PROFILE_CODE_PROFESIONAL } from "../constantes/index";
 
 export const ProfilePage = () => {
 	const userData = JSON.parse(localStorage.getItem("user"));
+	const { actions, store } = useContext(Context);
+
+	useEffect(() => {
+		if (store.BookedHoursList !== undefined) {
+			if (userData.perfil_id === PROFILE_CODE_CLIENT) {
+				actions.getHourClientList({ user_id: userData.id });
+			}
+			if (userData.perfil_id === PROFILE_CODE_PROFESIONAL) {
+				actions.getHourProfessionaList({ user_id: userData.id });
+			}
+		}
+	}, []);
 
 	return (
 		<div className="container">
@@ -67,7 +80,7 @@ export const ProfilePage = () => {
 					</div>
 
 					<div className="col-md-8">
-						<BookedHoursList />
+						<BookedHoursList perfilId={userData.perfil_id} />
 					</div>
 				</div>
 			</div>

@@ -8,7 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			appointments: [],
 			dataEspecialities: null,
 			listTimesAvailable: [],
-			users: null
+			users: null,
+			listHoursUser: []
 		},
 		actions: {
 			getToken: () => {
@@ -133,6 +134,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = await fetch(process.env.BACKEND_URL + "/api/users", settings);
 				const json = await response.json();
 				setStore({ users: json.results });
+			},
+			getHourProfessionaList: async request => {
+				const settings = {
+					method: "POST",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/list-hours-professional", settings);
+				const json = await response.json();
+				setStore({ listHoursUser: json });
+			},
+			getHourClientList: async request => {
+				const settings = {
+					method: "POST",
+					headers: { "Content-type": "application/json; charset=UTF-8" },
+					body: JSON.stringify(request)
+				};
+				const response = await fetch(process.env.BACKEND_URL + "/api/list-hours-client", settings);
+				const json = await response.json();
+				setStore({ listHoursUser: json });
 			}
 		}
 	};
