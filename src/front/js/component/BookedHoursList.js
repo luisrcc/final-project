@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PROFILE_CODE_CLIENT, PROFILE_CODE_PROFESIONAL } from "../constantes/index";
 
-const BookedHoursList = ({ perfilId }) => {
-	const getTableClientHours = () => {
+const BookedHoursList = ({ perfilId, dataList }) => {
+	const getTableClientHours = dataList => {
 		return (
 			<table className="table table-hover">
 				<thead>
@@ -17,20 +17,22 @@ const BookedHoursList = ({ perfilId }) => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Wilson3</td>
-						<td>2021-05-19</td>
-						<td>08:00:00</td>
-						<td>Veterinaria</td>
-						<td>Fabian Donoso</td>
-					</tr>
+					{dataList.map((item, index) => (
+						<tr key={index}>
+							<th scope="row">{index}</th>
+							<td>{item.pet_name}</td>
+							<td>{item.date}</td>
+							<td>{item.time}</td>
+							<td>{item.especiality_name}</td>
+							<td>{item.especialist_name}</td>
+						</tr>
+					))}
 				</tbody>
 			</table>
 		);
 	};
 
-	const getTableProfessionalHours = () => {
+	const getTableProfessionalHours = dataList => {
 		return (
 			<table className="table table-hover">
 				<thead>
@@ -42,32 +44,35 @@ const BookedHoursList = ({ perfilId }) => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Wilson3</td>
-						<td>2021-05-19</td>
-						<td>08:00:00</td>
-					</tr>
+					{dataList.map((item, index) => (
+						<tr key={index}>
+							<th scope="row">{index}</th>
+							<td>{item.pet_name}</td>
+							<td>{item.date}</td>
+							<td>{item.time}</td>
+						</tr>
+					))}
 				</tbody>
 			</table>
 		);
 	};
 
-	const renderList = perfilId => {
+	const renderList = (perfilId, dataList) => {
 		if (perfilId == PROFILE_CODE_CLIENT) {
-			return getTableClientHours();
+			return getTableClientHours(dataList);
 		}
 		if (perfilId == PROFILE_CODE_PROFESIONAL) {
-			return getTableProfessionalHours();
+			return getTableProfessionalHours(dataList);
 		}
 		return null;
 	};
 
-	return <div>{renderList(perfilId)}</div>;
+	return <div>{renderList(perfilId, dataList)}</div>;
 };
 
 export default BookedHoursList;
 
 BookedHoursList.propTypes = {
-	perfilId: PropTypes.integer
+	perfilId: PropTypes.integer,
+	dataList: PropTypes.array
 };

@@ -19,7 +19,6 @@ export const RegisterPage = () => {
 	const [values, setValues] = useState(inicializarCamposForm);
 
 	const history = useHistory();
-	const userData = JSON.parse(localStorage.getItem("user"));
 
 	const handlerClick = async e => {
 		e.preventDefault();
@@ -31,7 +30,7 @@ export const RegisterPage = () => {
 				email: values.email,
 				phone: values.phone,
 				password: values.password,
-				perfil_id: userData.perfil_id ? paseInt(userData.perfil_id) : 1
+				perfil_id: 1
 			});
 
 			if (!isOk) {

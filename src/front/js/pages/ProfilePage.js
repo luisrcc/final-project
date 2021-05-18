@@ -11,7 +11,7 @@ export const ProfilePage = () => {
 	const { actions, store } = useContext(Context);
 
 	useEffect(() => {
-		if (store.BookedHoursList !== undefined) {
+		if (!store.loading) {
 			if (userData.perfil_id === PROFILE_CODE_CLIENT) {
 				actions.getHourClientList({ user_id: userData.id });
 			}
@@ -35,12 +35,15 @@ export const ProfilePage = () => {
 										className="rounded-circle"
 										width="150"
 									/>
-									<div className="mt-3">
-										<h4>{`${userData.first_name} ${userData.last_name}`}</h4>
-										<Link to="/booking">
-											<button className="btn btn-outline-info">{"Reserva tu Hora"}</button>
-										</Link>
-									</div>
+									{userData.perfil_id === PROFILE_CODE_PROFESIONAL ? null : (
+										<div className="mt-3">
+											<h4>{`${userData.first_name} ${userData.last_name}`}</h4>
+											<Link to="/booking">
+												<button className="btn btn-outline-info">{"Reserva tu Hora"}</button>
+											</Link>
+										</div>
+									)}
+
 									<div className="mt-3">
 										<Link to="/">
 											<button className="btn btn-outline-info">{"Regresar"}</button>
@@ -80,7 +83,10 @@ export const ProfilePage = () => {
 					</div>
 
 					<div className="col-md-8">
-						<BookedHoursList perfilId={userData.perfil_id} />
+						<BookedHoursList
+							perfilId={userData.perfil_id}
+							dataList={store.listHoursUser ? store.listHoursUser : []}
+						/>
 					</div>
 				</div>
 			</div>

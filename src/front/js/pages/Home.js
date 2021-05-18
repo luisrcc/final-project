@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, useEffect, Fragment } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
@@ -14,6 +14,11 @@ import JumbotronInfo from "../component/JumbotronInfo";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+
+	useEffect(() => {
+		actions.setLoadingDefault();
+	}, []);
+
 	return (
 		<>
 			<div className="text-center">

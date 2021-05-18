@@ -9,7 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			dataEspecialities: null,
 			listTimesAvailable: [],
 			users: null,
-			listHoursUser: []
+			listHoursUser: [],
+			loading: false
 		},
 		actions: {
 			getToken: () => {
@@ -153,7 +154,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const response = await fetch(process.env.BACKEND_URL + "/api/list-hours-client", settings);
 				const json = await response.json();
-				setStore({ listHoursUser: json });
+				setStore({ listHoursUser: json, loading: true });
+			},
+			setLoadingDefault: async () => {
+				setStore({ loading: false });
 			}
 		}
 	};

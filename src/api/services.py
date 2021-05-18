@@ -34,7 +34,7 @@ def get_times_by_speciality(id_speciality, id_specialist, date, user_id):
         now = time(0, 0, 0, 0) 
 
     ids_horas_tomadas = db.session.query(Appointment.working_hour_id).filter(
-        Appointment.speciality_id == id_speciality, Appointment.specialist_id == id_specialist, Appointment.date == date, Appointment.user_id == user_id)
+        Appointment.speciality_id == id_speciality, Appointment.specialist_id == id_specialist, Appointment.date == date)
 
     response = db.session.query(Working_hours).filter(Working_hours.specialist_id == id_specialist,
                                                       Working_hours.speciality_id == id_speciality, ~Working_hours.id.in_(ids_horas_tomadas),  Working_hours.time >= now)
