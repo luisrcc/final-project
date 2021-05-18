@@ -31,11 +31,7 @@ def get_times_by_speciality(id_speciality, id_specialist, date, user_id):
     elif newDateParam.strftime('%Y-%m-%d') < nowDate.strftime('%Y-%m-%d'):
         now = time(23, 0, 0, 0)
     elif newDateParam.strftime('%Y-%m-%d') > nowDate.strftime('%Y-%m-%d'):
-        now = time(0, 0, 0, 0)
-
-    print(newDateParam.strftime('%Y-%m-%d'))
-    print(nowDate.strftime('%Y-%m-%d'))
-    print(now)
+        now = time(0, 0, 0, 0) 
 
     ids_horas_tomadas = db.session.query(Appointment.working_hour_id).filter(
         Appointment.speciality_id == id_speciality, Appointment.specialist_id == id_specialist, Appointment.date == date, Appointment.user_id == user_id)
@@ -48,21 +44,36 @@ def get_times_by_speciality(id_speciality, id_specialist, date, user_id):
     return False
 
 
-def get_booking_list_client(speciality_id, specialist_id, user_id):
+def get_booking_list_client(user_id):
     timeZ_As = pytz.timezone('America/Santiago')
     now = datetime.now(timeZ_As).time()
-    nowDate = datetime.now(timeZ_As)
-
-    # response = db.session.query(Appointment).filter(
-    #     Appointment.speciality_id == speciality_id, Appointment.specialist_id == specialist_id,  Appointment.user_id == user_id)
+    nowDate = datetime.now(timeZ_As).strftime('%Y-%m-%d')
 
     bookingList = db.session.query(\
-    Appointment.pet_name, Appointment.date, Working_hours.time, Speciality.name, Specialist.name.label("especialist_name")).\
+    Appointment.pet_name, Appointment.date, Working_hours.time,\
+    Speciality.name.label("especiality_name"), Specialist.name.label("especialist_name")).\
     select_from(Appointment).\
-    join(Working_hours, Speciality, Specialist).all()
-    # .filter(users.id == friendships.friend_id)\
-    # .filter(friendships.user_id == userID)\
+    join(Working_hours, Speciality, Specialist).\
+    filter(Appointment.user_id == user_id).\
+    all()
+    
+    if bookingList:
+        return json.dumps([dict(r) for r in bookingList], default=default)
 
+    return False
+
+def get_booking_list_professional(user_id):
+    timeZ_As = pytz.timezone('America/Santiago')
+    now = datetime.now(timeZ_As).time()
+    nowDate = datetime.now(timeZ_As).strftime('%Y-%m-%d')
+
+    bookingList = db.session.query(\
+    Appointment.pet_name, Appointment.date, Working_hours.time ).\
+    select_from(Appointment).\
+    join(Working_hours, Speciality, Specialist).\
+    filter(Appointment.specialist_id == user_id).\
+    all()
+    
     if bookingList:
         return json.dumps([dict(r) for r in bookingList], default=default)
 
